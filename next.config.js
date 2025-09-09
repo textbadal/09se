@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  eslint: {
-    ignoreDuringBuilds: true,
+  output: "export",
+  images: {
+    unoptimized: true, // ✅ required for logos in static export
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

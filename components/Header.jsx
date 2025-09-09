@@ -34,13 +34,14 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <div className="relative">
-            <Image
-              src="/fevicon.png"
-              alt="Dream Homes Bihar Logo"
-              width={50}
-              height={50}
-              className="object-contain transition-transform duration-300 group-hover:scale-110"
-            />
+           <Image
+  src="/fevicon.png"
+  alt="Dream Homes Bihar Logo"
+  width={50}
+  height={50}
+  className="object-contain transition-transform duration-300 group-hover:scale-110"
+/>
+
             <div className="absolute -top-1 -right-1">
               <Sparkles size={12} className="text-amber-500 fill-amber-500" />
             </div>
