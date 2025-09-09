@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "postbuild": "next-sitemap"
-    
   },
   "dependencies": {
     "lucide-react": "^0.542.0",
@@ -32,4 +31,3 @@
     "typescript": "^5"
   }
 }
-
