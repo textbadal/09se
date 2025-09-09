@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image"; // ✅ Import Next Image
 import {
   Home,
   PenTool,
@@ -183,9 +184,12 @@ export default function ServicesPage() {
 
           {/* Right image */}
           <div className="flex-1 relative">
-            <img
+            <Image
               src="/images/head.png"
               alt="Dream Home Design"
+              width={600}
+              height={400}
+              unoptimized // ✅ required for static export
               className="w-full rounded-2xl shadow-2xl border-4 border-white/20"
             />
             <div className="absolute -bottom-6 -left-6 bg-white text-blue-600 px-6 py-3 rounded-xl shadow-xl font-semibold">
