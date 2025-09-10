@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
-import GalleryPage from "@/app/gallery/page";
+
 
 // Static list of gallery images
 const projects = [

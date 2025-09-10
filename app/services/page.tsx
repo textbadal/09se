@@ -12,8 +12,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import ProductsPage from "../products/page";
-import GalleryPage from "../gallery/page";
+
 
 const services = [
   {
