@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Home,
   Building2,
@@ -10,9 +12,6 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-import { motion } from "framer-motion";
-import { useState } from "react";
-
 
 const services = [
   {
@@ -75,7 +74,6 @@ const pricingPlans = [
       "Furniture Layout",
       "Up to 2000 sq.ft",
       "Unlimited Revisions",
-      
     ],
     highlight: true,
   },
@@ -84,10 +82,10 @@ const pricingPlans = [
     name: "Complete Package",
     price: "₹13,999",
     features: [
-     "2D Floor Plan + Front Elevation",
+      "2D Floor Plan + Front Elevation",
       "Structural Drawings (Footing, Beam, Slab)",
       "Detailed Electrical & Plumbing",
-     "Vastu Guidance",
+      "Vastu Guidance",
       "Furniture Layout",
       "Up to 2000 sq.ft",
       "Unlimited Revisions",
@@ -112,7 +110,7 @@ const testimonials = [
     id: 3,
     name: "Amit Kumar",
     feedback:
-      "Best service in Patna! Affordable, vastu-compliant, and quick delivery of floor plans. Couldn't be happier.",
+      "Best service in Patna! Affordable, vastu-compliant, and quick delivery of floor plans. Couldn&apos;t be happier.",
   },
 ];
 
@@ -155,7 +153,7 @@ export default function ServicesPage() {
             Our Professional Services
           </h1>
           <p className="text-xl max-w-3xl mx-auto mb-8">
-            From concept to completion, we deliver vastu-compliant, modern designs 
+            From concept to completion, we deliver vastu-compliant, modern designs
             that transform your vision into reality.
           </p>
           <a
@@ -172,10 +170,9 @@ export default function ServicesPage() {
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-4">What We Offer</h2>
           <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12">
-            Comprehensive architectural solutions tailored to your needs, 
-            combining modern design with traditional vastu principles.
+            Comprehensive architectural solutions tailored to your needs, combining modern design with traditional vastu principles.
           </p>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => (
               <motion.div
@@ -200,8 +197,7 @@ export default function ServicesPage() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-4">Transparent Pricing</h2>
           <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
-            Choose the package that best fits your needs. All plans include 
-            professional designs and vastu compliance.
+            Choose the package that best fits your needs. All plans include professional designs and vastu compliance.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -224,9 +220,7 @@ export default function ServicesPage() {
                   </div>
                 )}
                 <h3 className="text-2xl font-semibold mb-2">{plan.name}</h3>
-                <p className="text-3xl font-bold text-indigo-600 mb-6">
-                  {plan.price}
-                </p>
+                <p className="text-3xl font-bold text-indigo-600 mb-6">{plan.price}</p>
                 <ul className="text-left text-gray-700 space-y-3 mb-8">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-start">
@@ -264,87 +258,53 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Why Choose Us Section */}
+      <section className="bg-white py-20">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-4">Why Choose Dream Homes Bihar?</h2>
+          <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
+            We combine expertise, innovation, and traditional knowledge to create spaces that are both beautiful and functional.
+          </p>
 
+          <div className="grid md:grid-cols-3 gap-8 text-gray-700 mb-16">
+            <motion.div className="p-6 bg-indigo-50 rounded-xl shadow">
+              <h4 className="font-semibold text-lg mb-2">Vastu + Modern Design</h4>
+              <p>Perfect balance of traditional vastu principles and modern architecture.</p>
+            </motion.div>
+            <motion.div className="p-6 bg-indigo-50 rounded-xl shadow">
+              <h4 className="font-semibold text-lg mb-2">Local Expertise</h4>
+              <p>Deep knowledge of India&apos;s culture, climate, and construction practices.</p>
+            </motion.div>
+            <motion.div className="p-6 bg-indigo-50 rounded-xl shadow">
+              <h4 className="font-semibold text-lg mb-2">Personalized Solutions</h4>
+              <p>We design spaces uniquely tailored to your lifestyle and budget.</p>
+            </motion.div>
+          </div>
 
-{/* Why Choose Us */}
-<section className="bg-white py-20">
-  <div className="max-w-6xl mx-auto px-6 text-center">
-    <h2 className="text-3xl font-bold mb-4">Why Choose Dream Homes Bihar?</h2>
-    <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
-      We combine expertise, innovation, and traditional knowledge to create 
-      spaces that are both beautiful and functional.
-    </p>
-
-    {/* Features */}
-    <div className="grid md:grid-cols-3 gap-8 text-gray-700 mb-16">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="p-6 bg-indigo-50 rounded-xl shadow"
-      >
-        <h4 className="font-semibold text-lg mb-2">Vastu + Modern Design</h4>
-        <p>
-          Perfect balance of traditional vastu principles and modern
-          architecture.
-        </p>
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="p-6 bg-indigo-50 rounded-xl shadow"
-      >
-        <h4 className="font-semibold text-lg mb-2">Local Expertise</h4>
-        <p>
-          Deep knowledge of India's culture, climate, and construction
-          practices.
-        </p>
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="p-6 bg-indigo-50 rounded-xl shadow"
-      >
-        <h4 className="font-semibold text-lg mb-2">Personalized Solutions</h4>
-        <p>
-          We design spaces uniquely tailored to your lifestyle and budget.
-        </p>
-      </motion.div>
-    </div>
-
-    {/* Achievements / Stats */}
-    <div className="grid md:grid-cols-3 gap-8 text-gray-800">
-      <div>
-        <h3 className="text-4xl font-bold text-indigo-600">25K+</h3>
-        <p className="mt-2">Indian Projects</p>
-      </div>
-      <div>
-        <h3 className="text-4xl font-bold text-indigo-600">595</h3>
-        <p className="mt-2">International Projects</p>
-      </div>
-      <div>
-        <h3 className="text-4xl font-bold text-indigo-600">1,789</h3>
-        <p className="mt-2">Construction Projects</p>
-      </div>
-    </div>
-  </div>
-</section>
-
+          {/* Achievements / Stats */}
+          <div className="grid md:grid-cols-3 gap-8 text-gray-800">
+            <div>
+              <h3 className="text-4xl font-bold text-indigo-600">25K+</h3>
+              <p className="mt-2">Indian Projects</p>
+            </div>
+            <div>
+              <h3 className="text-4xl font-bold text-indigo-600">595</h3>
+              <p className="mt-2">International Projects</p>
+            </div>
+            <div>
+              <h3 className="text-4xl font-bold text-indigo-600">1,789</h3>
+              <p className="mt-2">Construction Projects</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials */}
       <section className="bg-gray-100 py-20">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-4">What Our Clients Say</h2>
           <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what our satisfied clients 
-            have to say about our services.
+            Don&apos;t just take our word for it. Here's what our satisfied clients have to say about our services.
           </p>
           <div className="grid gap-8 md:grid-cols-3">
             {testimonials.map((t) => (
@@ -371,11 +331,11 @@ export default function ServicesPage() {
           Frequently Asked Questions
         </h2>
         <p className="text-gray-600 text-center mb-12">
-          Have questions? We're here to help you understand our process and services.
+          Have questions? We&apos;re here to help you understand our process and services.
         </p>
         <div className="space-y-4">
           {faqs.map((faq) => (
-            <motion.div 
+            <motion.div
               key={faq.id}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -396,7 +356,7 @@ export default function ServicesPage() {
                 )}
               </button>
               {openFAQ === faq.id && (
-                <motion.p 
+                <motion.p
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   className="mt-3 text-gray-600"
@@ -416,8 +376,7 @@ export default function ServicesPage() {
             Ready to Start Your Dream Project?
           </h2>
           <p className="mb-8 opacity-90 text-lg">
-            Get in touch with our experts today for vastu-compliant and modern
-            house designs.
+            Get in touch with our experts today for vastu-compliant and modern house designs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
