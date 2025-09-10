@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function HeroAlternateNoFramer() {
   return (
     <section className="relative flex flex-col-reverse md:flex-row items-center justify-between max-w-7xl mx-auto px-6 py-16 md:py-24 gap-10 md:gap-16 overflow-hidden">
@@ -5,9 +7,11 @@ export default function HeroAlternateNoFramer() {
       {/* Left Image with Enhanced Container */}
       <div className="flex-1 relative">
         <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white transform transition-transform duration-700 hover:scale-[1.02]">
-          <img 
-            src="images/flex1.png" 
+          <Image 
+            src="/images/flex1.png" 
             alt="Dream Home" 
+            width={600} 
+            height={400} 
             className="w-full h-auto"
           />
           {/* Image overlay gradient */}

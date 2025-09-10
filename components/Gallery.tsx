@@ -5,27 +5,26 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
-
+import Image from "next/image";
 
 // Static list of gallery images
 const projects = [
- { src: "/images/gallery1.jpg", title: "Modern Duplex", category: "Residential" },
-    { src: "/images/gallery2.jpg", title: "Traditional Vastu House", category: "Residential" },
-    { src: "/images/gallery3.jpg", title: "3D Front Elevation", category: "Design" },
-    { src: "/images/gallery4.jpg", title: "Interior Design", category: "Design" },
-    { src: "/images/gallery5.jpg", title: "Bungalow Plan", category: "Residential" },
-    { src: "/images/gallery6.jpg", title: "Commercial Building", category: "Commercial" },
-    { src: "/images/gallery7.jpg", title: "Commercial Building", category: "Interior" },
-    { src: "/images/gallery8.jpg", title: "Commercial Building", category: "Interior" },
-    { src: "/images/gallery9.jpg", title: "Commercial Building", category: "Exterior" },
-    { src: "/images/gallery10.jpg", title: "Commercial Building", category: "Exterior" },
-    { src: "/images/gallery11.jpg", title: "Commercial Building", category: "Exterior" },
-    { src: "/images/gallery12.jpg", title: "Commercial Building", category: "Exterior" },
-    { src: "/images/gallery13.jpg", title: "Commercial Building", category: "Interior" },
-    { src: "/images/gallery14.jpg", title: "Commercial Building", category: "Exterior" },
-    { src: "/images/gallery15.jpg", title: "Commercial Building", category: "Exterior" },
-    { src: "/images/gallery16.jpg", title: "Commercial Building", category: "Interior" },
-  // ➕ Add more images in /public/images/gallery and extend this list
+  { src: "/images/gallery1.jpg", title: "Modern Duplex", category: "Residential" },
+  { src: "/images/gallery2.jpg", title: "Traditional Vastu House", category: "Residential" },
+  { src: "/images/gallery3.jpg", title: "3D Front Elevation", category: "Design" },
+  { src: "/images/gallery4.jpg", title: "Interior Design", category: "Design" },
+  { src: "/images/gallery5.jpg", title: "Bungalow Plan", category: "Residential" },
+  { src: "/images/gallery6.jpg", title: "Commercial Building", category: "Commercial" },
+  { src: "/images/gallery7.jpg", title: "Commercial Building", category: "Interior" },
+  { src: "/images/gallery8.jpg", title: "Commercial Building", category: "Interior" },
+  { src: "/images/gallery9.jpg", title: "Commercial Building", category: "Exterior" },
+  { src: "/images/gallery10.jpg", title: "Commercial Building", category: "Exterior" },
+  { src: "/images/gallery11.jpg", title: "Commercial Building", category: "Exterior" },
+  { src: "/images/gallery12.jpg", title: "Commercial Building", category: "Exterior" },
+  { src: "/images/gallery13.jpg", title: "Commercial Building", category: "Interior" },
+  { src: "/images/gallery14.jpg", title: "Commercial Building", category: "Exterior" },
+  { src: "/images/gallery15.jpg", title: "Commercial Building", category: "Exterior" },
+  { src: "/images/gallery16.jpg", title: "Commercial Building", category: "Interior" },
 ];
 
 export default function Gallery() {
@@ -55,12 +54,9 @@ export default function Gallery() {
             modules={[Pagination, Autoplay]}
             spaceBetween={20}
             pagination={{ clickable: true }}
-            autoplay={{
-              delay: 3000, // 3 seconds between slides
-              disableOnInteraction: false, // keep autoplay even after user swipes
-            }}
-            speed={1000} // slide transition speed (1s)
-            loop={true} // infinite loop
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            speed={1000}
+            loop={true}
             breakpoints={{
               640: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
@@ -73,11 +69,14 @@ export default function Gallery() {
                   whileHover={{ scale: 1.05 }}
                   className="rounded-xl overflow-hidden border shadow hover:shadow-lg transition"
                 >
-                  <img
-                    src={project.src}
-                    alt={project.title}
-                    className="w-full h-64 object-cover"
-                  />
+                  <div className="relative w-full h-64">
+                    <Image
+                      src={project.src}
+                      alt={project.title}
+                      fill
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
                   <div className="p-3 text-sm font-medium capitalize">
                     {project.title}
                   </div>
@@ -87,7 +86,6 @@ export default function Gallery() {
           </Swiper>
         </div>
       </div>
-    
     </section>
   );
 }

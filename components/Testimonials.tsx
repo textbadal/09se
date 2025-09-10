@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
+import Image from "next/image";
 
 export default function Testimonials() {
   const testimonials = [
@@ -47,10 +48,12 @@ export default function Testimonials() {
               <SwiperSlide key={idx}>
                 <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow border">
                   <div className="flex flex-col items-center">
-                    <img
+                    <Image
                       src={t.image}
                       alt={t.name}
-                      className="w-16 h-16 rounded-full object-cover border-2 border-gray-300"
+                      width={64}
+                      height={64}
+                      className="rounded-full object-cover border-2 border-gray-300"
                     />
                     <p className="mt-4 text-gray-700 dark:text-gray-200 italic">
                       “{t.text}”
