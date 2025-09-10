@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FileText, Search } from "lucide-react";
+import GalleryPage from "../gallery/page";
 
 const projects = [
   {
@@ -182,7 +183,9 @@ export default function ProjectsPage() {
             Search on Google →
           </a>
         </div>
+        
       )}
+        <GalleryPage />
     </section>
   );
 }

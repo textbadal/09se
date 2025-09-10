@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import ProductsPage from "../products/page";
+import GalleryPage from "../gallery/page";
 
 const services = [
   {
@@ -54,39 +56,42 @@ const services = [
 const pricingPlans = [
   {
     id: 1,
-    name: "Starter",
-    price: "₹999",
+    name: "Standard",
+    price: "₹1,999",
     features: [
-      "Basic Floor Plan (2D)",
-      "Up to 1000 sq.ft",
+      "2D Floor Plan",
       "Vastu Guidance",
-      "PDF Delivery",
+      "Furniture Layout",
+      "Up to 1000 sq.ft",
+      "Unlimited Revisions",
     ],
   },
   {
     id: 2,
-    name: "Standard",
-    price: "₹4,999",
+    name: "Premium",
+    price: "₹5,999",
     features: [
-      "Detailed Floor Plan (2D + 3D Elevation)",
+      "2D Floor Plan + Front Elevation",
+      "Vastu Guidance",
+      "Furniture Layout",
       "Up to 2000 sq.ft",
-      "Full Vastu Compliance",
-      "2 Revisions",
-      "PDF + CAD Delivery",
+      "Unlimited Revisions",
+      
     ],
     highlight: true,
   },
   {
     id: 3,
-    name: "Premium",
-    price: "₹9,999",
+    name: "Complete Package",
+    price: "₹13,999",
     features: [
-      "Complete House Planning (2D + 3D)",
-      "Unlimited Sq.ft",
-      "Vastu Consultation + Corrections",
-      "3 Revisions",
-      "CAD + PDF + 3D Walkthrough",
-      "Execution Support",
+     "2D Floor Plan + Front Elevation",
+      "Structural Drawings (Footing, Beam, Slab)",
+      "Detailed Electrical & Plumbing",
+     "Vastu Guidance",
+      "Furniture Layout",
+      "Up to 2000 sq.ft",
+      "Unlimited Revisions",
     ],
   },
 ];
@@ -108,7 +113,7 @@ const testimonials = [
     id: 3,
     name: "Amit Kumar",
     feedback:
-      "Best service in Patna! Affordable, vastu-compliant, and quick delivery of floor plans. Couldn’t be happier.",
+      "Best service in Patna! Affordable, vastu-compliant, and quick delivery of floor plans. Couldn't be happier.",
   },
 ];
 
@@ -145,80 +150,112 @@ export default function ServicesPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20">
+      <section className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold mb-4"
-          >
-            Our Services
-          </motion.h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
-            Dream Homes Bihar offers complete architectural & interior solutions
-            – blending modern design with vastu harmony.
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Our Professional Services
+          </h1>
+          <p className="text-xl max-w-3xl mx-auto mb-8">
+            From concept to completion, we deliver vastu-compliant, modern designs 
+            that transform your vision into reality.
           </p>
+          <a
+            href="/contact"
+            className="bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow hover:bg-gray-100 transition inline-block"
+          >
+            Get a Free Consultation
+          </a>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-16 max-w-6xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {services.map((service) => (
-          <motion.div
-            key={service.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="bg-white rounded-2xl shadow-md p-8 hover:shadow-xl transition"
-          >
-            <div className="mb-6">{service.icon}</div>
-            <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-            <p className="text-gray-600">{service.description}</p>
-          </motion.div>
-        ))}
+      {/* Services Section */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-4">What We Offer</h2>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12">
+            Comprehensive architectural solutions tailored to your needs, 
+            combining modern design with traditional vastu principles.
+          </p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition"
+              >
+                <div className="mb-4">{service.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                <p className="text-gray-600">{service.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Pricing Section */}
-      <section className="bg-indigo-50 py-20">
+      <section className="bg-gray-100 py-20">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-12">Our Pricing Plans</h2>
+          <h2 className="text-3xl font-bold mb-4">Transparent Pricing</h2>
+          <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
+            Choose the package that best fits your needs. All plans include 
+            professional designs and vastu compliance.
+          </p>
+
           <div className="grid md:grid-cols-3 gap-8">
             {pricingPlans.map((plan) => (
               <motion.div
                 key={plan.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className={`relative rounded-2xl p-8 shadow-lg bg-white ${
-                  plan.highlight ? "border-2 border-indigo-600 scale-105" : ""
+                transition={{ duration: 0.5, delay: plan.id * 0.1 }}
+                className={`bg-white rounded-xl shadow-md p-8 ${
+                  plan.highlight ? "border-2 border-indigo-600 relative" : "border border-gray-200"
                 }`}
               >
                 {plan.highlight && (
-                  <span className="absolute top-0 right-0 bg-indigo-600 text-white text-xs px-3 py-1 rounded-bl-lg rounded-tr-2xl font-medium">
-                    Most Popular
-                  </span>
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                      Most Popular
+                    </span>
+                  </div>
                 )}
-                <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
-                <p className="text-4xl font-bold text-indigo-600 mb-6">
+                <h3 className="text-2xl font-semibold mb-2">{plan.name}</h3>
+                <p className="text-3xl font-bold text-indigo-600 mb-6">
                   {plan.price}
                 </p>
-                <ul className="text-gray-700 space-y-3 mb-6 text-left">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <span>✅</span> {feature}
+                <ul className="text-left text-gray-700 space-y-3 mb-8">
+                  {plan.features.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <svg
+                        className="w-5 h-5 text-indigo-500 mr-2 mt-0.5 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        ></path>
+                      </svg>
+                      {feature}
                     </li>
                   ))}
                 </ul>
                 <a
                   href="/contact"
-                  className={`px-6 py-3 rounded-full font-semibold shadow transition ${
+                  className={`block w-full px-4 py-3 rounded-lg font-semibold ${
                     plan.highlight
                       ? "bg-indigo-600 text-white hover:bg-indigo-700"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
+                      : "bg-gray-100 text-indigo-600 hover:bg-gray-200"
+                  } transition`}
                 >
                   Get Started
                 </a>
@@ -228,73 +265,88 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="bg-white py-20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-8">
-            Why Choose Dream Homes Bihar?
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 text-gray-700">
-            <div className="p-6 bg-indigo-50 rounded-xl shadow">
-              <h4 className="font-semibold text-lg mb-2">
-                Vastu + Modern Design
-              </h4>
-              <p>
-                Perfect balance of traditional vastu principles and modern
-                architecture.
-              </p>
-            </div>
-            <div className="p-6 bg-indigo-50 rounded-xl shadow">
-              <h4 className="font-semibold text-lg mb-2">Local Expertise</h4>
-              <p>
-                Deep knowledge of Bihar’s culture, climate, and construction
-                practices.
-              </p>
-            </div>
-            <div className="p-6 bg-indigo-50 rounded-xl shadow">
-              <h4 className="font-semibold text-lg mb-2">
-                Personalized Solutions
-              </h4>
-              <p>
-                We design spaces uniquely tailored to your lifestyle and budget.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Process Section */}
-      <section className="py-20 max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Process</h2>
-        <div className="grid md:grid-cols-5 gap-6 text-center">
-          {[
-            "Consultation",
-            "Concept Design",
-            "3D Visualization",
-            "Final Plan",
-            "Execution Support",
-          ].map((step, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="p-6 bg-white rounded-xl shadow hover:shadow-lg"
-            >
-              <div className="text-2xl font-bold text-indigo-600 mb-2">
-                {i + 1}
-              </div>
-              <p className="font-medium">{step}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+
+{/* Why Choose Us */}
+<section className="bg-white py-20">
+  <div className="max-w-6xl mx-auto px-6 text-center">
+    <h2 className="text-3xl font-bold mb-4">Why Choose Dream Homes Bihar?</h2>
+    <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
+      We combine expertise, innovation, and traditional knowledge to create 
+      spaces that are both beautiful and functional.
+    </p>
+
+    {/* Features */}
+    <div className="grid md:grid-cols-3 gap-8 text-gray-700 mb-16">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="p-6 bg-indigo-50 rounded-xl shadow"
+      >
+        <h4 className="font-semibold text-lg mb-2">Vastu + Modern Design</h4>
+        <p>
+          Perfect balance of traditional vastu principles and modern
+          architecture.
+        </p>
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="p-6 bg-indigo-50 rounded-xl shadow"
+      >
+        <h4 className="font-semibold text-lg mb-2">Local Expertise</h4>
+        <p>
+          Deep knowledge of India's culture, climate, and construction
+          practices.
+        </p>
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="p-6 bg-indigo-50 rounded-xl shadow"
+      >
+        <h4 className="font-semibold text-lg mb-2">Personalized Solutions</h4>
+        <p>
+          We design spaces uniquely tailored to your lifestyle and budget.
+        </p>
+      </motion.div>
+    </div>
+
+    {/* Achievements / Stats */}
+    <div className="grid md:grid-cols-3 gap-8 text-gray-800">
+      <div>
+        <h3 className="text-4xl font-bold text-indigo-600">25K+</h3>
+        <p className="mt-2">Indian Projects</p>
+      </div>
+      <div>
+        <h3 className="text-4xl font-bold text-indigo-600">595</h3>
+        <p className="mt-2">International Projects</p>
+      </div>
+      <div>
+        <h3 className="text-4xl font-bold text-indigo-600">1,789</h3>
+        <p className="mt-2">Construction Projects</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Testimonials */}
       <section className="bg-gray-100 py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-12">What Our Clients Say</h2>
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-4">What Our Clients Say</h2>
+          <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
+            Don't just take our word for it. Here's what our satisfied clients 
+            have to say about our services.
+          </p>
           <div className="grid gap-8 md:grid-cols-3">
             {testimonials.map((t) => (
               <motion.div
@@ -306,7 +358,7 @@ export default function ServicesPage() {
                 className="bg-white rounded-xl shadow p-6 relative"
               >
                 <Quote className="w-8 h-8 text-indigo-500 absolute top-4 left-4 opacity-30" />
-                <p className="text-gray-600 mb-4">{t.feedback}</p>
+                <p className="text-gray-600 mb-4 mt-2">{t.feedback}</p>
                 <h4 className="font-semibold text-indigo-700">{t.name}</h4>
               </motion.div>
             ))}
@@ -316,12 +368,22 @@ export default function ServicesPage() {
 
       {/* FAQ Section */}
       <section className="py-20 max-w-3xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl font-bold text-center mb-4">
           Frequently Asked Questions
         </h2>
+        <p className="text-gray-600 text-center mb-12">
+          Have questions? We're here to help you understand our process and services.
+        </p>
         <div className="space-y-4">
           {faqs.map((faq) => (
-            <div key={faq.id} className="bg-white rounded-xl shadow p-4">
+            <motion.div 
+              key={faq.id}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: faq.id * 0.1 }}
+              className="bg-white rounded-xl shadow p-6"
+            >
               <button
                 onClick={() => setOpenFAQ(openFAQ === faq.id ? null : faq.id)}
                 aria-expanded={openFAQ === faq.id}
@@ -335,28 +397,44 @@ export default function ServicesPage() {
                 )}
               </button>
               {openFAQ === faq.id && (
-                <p className="mt-3 text-gray-600">{faq.answer}</p>
+                <motion.p 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  className="mt-3 text-gray-600"
+                >
+                  {faq.answer}
+                </motion.p>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* CTA */}
       <section className="bg-gradient-to-r from-purple-600 to-indigo-600 py-16 text-white text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Ready to Start Your Dream Project?
-        </h2>
-        <p className="mb-6 opacity-90">
-          Get in touch with our experts today for vastu-compliant and modern
-          house designs.
-        </p>
-        <a
-          href="/contact"
-          className="bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow hover:bg-gray-100 transition"
-        >
-          Contact Us
-        </a>
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Ready to Start Your Dream Project?
+          </h2>
+          <p className="mb-8 opacity-90 text-lg">
+            Get in touch with our experts today for vastu-compliant and modern
+            house designs.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contact"
+              className="bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow hover:bg-gray-100 transition"
+            >
+              Contact Us
+            </a>
+            <a
+              href="/projects"
+              className="border-2 border-white text-white font-semibold px-8 py-3 rounded-full shadow hover:bg-white hover:text-indigo-600 transition"
+            >
+              View Our Work
+            </a>
+          </div>
+        </div>
       </section>
     </div>
   );
