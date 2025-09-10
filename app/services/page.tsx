@@ -140,7 +140,7 @@ const faqs = [
 ];
 
 export default function ServicesPage() {
-  const [openFAQ, setOpenFAQ] = useState(null);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   return (
     <div className="bg-gray-50">
@@ -192,19 +192,24 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className={`rounded-2xl p-8 shadow-lg ${
-                  plan.highlight
-                    ? "bg-white border-2 border-indigo-600 scale-105"
-                    : "bg-white"
+                className={`relative rounded-2xl p-8 shadow-lg bg-white ${
+                  plan.highlight ? "border-2 border-indigo-600 scale-105" : ""
                 }`}
               >
+                {plan.highlight && (
+                  <span className="absolute top-0 right-0 bg-indigo-600 text-white text-xs px-3 py-1 rounded-bl-lg rounded-tr-2xl font-medium">
+                    Most Popular
+                  </span>
+                )}
                 <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
                 <p className="text-4xl font-bold text-indigo-600 mb-6">
                   {plan.price}
                 </p>
-                <ul className="text-gray-700 space-y-3 mb-6">
+                <ul className="text-gray-700 space-y-3 mb-6 text-left">
                   {plan.features.map((feature, i) => (
-                    <li key={i}>✅ {feature}</li>
+                    <li key={i} className="flex items-center gap-2">
+                      <span>✅</span> {feature}
+                    </li>
                   ))}
                 </ul>
                 <a
@@ -226,19 +231,33 @@ export default function ServicesPage() {
       {/* Why Choose Us */}
       <section className="bg-white py-20">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-8">Why Choose Dream Homes Bihar?</h2>
+          <h2 className="text-3xl font-bold mb-8">
+            Why Choose Dream Homes Bihar?
+          </h2>
           <div className="grid md:grid-cols-3 gap-8 text-gray-700">
             <div className="p-6 bg-indigo-50 rounded-xl shadow">
-              <h4 className="font-semibold text-lg mb-2">Vastu + Modern Design</h4>
-              <p>Perfect balance of traditional vastu principles and modern architecture.</p>
+              <h4 className="font-semibold text-lg mb-2">
+                Vastu + Modern Design
+              </h4>
+              <p>
+                Perfect balance of traditional vastu principles and modern
+                architecture.
+              </p>
             </div>
             <div className="p-6 bg-indigo-50 rounded-xl shadow">
               <h4 className="font-semibold text-lg mb-2">Local Expertise</h4>
-              <p>Deep knowledge of Bihar’s culture, climate, and construction practices.</p>
+              <p>
+                Deep knowledge of Bihar’s culture, climate, and construction
+                practices.
+              </p>
             </div>
             <div className="p-6 bg-indigo-50 rounded-xl shadow">
-              <h4 className="font-semibold text-lg mb-2">Personalized Solutions</h4>
-              <p>We design spaces uniquely tailored to your lifestyle and budget.</p>
+              <h4 className="font-semibold text-lg mb-2">
+                Personalized Solutions
+              </h4>
+              <p>
+                We design spaces uniquely tailored to your lifestyle and budget.
+              </p>
             </div>
           </div>
         </div>
@@ -248,21 +267,27 @@ export default function ServicesPage() {
       <section className="py-20 max-w-6xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-center mb-12">Our Process</h2>
         <div className="grid md:grid-cols-5 gap-6 text-center">
-          {["Consultation", "Concept Design", "3D Visualization", "Final Plan", "Execution Support"].map(
-            (step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-6 bg-white rounded-xl shadow hover:shadow-lg"
-              >
-                <div className="text-2xl font-bold text-indigo-600 mb-2">{i + 1}</div>
-                <p className="font-medium">{step}</p>
-              </motion.div>
-            )
-          )}
+          {[
+            "Consultation",
+            "Concept Design",
+            "3D Visualization",
+            "Final Plan",
+            "Execution Support",
+          ].map((step, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="p-6 bg-white rounded-xl shadow hover:shadow-lg"
+            >
+              <div className="text-2xl font-bold text-indigo-600 mb-2">
+                {i + 1}
+              </div>
+              <p className="font-medium">{step}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -291,15 +316,15 @@ export default function ServicesPage() {
 
       {/* FAQ Section */}
       <section className="py-20 max-w-3xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">
+          Frequently Asked Questions
+        </h2>
         <div className="space-y-4">
           {faqs.map((faq) => (
-            <div
-              key={faq.id}
-              className="bg-white rounded-xl shadow p-4"
-            >
+            <div key={faq.id} className="bg-white rounded-xl shadow p-4">
               <button
                 onClick={() => setOpenFAQ(openFAQ === faq.id ? null : faq.id)}
+                aria-expanded={openFAQ === faq.id}
                 className="flex justify-between items-center w-full text-left"
               >
                 <span className="font-medium text-lg">{faq.question}</span>
@@ -323,7 +348,8 @@ export default function ServicesPage() {
           Ready to Start Your Dream Project?
         </h2>
         <p className="mb-6 opacity-90">
-          Get in touch with our experts today for vastu-compliant and modern house designs.
+          Get in touch with our experts today for vastu-compliant and modern
+          house designs.
         </p>
         <a
           href="/contact"
