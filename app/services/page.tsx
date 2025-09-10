@@ -1,335 +1,126 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
-import {
-  Home,
-  Building2,
-  Ruler,
-  RefreshCcw,
-  Compass,
-  Quote,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react";
+import { motion } from "framer-motion";
 
-const services = [
+type Service = {
+  title: string;
+  description: string;
+  price: string;
+  image: string;
+};
+
+const services: Service[] = [
   {
-    id: 1,
-    icon: <Home className="w-10 h-10 text-indigo-600" />,
-    title: "Residential Design",
-    description:
-      "Tailored house plans designed with modern aesthetics and vastu compliance. Perfect for villas, duplexes, and apartments.",
+    title: "2D Floor Plan",
+    description: "Detailed floor plans for your home with measurements and layout.",
+    price: "₹999 onwards",
+    image: "/images/services/2d-plan.jpg",
   },
   {
-    id: 2,
-    icon: <Building2 className="w-10 h-10 text-indigo-600" />,
-    title: "Commercial Design",
-    description:
-      "Creative, functional, and brand-aligned commercial spaces. Offices, retail, and hospitality projects executed with precision.",
+    title: "3D Elevation Design",
+    description: "Realistic 3D elevation rendering of your house design.",
+    price: "₹1,999 onwards",
+    image: "/images/services/3d-elevation.jpg",
   },
   {
-    id: 3,
-    icon: <Ruler className="w-10 h-10 text-indigo-600" />,
-    title: "Custom Floor Plans",
-    description:
-      "Unique layouts crafted from scratch with 2D blueprints & immersive 3D views. Fully customized to your requirements.",
+    title: "Interior Design",
+    description: "Complete interior design with Vastu compliance and decor suggestions.",
+    price: "₹2,499 onwards",
+    image: "/images/services/interior.jpg",
   },
   {
-    id: 4,
-    icon: <RefreshCcw className="w-10 h-10 text-indigo-600" />,
-    title: "Renovation & Remodeling",
-    description:
-      "Transform existing homes with modern upgrades while maintaining vastu principles. Breathe new life into your property.",
+    title: "Plumbing & Electrical Plan",
+    description: "Professional plumbing and electrical layout for smooth construction.",
+    price: "₹1,499 onwards",
+    image: "/images/services/plumbing-electrical.jpg",
   },
   {
-    id: 5,
-    icon: <Compass className="w-10 h-10 text-indigo-600" />,
-    title: "Vastu Consultation",
-    description:
-      "Expert vastu audits & layout optimization to ensure harmony, prosperity, and well-being in your living or workspace.",
+    title: "Footing Plan",
+    description: "Accurate footing plan for safe and strong foundation.",
+    price: "₹999 onwards",
+    image: "/images/services/footing.jpg",
+  },
+  {
+    title: "Vastu Compliance Check",
+    description: "Ensure your home follows Vastu principles for positivity.",
+    price: "₹799 onwards",
+    image: "/images/services/vastu.jpg",
   },
 ];
 
-const pricingPlans = [
-  {
-    id: 1,
-    name: "Standard",
-    price: "₹1,999",
-    features: [
-      "2D Floor Plan",
-      "Vastu Guidance",
-      "Furniture Layout",
-      "Up to 1000 sq.ft",
-      "Unlimited Revisions",
-    ],
-  },
-  {
-    id: 2,
-    name: "Premium",
-    price: "₹5,999",
-    features: [
-      "2D Floor Plan + Front Elevation",
-      "Vastu Guidance",
-      "Furniture Layout",
-      "Up to 2000 sq.ft",
-      "Unlimited Revisions",
-    ],
-    highlight: true,
-  },
-  {
-    id: 3,
-    name: "Complete Package",
-    price: "₹13,999",
-    features: [
-      "2D Floor Plan + Front Elevation",
-      "Structural Drawings (Footing, Beam, Slab)",
-      "Detailed Electrical & Plumbing",
-      "Vastu Guidance",
-      "Furniture Layout",
-      "Up to 2000 sq.ft",
-      "Unlimited Revisions",
-    ],
-  },
-];
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Prashant Patel",
-    feedback:
-      "Dream Homes Bihar designed our duplex with perfection. They balanced vastu with a modern look beautifully. Highly recommended!",
-  },
-  {
-    id: 2,
-    name: "Neha Singh",
-    feedback:
-      "The team was very professional. I loved the 3D visualization, it helped us imagine our home before construction.",
-  },
-  {
-    id: 3,
-    name: "Amit Kumar",
-    feedback:
-      "Best service in Patna! Affordable, vastu-compliant, and quick delivery of floor plans. Couldn&apos;t be happier.",
-  },
-];
-
-const faqs = [
-  {
-    id: 1,
-    question: "How long does it take to design a house plan?",
-    answer:
-      "Typically, a custom floor plan takes 7-10 working days depending on the complexity and requirements.",
-  },
-  {
-    id: 2,
-    question: "Do you provide vastu-compliant designs?",
-    answer:
-      "Yes, all our designs are checked for vastu principles to ensure harmony, health, and prosperity.",
-  },
-  {
-    id: 3,
-    question: "Can you provide 3D visualization before finalizing?",
-    answer:
-      "Absolutely! We provide realistic 3D elevation and walkthroughs so you can visualize your home.",
-  },
-  {
-    id: 4,
-    question: "Do you handle construction also?",
-    answer:
-      "Currently, we specialize in planning, design, and consultation. We also guide clients during construction through partner contractors.",
-  },
-];
-
-export default function ServicesPage() {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+export default function Services() {
+  const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <main className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Our Professional Services
-          </h1>
-          <p className="text-xl max-w-3xl mx-auto mb-8">
-            From concept to completion, we deliver vastu-compliant, modern designs that transform your vision into reality.
-          </p>
-          <a
-            href="/contact"
-            className="bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow hover:bg-gray-100 transition inline-block"
-          >
-            Get a Free Consultation
-          </a>
-        </div>
+      <section className="py-20 text-center px-6 max-w-7xl mx-auto">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold"
+        >
+          Our Services
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="mt-4 text-lg opacity-80 max-w-2xl mx-auto"
+        >
+          Affordable, professional services for Indian clients with detailed planning and design.
+        </motion.p>
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-4">What We Offer</h2>
-        <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12">
-          Comprehensive architectural solutions tailored to your needs, combining modern design with traditional vastu principles.
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
+      <section className="py-12 px-6 max-w-7xl mx-auto">
+        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
+          {services.map((service, idx) => (
             <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition"
+              key={idx}
+              whileHover={{ scale: 1.03 }}
+              className="rounded-xl border shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition cursor-pointer"
+              onClick={() => setExpanded(expanded === idx ? null : idx)}
             >
-              <div className="mb-4">{service.icon}</div>
+              <div className="relative w-full h-56">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="p-5 text-left">
+                <h3 className="text-xl font-semibold">{service.title}</h3>
+                <p className="mt-2 font-medium text-indigo-600">{service.price}</p>
+                {expanded === idx && (
+                  <p className="mt-3 text-gray-700 dark:text-gray-200">{service.description}</p>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Pricing Table */}
+      <section className="py-20 px-6 max-w-7xl mx-auto bg-gray-100 dark:bg-gray-800 rounded-xl">
+        <h2 className="text-3xl font-bold text-center mb-10">Pricing Summary</h2>
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-3 text-center">
+          {services.map((service, idx) => (
+            <div
+              key={idx}
+              className="border rounded-lg p-5 bg-white dark:bg-gray-700 shadow"
+            >
               <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-              <p className="text-gray-600">{service.description}</p>
-            </motion.div>
+              <p className="text-indigo-600 font-bold mb-2">{service.price}</p>
+              <p className="text-gray-700 dark:text-gray-200 text-sm">{service.description}</p>
+            </div>
           ))}
         </div>
       </section>
-
-      {/* Pricing Section */}
-      <section className="bg-gray-100 py-20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">Transparent Pricing</h2>
-          <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
-            Choose the package that best fits your needs. All plans include professional designs and vastu compliance.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {pricingPlans.map((plan) => (
-              <motion.div
-                key={plan.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: plan.id * 0.1 }}
-                className={`bg-white rounded-xl shadow-md p-8 ${plan.highlight ? "border-2 border-indigo-600 relative" : "border border-gray-200"}`}
-              >
-                {plan.highlight && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                <h3 className="text-2xl font-semibold mb-2">{plan.name}</h3>
-                <p className="text-3xl font-bold text-indigo-600 mb-6">{plan.price}</p>
-                <ul className="text-left text-gray-700 space-y-3 mb-8">
-                  {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-indigo-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <a href="/contact" className={`block w-full px-4 py-3 rounded-lg font-semibold ${plan.highlight ? "bg-indigo-600 text-white hover:bg-indigo-700" : "bg-gray-100 text-indigo-600 hover:bg-gray-200"} transition`}>
-                  Get Started
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="bg-gray-100 py-20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">What Our Clients Say</h2>
-          <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what our satisfied clients have to say about our services.
-          </p>
-          <div className="grid gap-8 md:grid-cols-3">
-            {testimonials.map((t) => (
-              <motion.div
-                key={t.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="bg-white rounded-xl shadow p-6 relative"
-              >
-                <Quote className="w-8 h-8 text-indigo-500 absolute top-4 left-4 opacity-30" />
-                <p className="text-gray-600 mb-4 mt-2">{t.feedback}</p>
-                <h4 className="font-semibold text-indigo-700">{t.name}</h4>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 max-w-3xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-4">
-          Frequently Asked Questions
-        </h2>
-        <p className="text-gray-600 text-center mb-12">
-          Have questions? We're here to help you understand our process and services.
-        </p>
-        <div className="space-y-4">
-          {faqs.map((faq) => (
-            <motion.div
-              key={faq.id}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: faq.id * 0.1 }}
-              className="bg-white rounded-xl shadow p-6"
-            >
-              <button
-                onClick={() => setOpenFAQ(openFAQ === faq.id ? null : faq.id)}
-                aria-expanded={openFAQ === faq.id}
-                className="flex justify-between items-center w-full text-left"
-              >
-                <span className="font-medium text-lg">{faq.question}</span>
-                {openFAQ === faq.id ? (
-                  <ChevronUp className="w-5 h-5 text-indigo-600" />
-                ) : (
-                  <ChevronDown className="w-5 h-5 text-indigo-600" />
-                )}
-              </button>
-              {openFAQ === faq.id && (
-                <motion.p
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  className="mt-3 text-gray-600"
-                >
-                  {faq.answer}
-                </motion.p>
-              )}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-gradient-to-r from-purple-600 to-indigo-600 py-16 text-white text-center">
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Start Your Dream Project?
-          </h2>
-          <p className="mb-8 opacity-90 text-lg">
-            Get in touch with our experts today for vastu-compliant and modern house designs.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow hover:bg-gray-100 transition"
-            >
-              Contact Us
-            </a>
-            <a
-              href="/projects"
-              className="border-2 border-white text-white font-semibold px-8 py-3 rounded-full shadow hover:bg-white hover:text-indigo-600 transition"
-            >
-              View Our Work
-            </a>
-          </div>
-        </div>
-      </section>
-    </div>
+    </main>
   );
 }
