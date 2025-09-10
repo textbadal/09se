@@ -16,19 +16,19 @@ const services: Service[] = [
     title: "2D Floor Plan",
     description: "Detailed floor plans for your home with measurements and layout.",
     price: "₹999 onwards",
-    image: "/images/services/2d-plan.jpg",
+    image: "/images/floor3.webp",
   },
   {
     title: "3D Elevation Design",
     description: "Realistic 3D elevation rendering of your house design.",
     price: "₹1,999 onwards",
-    image: "/images/services/3d-elevation.jpg",
+    image: "/images/gallery9.jpg",
   },
   {
     title: "Interior Design",
     description: "Complete interior design with Vastu compliance and decor suggestions.",
     price: "₹2,499 onwards",
-    image: "/images/services/interior.jpg",
+    image: "/images/gallery23.jpg",
   },
   {
     title: "Plumbing & Electrical Plan",
