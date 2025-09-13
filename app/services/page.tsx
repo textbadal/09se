@@ -112,7 +112,7 @@ export default function Services() {
                   src={service.image}
                   alt={service.title}
                   fill
-                  className="object-cover w-full h-full"
+                  className="object-cover"
                 />
               </div>
               <div className="p-5 text-left">
@@ -131,7 +131,8 @@ export default function Services() {
       <section className="py-20 px-6 max-w-5xl mx-auto text-center bg-indigo-600 text-white rounded-xl shadow-lg">
         <h2 className="text-3xl font-bold mb-6">Transparent Pricing</h2>
         <p className="text-lg mb-8 opacity-90">
-          No hidden costs. Pay only for what you need. Affordable plans starting at just <span className="font-bold">₹799</span>.
+          No hidden costs. Pay only for what you need. Affordable plans starting at just{" "}
+          <span className="font-bold">₹799</span>.
         </p>
         <a
           href="/contact"

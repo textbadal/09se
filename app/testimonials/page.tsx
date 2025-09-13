@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import Image from "next/image";
 
 export default function TestimonialsPage() {
   const testimonials = [
@@ -95,7 +96,8 @@ export default function TestimonialsPage() {
     },
   ];
 
-  const [openFAQ, setOpenFAQ] = useState(null);
+  // ✅ Explicit type fix for TypeScript error
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-20">
@@ -128,9 +130,11 @@ export default function TestimonialsPage() {
               <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 border shadow hover:shadow-xl transition h-full flex flex-col">
                 {/* User Info */}
                 <div className="flex items-center gap-4">
-                  <img
+                  <Image
                     src={t.image}
                     alt={t.name}
+                    width={64}
+                    height={64}
                     className="w-16 h-16 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
                   />
                   <div>
@@ -168,6 +172,7 @@ export default function TestimonialsPage() {
             >
               <button
                 onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
+                aria-expanded={openFAQ === idx}
                 className="w-full flex justify-between items-center text-left"
               >
                 <span className="font-medium text-lg text-gray-900 dark:text-white">
