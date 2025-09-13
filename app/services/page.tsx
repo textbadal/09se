@@ -8,18 +8,14 @@ import {
   ChevronUp, 
   Star, 
   CheckCircle, 
-  ArrowRight, 
   Heart, 
-  Zap, 
-  Shield,
-  Clock,
   Users,
   Award,
   FileText,
-  Calendar,
   Phone,
   Mail,
-  MapPin
+  MapPin,
+  Clock
 } from "lucide-react";
 
 type Service = {
@@ -81,7 +77,7 @@ const services: Service[] = [
   {
     title: "Plumbing & Electrical Plan",
     description: "Professional plumbing and electrical layout for smooth construction.",
-    detailedDescription: "Ensure your home's functional systems are perfectly planned with our detailed plumbing and electrical plans. We create comprehensive layouts that specify the placement of all outlets, switches, light fixtures, plumbing fixtures, and connections. Our plans adhere to safety standards and local building codes, helping contractors execute installations efficiently.",
+    detailedDescription: "Ensure your home&apos;s functional systems are perfectly planned with our detailed plumbing and electrical plans. We create comprehensive layouts that specify the placement of all outlets, switches, light fixtures, plumbing fixtures, and connections. Our plans adhere to safety standards and local building codes, helping contractors execute installations efficiently.",
     price: "₹1,499 onwards",
     image: "/images/services/plumbing-electrical.jpg",
     features: ["Code-compliant designs", "Fixture placement", "Circuit planning", "3 revisions included", "Safety compliance", "Energy efficiency optimization"],
@@ -110,7 +106,7 @@ const services: Service[] = [
 const faqs = [
   {
     question: "Do you provide services outside Bihar?",
-    answer: "Yes, we serve clients all over India with online consultation and design delivery. We use modern collaboration tools to work with clients remotely, regardless of location. We've successfully completed projects in over 15 states across India.",
+    answer: "Yes, we serve clients all over India with online consultation and design delivery. We use modern collaboration tools to work with clients remotely, regardless of location. We&apos;ve successfully completed projects in over 15 states across India.",
   },
   {
     question: "Are your designs Vastu-compliant?",
@@ -122,11 +118,11 @@ const faqs = [
   },
   {
     question: "Can I request changes after delivery?",
-    answer: "Yes, we provide free revisions until you're fully satisfied with your plan. The number of revisions depends on the service package you choose. We believe in perfecting your design until it matches your vision completely.",
+    answer: "Yes, we provide free revisions until you&apos;re fully satisfied with your plan. The number of revisions depends on the service package you choose. We believe in perfecting your design until it matches your vision completely.",
   },
   {
     question: "What information do I need to provide?",
-    answer: "You'll need to share your plot dimensions, preferred room sizes, any specific requirements, and inspiration images if you have them. We'll guide you through the information collection process with a detailed questionnaire.",
+    answer: "You&apos;ll need to share your plot dimensions, preferred room sizes, any specific requirements, and inspiration images if you have them. We&apos;ll guide you through the information collection process with a detailed questionnaire.",
   },
   {
     question: "Do you provide construction guidance?",
@@ -153,7 +149,7 @@ const testimonials = [
   {
     name: "Priya Singh",
     location: "Lucknow, UP",
-    text: "Their Vastu compliance service transformed our home's energy. We've seen positive changes since implementing their suggestions. Highly recommended!",
+    text: "Their Vastu compliance service transformed our home&apos;s energy. We&apos;ve seen positive changes since implementing their suggestions. Highly recommended!",
     rating: 5,
     service: "Vastu Compliance Check"
   },
@@ -232,7 +228,7 @@ const processSteps: ProcessStep[] = [
   {
     step: 5,
     title: "Revision & Finalization",
-    description: "We refine the designs based on your feedback until you're completely satisfied.",
+    description: "We refine the designs based on your feedback until you&apos;re completely satisfied.",
     icon: <CheckCircle className="w-8 h-8" />
   },
   {
@@ -537,7 +533,7 @@ export default function Services() {
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-4">What Our Clients Say</h2>
           <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what our satisfied customers have to say about our services.
+            Don&apos;t just take our word for it. Here&apos;s what our satisfied customers have to say about our services.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -557,7 +553,7 @@ export default function Services() {
                     />
                   ))}
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 italic mb-6">"{testimonial.text}"</p>
+                <p className="text-gray-600 dark:text-gray-300 italic mb-6">&quot;{testimonial.text}&quot;</p>
                 <div>
                   <p className="font-semibold">{testimonial.name}</p>
                   <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.location}</p>
@@ -573,7 +569,7 @@ export default function Services() {
       <section className="py-20 px-6 max-w-4xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-4">Frequently Asked Questions</h2>
         <p className="text-center text-gray-600 dark:text-gray-400 mb-10">
-          Have questions? We're here to help you with everything you need to know.
+          Have questions? We&apos;re here to help you with everything you need to know.
         </p>
         <div className="space-y-4">
           {faqs.map((faq, idx) => (
