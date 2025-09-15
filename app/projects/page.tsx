@@ -89,6 +89,34 @@ const projects = [
     dimensions: { width: 23, length: 51 },
     pdf: "/projects/MR BADAL RAJ JI GROUND FLOOR PLAN.pdf",
   },
+  {
+    id: 13,
+    title: "1BHK APARTMENT 40' X 50'.pdf",
+    description: "Luxury duplex with parking space.",
+    dimensions: { width: 40, length: 50 },
+    pdf: "/projects/1BHK APARTMENT 40' X 50'.pdf",
+  },
+  {
+    id: 14,
+    title: "1RK APATMENT 40' X 50'.pdf",
+    description: "Luxury duplex with parking space.",
+    dimensions: { width: 40, length: 50 },
+    pdf: "/projects/1RK APATMENT 40' X 50'.pdf",
+  },
+  {
+    id: 15,
+    title: "1RK APATMENT-2 40' X 50'.pdf",
+    description: "Luxury duplex with parking space.",
+    dimensions: { width: 40, length: 50 },
+    pdf: "/projects/1RK APATMENT-2 40' X 50'.pdf",
+  },
+  {
+    id: 16,
+    title: "1RK APATMENT-3 40' X 50'.pdf",
+    description: "Luxury duplex with parking space.",
+    dimensions: { width: 40, length: 50 },
+    pdf: "/projects/1RK APATMENT-3 40' X 50'.pdf",
+  },
 ];
 
 export default function ProjectsPage() {
