@@ -73,7 +73,7 @@ const services: Service[] = [
     features: ["Vastu-compliant designs", "Color scheme suggestions", "Furniture recommendations", "Unlimited revisions", "Lighting plan", "Material selection"],
     timeline: "5-7 days",
     popular: true
-  },
+  },/* Services
   {
     title: "Plumbing & Electrical Plan",
     description: "Professional plumbing and electrical layout for smooth construction.",
@@ -82,7 +82,7 @@ const services: Service[] = [
     image: "/images/services/plumbing-electrical.jpg",
     features: ["Code-compliant designs", "Fixture placement", "Circuit planning", "3 revisions included", "Safety compliance", "Energy efficiency optimization"],
     timeline: "3-4 days"
-  },
+  }, 
   {
     title: "Footing Plan",
     description: "Accurate footing plan for safe and strong foundation.",
@@ -100,7 +100,7 @@ const services: Service[] = [
     image: "/images/services/vastu.jpg",
     features: ["Direction analysis", "Remedial suggestions", "Room placement guidance", "Detailed report", "Modern-traditional balance", "Energy flow optimization"],
     timeline: "1-2 days"
-  },
+  },   Grid */
 ];
 
 const faqs = [
