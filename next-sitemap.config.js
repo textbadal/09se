@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://dreamhomesbihar.online", // change to your domain
+  siteUrl: "https://dreamhomesbihar.in", // change to your domain
   generateRobotsTxt: true, // Generates robots.txt file
   sitemapSize: 7000,
   changefreq: "weekly",

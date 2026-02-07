@@ -93,7 +93,7 @@ export default function ProductsPage() {
               position: index + 1,
               name: product.title,
               description: product.description,
-              image: `https://dreamhomesbihar.online${product.image}`,
+              image: `https://dreamhomesbihar.in${product.image}`,
               brand: { "@type": "Brand", name: "Dream Homes Bihar" },
               offers: {
                 "@type": "Offer",

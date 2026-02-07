@@ -7,7 +7,7 @@ User-agent: Googlebot
 Allow: /
 
 # Host
-Host: https://dreamhomesbihar.online
+Host: https://dreamhomesbihar.in
 
 # Sitemaps
-Sitemap: https://dreamhomesbihar.online/sitemap.xml
+Sitemap: https://dreamhomesbihar.in/sitemap.xml
