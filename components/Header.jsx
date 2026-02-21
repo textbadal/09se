@@ -24,7 +24,8 @@ export default function Header() {
     { href: "/products", label: "Products" },
     { href: "/gallery", label: "Our Work" },
    { href: "/projects", label: "Floor Plans" },
-    { href: "/testimonials", label: "Testimonials" },
+   { href: "/batches", label: "Batches" },
+    { href: "/internships", label: "Internships / Careers" },
     { href: "/contact", label: "Contact" },
   ];
 
