@@ -1,185 +1,92 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import Image from "next/image";
-import {
-  Calendar,
-  IndianRupee,
-  Users,
-  Star,
-  Award,
-  Download,
-} from "lucide-react";
-
-/* ------------------ TYPES ------------------ */
-type Testimonial = {
-  name: string;
-  text: string;
-};
-
-/* ------------------ PAGE ------------------ */
 export default function BatchesPage() {
-  /* Countdown */
-  const batchStartDate = new Date("2026-03-15T10:00:00");
-  const [timeLeft, setTimeLeft] = useState("");
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const diff = batchStartDate.getTime() - now;
-
-      if (diff <= 0) {
-        setTimeLeft("Batch Started");
-        clearInterval(timer);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      setTimeLeft(`${days} Days ${hours} Hours`);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  /* Testimonials */
-  const testimonials: Testimonial[] = [
-    {
-      name: "Priya Sharma",
-      text: "The Vastu and manifestation techniques completely changed my life.",
-    },
-    {
-      name: "Rahul Verma",
-      text: "Practical, simple, and powerful guidance. Highly recommended.",
-    },
-    {
-      name: "Anjali Singh",
-      text: "I feel more confident, calm, and aligned after this batch.",
-    },
-  ];
-
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) =>
-        prev === testimonials.length - 1 ? 0 : prev + 1
-      );
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
-
   return (
-    <>
-      {/* ================= SEO ================= */}
-      <Head>
-        <title>Holistic Growth Batch | Vastu, Manifestation & Healing</title>
-        <meta
-          name="description"
-          content="Join our Holistic Growth Batch covering Vastu Shastra, Law of Attraction, Healing & Manifestation. Limited seats available."
-        />
-        <meta
-          name="keywords"
-          content="Vastu course, manifestation batch, healing training, law of attraction class"
-        />
-      </Head>
+    <main className="min-h-screen bg-gradient-to-b from-purple-50 to-white px-6 py-16">
 
-      <main className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
+      {/* HERO */}
+      <section className="text-center max-w-4xl mx-auto mb-16">
+        <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-4">
+          Holistic Growth Transformation Batch
+        </h1>
+        <p className="text-lg text-purple-700">
+          Vastu • Law of Attraction • Healing • Manifestation
+        </p>
+        <p className="mt-4 font-semibold text-gray-700">
+          Batch Starts: 15 March 2026
+        </p>
+      </section>
 
-        {/* ================= HERO ================= */}
-        <section className="text-center py-20 px-6 bg-gradient-to-r from-purple-800 to-indigo-900 text-white">
-          <h1 className="text-5xl font-bold mb-4">
-            Holistic Growth Transformation Batch
-          </h1>
-          <p className="text-xl text-purple-200 mb-6">
-            Vastu • Law of Attraction • Healing • Manifestation
+      {/* BATCH DETAILS */}
+      <section className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
+        <DetailCard title="Duration" value="4 Weeks" />
+        <DetailCard title="Mode" value="Online Live" />
+        <DetailCard title="Fees" value="₹2,999" />
+        <DetailCard title="Certificate" value="Yes" />
+      </section>
+
+      {/* TRAINER */}
+      <section className="max-w-4xl mx-auto bg-purple-100 rounded-2xl p-8 mb-20">
+        <h2 className="text-3xl font-bold text-purple-900 mb-4">
+          Trainer Profile
+        </h2>
+
+        <p className="text-lg font-semibold text-purple-700">
+          Swati Kapoor
+        </p>
+
+        <p className="text-gray-700 mt-2">
+          Certified Holistic Coach and Vastu Expert with more than 12 years
+          of experience. Trained over 500 students globally by combining
+          ancient wisdom with modern life practices.
+        </p>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="max-w-4xl mx-auto text-center mb-20">
+        <h2 className="text-3xl font-bold mb-6">Student Feedback</h2>
+
+        <div className="bg-white shadow-md rounded-xl p-6 mb-4">
+          <p className="italic text-gray-700">
+            The Vastu and manifestation techniques brought positivity
+            and clarity into my life.
           </p>
+          <p className="font-semibold mt-2">— Priya Sharma</p>
+        </div>
 
-          <div className="text-lg bg-white/10 inline-block px-6 py-3 rounded-xl">
-            Batch Starts In: <strong>{timeLeft}</strong>
-          </div>
-        </section>
+        <div className="bg-white shadow-md rounded-xl p-6">
+          <p className="italic text-gray-700">
+            Simple explanations, practical guidance and real results.
+          </p>
+          <p className="font-semibold mt-2">— Rahul Verma</p>
+        </div>
+      </section>
 
-        {/* ================= DETAILS ================= */}
-        <section className="py-16 px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
-          {[
-            { icon: Calendar, title: "Duration", value: "4 Weeks" },
-            { icon: Users, title: "Mode", value: "Online Live" },
-            { icon: IndianRupee, title: "Fees", value: "₹2,999" },
-            { icon: Award, title: "Certificate", value: "Yes" },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-xl shadow p-6 text-center"
-            >
-              <item.icon className="mx-auto mb-3 text-purple-600" />
-              <h3 className="font-semibold">{item.title}</h3>
-              <p className="text-gray-600">{item.value}</p>
-            </div>
-          ))}
-        </section>
+      {/* BROCHURE */}
+      <section className="text-center">
+        <h2 className="text-2xl font-bold mb-4">
+          Download Full Course Brochure
+        </h2>
 
-        {/* ================= TRAINER ================= */}
-        <section className="py-16 px-6 bg-purple-50">
-          <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-center">
-            <div className="w-48 h-48 bg-purple-700 text-white rounded-full flex items-center justify-center text-3xl font-bold">
-              SK
-            </div>
+        <a
+          href="/brochure.pdf"
+          download
+          className="inline-block bg-purple-800 text-white px-8 py-3 rounded-xl font-semibold hover:bg-purple-900 transition"
+        >
+          Download PDF
+        </a>
+      </section>
 
-            <div>
-              <h2 className="text-3xl font-bold mb-2">Swati Kapoor</h2>
-              <p className="text-purple-600 mb-4">
-                Certified Holistic Coach & Vastu Expert
-              </p>
-              <p className="text-gray-700">
-                12+ years of experience, trained 500+ students worldwide using
-                ancient wisdom with modern techniques.
-              </p>
-            </div>
-          </div>
-        </section>
+    </main>
+  );
+}
 
-        {/* ================= TESTIMONIALS ================= */}
-        <section className="py-16 px-6 max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">What Students Say</h2>
-
-          <div className="bg-white shadow-lg rounded-xl p-8">
-            <div className="flex justify-center mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="w-5 h-5 text-yellow-400 fill-yellow-400"
-                />
-              ))}
-            </div>
-            <p className="italic text-gray-700 mb-4">
-              "{testimonials[activeTestimonial].text}"
-            </p>
-            <p className="font-semibold">
-              — {testimonials[activeTestimonial].name}
-            </p>
-          </div>
-        </section>
-
-        {/* ================= BROCHURE ================= */}
-        <section className="py-16 px-6 text-center bg-gradient-to-r from-indigo-900 to-purple-900 text-white">
-          <h2 className="text-3xl font-bold mb-6">
-            Download Detailed Brochure
-          </h2>
-
-          <a
-            href="/brochure.pdf"
-            download
-            className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-xl font-semibold hover:scale-105 transition"
-          >
-            <Download />
-            Download PDF
-          </a>
-        </section>
-      </main>
-    </>
+/* SMALL REUSABLE CARD */
+function DetailCard({ title, value }: { title: string; value: string }) {
+  return (
+    <div className="bg-white rounded-xl shadow p-6 text-center">
+      <h3 className="font-semibold text-gray-800">{title}</h3>
+      <p className="text-gray-600 mt-2">{value}</p>
+    </div>
   );
 }
