@@ -59,6 +59,45 @@ export default function HolisticBatchPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-indigo-50">
+      {/* Add custom styles in a style tag */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-30px); }
+        }
+        
+        @keyframes float-delayed {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-25px); }
+        }
+        
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-float-slow {
+          animation: float-slow 8s ease-in-out infinite;
+        }
+        
+        .animate-float-delayed {
+          animation: float-delayed 7s ease-in-out infinite;
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 1s ease-out;
+        }
+      `}</style>
+
       {/* Hero Section with Background Pattern */}
       <section className="relative bg-gradient-to-r from-purple-900 via-indigo-900 to-purple-900 text-white overflow-hidden">
         {/* Animated Background Pattern */}
@@ -69,14 +108,14 @@ export default function HolisticBatchPage() {
           }}></div>
         </div>
         
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 animate-float-slow">
+        {/* Floating Elements - Using inline styles for animations */}
+        <div className="absolute top-20 left-10" style={{ animation: 'float-slow 8s ease-in-out infinite' }}>
           <Star className="w-8 h-8 text-yellow-300 opacity-30" />
         </div>
-        <div className="absolute bottom-20 right-10 animate-float">
+        <div className="absolute bottom-20 right-10" style={{ animation: 'float 6s ease-in-out infinite' }}>
           <Moon className="w-12 h-12 text-blue-300 opacity-20" />
         </div>
-        <div className="absolute top-40 right-20 animate-float-delayed">
+        <div className="absolute top-40 right-20" style={{ animation: 'float-delayed 7s ease-in-out infinite' }}>
           <Sun className="w-10 h-10 text-orange-300 opacity-20" />
         </div>
 
@@ -88,7 +127,7 @@ export default function HolisticBatchPage() {
               <span className="text-sm font-medium">Limited Seats Available</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ animation: 'fade-in 1s ease-out' }}>
               Holistic Growth
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-pink-300">
                 Transformation Batch
@@ -582,42 +621,3 @@ export default function HolisticBatchPage() {
     </main>
   );
 }
-
-// Add these styles to your global CSS
-const styles = `
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-  
-  @keyframes float-slow {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-30px); }
-  }
-  
-  @keyframes float-delayed {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-25px); }
-  }
-  
-  @keyframes fade-in {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .animate-float-slow {
-    animation: float-slow 8s ease-in-out infinite;
-  }
-  
-  .animate-float-delayed {
-    animation: float-delayed 7s ease-in-out infinite;
-  }
-  
-  .animate-fade-in {
-    animation: fade-in 1s ease-out;
-  }
-`;
