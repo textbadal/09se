@@ -174,13 +174,15 @@ export default function BootcampClient() {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a
-                  href="https://wa.me/91XXXXXXXXXX"
-                  className="group inline-flex items-center justify-center gap-2 bg-yellow-400 text-purple-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  Reserve Your Seat for ₹199
-                </a>
+               <a
+  href="https://forms.gle/4HoFKWAkZHRfntpP9"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group inline-flex items-center justify-center gap-2 bg-yellow-400 text-purple-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl"
+>
+  <MessageCircle className="w-5 h-5" />
+  Register for ₹199
+</a>
                 <button className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-all">
                   <Play className="w-5 h-5" />
                   Watch Preview
@@ -512,13 +514,15 @@ export default function BootcampClient() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://wa.me/91XXXXXXXXXX"
-              className="group inline-flex items-center justify-center gap-2 bg-yellow-400 text-purple-900 px-10 py-5 rounded-xl font-bold text-xl hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-2xl"
-            >
-              <MessageCircle className="w-6 h-6" />
-              Claim Your Spot for ₹199
-            </a>
+           <a
+  href="https://forms.gle/4HoFKWAkZHRfntpP9"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group inline-flex items-center justify-center gap-2 bg-yellow-400 text-purple-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl"
+>
+  <MessageCircle className="w-5 h-5" />
+  Reserve Your Seat for ₹199
+</a>
           </div>
           
           <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-purple-200">
