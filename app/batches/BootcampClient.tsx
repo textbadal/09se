@@ -17,15 +17,12 @@ import {
   Shield,
   Award,
   Play,
-  Camera,
   Quote
 } from "lucide-react";
 import Image from "next/image";
 
 export default function BootcampClient() {
-  const [open, setOpen] = useState<number | null>(null);
-  const [email, setEmail] = useState("");
-  const [activeImage, setActiveImage] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const faqs = [
     {
@@ -117,7 +114,7 @@ export default function BootcampClient() {
     {
       name: "Rahul Mehta",
       role: "Entrepreneur",
-      content: "Structured, practical, and transformative. The facilitator's approach cuts through the noise and delivers what actually works.",
+      content: "Structured, practical, and transformative. The facilitator&apos;s approach cuts through the noise and delivers what actually works.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
     },
@@ -129,8 +126,6 @@ export default function BootcampClient() {
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
     }
   ];
-
- 
 
   return (
     <main className="bg-gradient-to-b from-slate-50 via-white to-slate-50 min-h-screen">
@@ -260,6 +255,30 @@ export default function BootcampClient() {
         </div>
       </section>
 
+      {/* BENEFITS SECTION */}
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Transform Your Inner World
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            More than motivation—practical tools for lasting change
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {benefits.map((benefit, i) => (
+            <div key={i} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border border-gray-100">
+              <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                {benefit.icon}
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
+              <p className="text-gray-600">{benefit.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* FACILITATOR SECTION WITH PHOTO */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-3xl p-8 md:p-12">
@@ -327,9 +346,6 @@ export default function BootcampClient() {
           </div>
         </div>
       </section>
-
-    
-         
 
       {/* CURRICULUM SECTION WITH IMAGES */}
       <section className="max-w-7xl mx-auto px-6 py-24">
@@ -411,7 +427,7 @@ export default function BootcampClient() {
                     <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-gray-700 italic">"{testimonial.content}"</p>
+                <p className="text-gray-700 italic">&ldquo;{testimonial.content}&rdquo;</p>
               </div>
             ))}
           </div>
@@ -453,13 +469,13 @@ export default function BootcampClient() {
           {faqs.map((faq, i) => (
             <div key={i} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
               <button
-                onClick={() => setOpen(open === i ? null : i)}
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
               >
                 <span className="font-semibold text-gray-900 text-lg">{faq.q}</span>
-                <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${open === i ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
               </button>
-              {open === i && (
+              {openFaq === i && (
                 <div className="px-6 pb-6 text-gray-600 border-t pt-4">
                   {faq.a}
                 </div>
