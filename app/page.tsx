@@ -5,6 +5,7 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Batches from "./batches/page";
 import Internships from "./internships/page";
+import Verification from "./verification/page";
 import ServicesPage from './services/page';
 
 
@@ -17,6 +18,7 @@ export default function Page() {
       <Testimonials />
       <Batches />
       <Internships />
+      <Verification />
      
       
       <Contact />

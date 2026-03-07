@@ -48,21 +48,21 @@ const internships: Internship[] = [
     ],
   },
   {
-    title: "Web Development Internship",
+    title: "Interior Design Internship",
     duration: "2 Months",
     mode: "Remote",
-    type: "Paid",
-    level: "Beginner to Intermediate",
+    type: "Unpaid",
+    level: "Interior Design Students",
     responsibilities: [
-      "Develop and maintain company websites",
-      "Improve UI using HTML, CSS, JavaScript, and React",
-      "Assist in deploying frontend updates",
-      "Optimize website performance",
+      "Assist in interior layout planning",
+      "Support furniture placement and room styling",
+      "Work on color schemes and material selection",
+      "Create basic interior concepts for residential spaces",
     ],
     eligibility: [
-      "BCA / MCA / B.Tech (CS/IT)",
-      "Basic frontend development skills",
-      "Willingness to work on real projects",
+      "Interior Design / Architecture students",
+      "Basic understanding of interior design",
+      "Creative thinking and attention to detail",
     ],
   },
   {
@@ -75,7 +75,7 @@ const internships: Internship[] = [
       "Client communication and follow-ups",
       "Project documentation and reporting",
       "Assist in business operations",
-      "Support digital marketing activities",
+      "Support marketing and coordination tasks",
     ],
     eligibility: [
       "BBA / MBA / Management students",
@@ -96,8 +96,8 @@ export default function InternshipsPage() {
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Join Dream Homes Bihar and gain practical experience in civil
-            engineering, house planning, architecture, and technology-driven
-            services.
+            engineering, architecture, house planning, interior design,
+            and construction project support.
           </p>
         </div>
       </section>
