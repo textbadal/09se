@@ -57,7 +57,7 @@ export default function InternshipsLayout({
 
           <div className="mt-8 flex justify-center gap-4 flex-wrap">
             <a
-              href="/internships/apply"
+              href="https://forms.gle/VvErvJUJuhCiVPm5A"
               className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition"
             >
               Apply for Internship

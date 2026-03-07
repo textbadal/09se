@@ -147,7 +147,7 @@ export default function InternshipsPage() {
               {/* CTA */}
               <div>
                 <a
-                  href="https://forms.gle/your-form"
+                  href="https://forms.gle/VvErvJUJuhCiVPm5A"
                   target="_blank"
                   className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md text-sm"
                 >

@@ -15,6 +15,20 @@ export const certificates: Certificate[] = [
     issuedOn: "March 2026",
   },
   {
+    id: "DHB-CE-012",
+    name: "Rahul Kumar",
+    domain: "Civil Engineering Internship",
+    duration: "2 Months",
+    issuedOn: "March 2026",
+  },
+  {
+    id: "DHB-CE-008",
+    name: "Rahul Kumar",
+    domain: "Civil Engineering Internship",
+    duration: "2 Months",
+    issuedOn: "March 2026",
+  },
+  {
     id: "DHB-AR-002",
     name: "Ankit Sharma",
     domain: "Architecture Internship",
