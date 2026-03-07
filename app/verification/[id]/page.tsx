@@ -1,61 +1,47 @@
 import { certificates } from "@/data/certificates";
 
 type Props = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return certificates.map((cert) => ({
     id: cert.id,
   }));
 }
 
-export default function CertificatePage({ params }: Props) {
-  const certificate = certificates.find(
-    (c) => c.id.toLowerCase() === params.id.toLowerCase()
-  );
+export default async function VerificationPage({ params }: Props) {
+  const { id } = await params;
 
-  if (!certificate) {
+  const cert = certificates.find((c) => c.id === id);
+
+  if (!cert) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="bg-white p-8 rounded-xl shadow text-center">
-          <h1 className="text-2xl font-bold text-red-600 mb-2">
-            Certificate Not Found
-          </h1>
-          <p className="text-gray-600">
-            This certificate ID does not exist in our records.
-          </p>
-        </div>
-      </main>
+      <div className="max-w-xl mx-auto py-20 text-center">
+        <h1 className="text-2xl font-bold text-red-600">
+          Certificate Not Found
+        </h1>
+        <p className="mt-4 text-gray-600">
+          The certificate ID you entered is invalid.
+        </p>
+      </div>
     );
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-50 px-6 py-16">
-      <div className="max-w-xl w-full bg-white p-8 rounded-xl shadow-lg">
-
-        <h1 className="text-3xl font-bold text-center mb-4">
-          Certificate Verified ✓
+    <div className="max-w-2xl mx-auto py-20">
+      <div className="border rounded-lg p-8 shadow-md">
+        <h1 className="text-3xl font-bold text-green-600 mb-4">
+          Certificate Verified ✅
         </h1>
 
-        <p className="text-center text-gray-600 mb-6">
-          Internship certificate issued by
-          <span className="font-semibold text-blue-600">
-            {" "}Dream Homes Bihar
-          </span>
-        </p>
-
-        <div className="space-y-3 text-sm">
-          <p><strong>Name:</strong> {certificate.name}</p>
-          <p><strong>Domain:</strong> {certificate.domain}</p>
-          <p><strong>Duration:</strong> {certificate.duration}</p>
-          <p><strong>Issued On:</strong> {certificate.issuedOn}</p>
-          <p><strong>Certificate ID:</strong> {certificate.id}</p>
+        <div className="space-y-2">
+          <p><strong>Name:</strong> {cert.name}</p>
+          <p><strong>Domain:</strong> {cert.domain}</p>
+          <p><strong>Certificate ID:</strong> {cert.id}</p>
+          <p><strong>Issued By:</strong> Dream Homes Bihar</p>
         </div>
-
       </div>
-    </main>
+    </div>
   );
 }
