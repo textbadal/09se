@@ -49,7 +49,7 @@ const services: Service[] = [
     title: "2D Floor Plan",
     description: "Detailed floor plans for your home with measurements and layout.",
     detailedDescription: "Our comprehensive 2D floor plan service provides precise technical drawings that serve as the foundation for your construction project. We create scale drawings showing the layout of rooms, walls, doors, windows, and permanent fixtures. Each plan includes accurate dimensions, area calculations, and furniture placement options to maximize your space efficiency.",
-    price: "₹999 onwards",
+    price: "₹1,999 onwards",
     image: "/images/floor3.webp",
     features: ["Accurate measurements", "Room layout optimization", "Furniture placement", "3 revisions included", "Scale drawings", "Area calculations"],
     timeline: "2-3 days",
@@ -59,7 +59,7 @@ const services: Service[] = [
     title: "3D Elevation Design",
     description: "Realistic 3D elevation rendering of your house design.",
     detailedDescription: "Transform your architectural vision into photorealistic 3D visualizations. Our elevation designs help you visualize the exterior of your home from multiple angles, with realistic textures, materials, lighting, and landscaping. We provide both daytime and nighttime renders to give you a complete understanding of how your home will look in different conditions.",
-    price: "₹1,999 onwards",
+    price: "₹2,499 onwards",
     image: "/images/gallery9.jpg",
     features: ["Photorealistic rendering", "Multiple angle views", "Material visualization", "5 revisions included", "Day/Night renders", "Landscaping integration"],
     timeline: "4-5 days"
