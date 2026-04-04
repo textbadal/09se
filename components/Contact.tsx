@@ -1,101 +1,117 @@
 "use client";
 
 import React from "react";
+import { Phone, Mail, MessageCircle, MapPin } from "lucide-react";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 bg-gray-100 text-gray-900">
-      <div className="max-w-7xl mx-auto px-6 text-center">
+    <section id="contact" className="py-24 bg-gradient-to-b from-gray-50 to-white text-gray-900">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-bold">Get in Touch</h2>
-        <p className="mt-4 text-lg opacity-80">
-          Have questions or want to start your dream project?  
-          We’d love to hear from you!
-        </p>
+        <div className="text-center max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            Let’s Build Your Dream Home
+          </h2>
+          <p className="mt-4 text-lg text-gray-600">
+            Get in touch with our experts for house planning, 3D elevation, and vastu consultation.
+          </p>
+        </div>
 
-        {/* Quick Contact Options */}
-        <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        {/* Quick Actions */}
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
             href="tel:+916205820278"
-            className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-black text-white font-semibold hover:bg-gray-800 transition"
+            className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-black text-white font-medium shadow hover:shadow-lg hover:scale-105 transition"
           >
-            📞 Call Us
+            <Phone size={18} /> Call Now
           </a>
+
           <a
             href="https://wa.me/916205820278"
             target="_blank"
-            className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-green-500 text-white font-semibold hover:bg-green-600 transition"
+            className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-green-500 text-white font-medium shadow hover:shadow-lg hover:scale-105 transition"
           >
-            💬 WhatsApp
+            <MessageCircle size={18} /> WhatsApp
           </a>
+
           <a
             href="mailto:dreamhomesbihar@gmail.com"
-            className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+            className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-blue-600 text-white font-medium shadow hover:shadow-lg hover:scale-105 transition"
           >
-            ✉️ Email Us
+            <Mail size={18} /> Email Us
           </a>
         </div>
 
-        {/* Info + Form Grid */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
-          {/* Contact Information */}
-          <div>
+        {/* Grid Section */}
+        <div className="mt-20 grid md:grid-cols-2 gap-12">
+          {/* Info Card */}
+          <div className="bg-white p-8 rounded-2xl shadow-md border">
             <h3 className="text-2xl font-semibold mb-4">Contact Information</h3>
-            <p className="mb-4">
-              Dream Homes Bihar provides professional house planning, 
-              3D elevation, and vastu consultancy across Bihar.
+
+            <p className="text-gray-600 mb-6">
+              We provide professional architectural services across Bihar. Reach out to us for personalized consultation.
             </p>
-            <ul className="space-y-3 text-lg">
-              <li>📍 Patna, Bihar, India</li>
-              <li>📞 +91 62058 20278</li>
-              <li>✉️ dreamhomesbihar@gmail.com</li>
-            </ul>
-            <div className="mt-6">
+
+            <div className="space-y-4 text-gray-700">
+              <div className="flex items-center gap-3">
+                <MapPin size={18} /> Patna, Bihar, India
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone size={18} /> +91 62058 20278
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail size={18} /> dreamhomesbihar@gmail.com
+              </div>
+            </div>
+
+            <div className="mt-6 overflow-hidden rounded-xl border">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3569.2066379555!2d85.1415!3d25.5941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed58f35b46!2sPatna%2C%20Bihar!5e0!3m2!1sen!2sin!4v1633093812345!5m2!1sen!2sin"
                 width="100%"
                 height="250"
-                style={{ border: 0 }}
                 loading="lazy"
-                allowFullScreen
               ></iframe>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">Send Us a Message</h3>
-            <form className="space-y-4">
+          {/* Form Card */}
+          <div className="bg-white p-8 rounded-2xl shadow-md border">
+            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
+
+            <form className="space-y-5">
               <div>
-                <label className="block text-sm font-medium">Name</label>
+                <label className="text-sm font-medium text-gray-700">Full Name</label>
                 <input
                   type="text"
-                  className="w-full mt-1 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-black"
-                  placeholder="Your name"
+                  placeholder="Enter your name"
+                  className="w-full mt-1 px-4 py-3 rounded-xl border focus:ring-2 focus:ring-black outline-none"
                   required
                 />
               </div>
+
               <div>
-                <label className="block text-sm font-medium">Email</label>
+                <label className="text-sm font-medium text-gray-700">Email Address</label>
                 <input
                   type="email"
-                  className="w-full mt-1 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-black"
-                  placeholder="Your email"
+                  placeholder="Enter your email"
+                  className="w-full mt-1 px-4 py-3 rounded-xl border focus:ring-2 focus:ring-black outline-none"
                   required
                 />
               </div>
+
               <div>
-                <label className="block text-sm font-medium">Message</label>
+                <label className="text-sm font-medium text-gray-700">Your Message</label>
                 <textarea
                   rows={4}
-                  className="w-full mt-1 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-black"
-                  placeholder="Tell us about your project..."
+                  placeholder="Describe your project..."
+                  className="w-full mt-1 px-4 py-3 rounded-xl border focus:ring-2 focus:ring-black outline-none"
                   required
                 />
               </div>
+
               <button
                 type="submit"
-                className="w-full px-6 py-3 rounded-xl bg-black text-white font-semibold hover:bg-gray-800 transition"
+                className="w-full py-3 rounded-xl bg-black text-white font-semibold hover:bg-gray-800 transition shadow"
               >
                 Send Message
               </button>
