@@ -11,7 +11,7 @@ interface Product {
   price: string;
   description: string;
   image: string;
-  downloadLink: string;
+   paymentLink: string;
   badge?: "Best Seller" | "Popular" | "New";
 }
 
@@ -22,7 +22,7 @@ const products: Product[] = [
     price: "₹199",
     description: "Get instant access to a huge library of house plans in CAD & PDF format.",
     image: "/images/product1.jpg",
-    downloadLink: "https://forms.gle/9DerZQwDMW9H8u2T8",
+    paymentLink: "https://payments.cashfree.com/links?code=xa84gabu4fsg_AAAAAAATNmE",
     badge: "Best Seller",
   },
   {
@@ -31,16 +31,16 @@ const products: Product[] = [
     price: "₹49",
     description: "A complete guide to designing vastu-compliant homes.",
     image: "/images/product2.jpg",
-    downloadLink: "https://forms.gle/YourGoogleFormLinkHere",
+    paymentLink: "https://payments.cashfree.com/links?code=Ya84iq0osu10_AAAAAAATNmE",
     badge: "Popular",
   },
   {
     id: 10,
     title: "Eco-Friendly Home Guide",
     price: "₹29",
-    description: "Tips and plans to design energy-efficient, sustainable homes.",
+    description: "Tips and plans to design energy-efficient homes.",
     image: "/images/product10.jpg",
-    downloadLink: "https://forms.gle/YourGoogleFormLinkHere",
+    paymentLink: "https://payments.cashfree.com/links?code=fa84iubk2u10_AAAAAAATNmE",
     badge: "New",
   },
 ];
@@ -97,7 +97,7 @@ export default function ProductsPage() {
               brand: { "@type": "Brand", name: "Dream Homes Bihar" },
               offers: {
                 "@type": "Offer",
-                url: product.downloadLink,
+                url: product.paymentLink,
                 priceCurrency: "INR",
                 price: product.price.replace("₹", ""),
                 availability: "https://schema.org/InStock",
@@ -169,7 +169,7 @@ export default function ProductsPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
               <a
-                href={products[0].downloadLink}
+                href={products[0].paymentLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-bold rounded-xl text-lg shadow-lg transition-all transform hover:scale-105 hover:shadow-xl"
@@ -258,14 +258,14 @@ export default function ProductsPage() {
                       <span className="text-2xl font-extrabold text-yellow-600">{product.price}</span>
                     </div>
 
-                    <a
-                      href={product.downloadLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold transition-all bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white shadow-md hover:shadow-lg hover:gap-3"
-                    >
-                      <FaDownload /> Instant Download
-                    </a>
+                   <a
+  href={product.paymentLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold transition-all bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white shadow-md hover:shadow-lg hover:gap-3"
+>
+  💳 Buy Now
+</a>
                   </div>
                 </div>
               </div>
@@ -282,7 +282,7 @@ export default function ProductsPage() {
       {/* Bottom Fixed CTA for Mobile */}
       <div className="fixed bottom-4 left-0 w-full flex justify-center z-50 px-4 md:hidden">
         <a
-          href={products[0].downloadLink}
+         href={products[0].paymentLink}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full max-w-md flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-bold rounded-full shadow-lg text-lg transition-transform transform hover:scale-105"
