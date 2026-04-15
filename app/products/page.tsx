@@ -22,7 +22,7 @@ const products: Product[] = [
     price: "₹199",
     description: "Get instant access to a huge library of house plans in CAD & PDF format.",
     image: "/images/product1.jpg",
-    paymentLink: "https://payments.cashfree.com/links?code=xa84gabu4fsg_AAAAAAATNmE",
+    paymentLink: "https://payments.cashfree.com/forms/floor-plans-bundle",
     badge: "Best Seller",
   },
   {

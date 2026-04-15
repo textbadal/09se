@@ -27,6 +27,8 @@ type Service = {
   features: string[];
   timeline: string;
   popular?: boolean;
+  advance: number;
+  paymentLink: string;
 };
 
 type TeamMember = {
@@ -43,64 +45,105 @@ type ProcessStep = {
   description: string;
   icon: React.ReactNode;
 };
-
 const services: Service[] = [
+  // 🔹 ENTRY SERVICE (FUNNEL)
   {
-    title: "2D Floor Plan",
-    description: "Detailed floor plans for your home with measurements and layout.",
-    detailedDescription: "Our comprehensive 2D floor plan service provides precise technical drawings that serve as the foundation for your construction project. We create scale drawings showing the layout of rooms, walls, doors, windows, and permanent fixtures. Each plan includes accurate dimensions, area calculations, and furniture placement options to maximize your space efficiency.",
-    price: "₹4,499 onwards",
+    title: "Vastu-Based Floor Plan (Starter)",
+    description: "Start your home design with expert planning.",
+    detailedDescription:
+      "Get a professional floor plan designed as per Vastu with unlimited revisions until satisfaction. Perfect starting point for your dream home.",
+    price: "₹2,999",
     image: "/images/floor3.webp",
-    features: ["Accurate measurements", "Room layout optimization", "Furniture placement", "3 revisions included", "Scale drawings", "Area calculations"],
+    features: [
+      "Vastu-based planning",
+      "Unlimited revisions",
+      "Optimized room layout",
+      "Plot utilization guidance"
+    ],
     timeline: "2-3 days",
-    popular: true
+    advance: 499,
+    paymentLink: "https://payments.cashfree.com/2d-floor-plan"
   },
+
+  // 🔹 MID SERVICE
   {
     title: "3D Elevation Design",
-    description: "Realistic 3D elevation rendering of your house design.",
-    detailedDescription: "Transform your architectural vision into photorealistic 3D visualizations. Our elevation designs help you visualize the exterior of your home from multiple angles, with realistic textures, materials, lighting, and landscaping. We provide both daytime and nighttime renders to give you a complete understanding of how your home will look in different conditions.",
-    price: "₹5,499 onwards",
-    image: "/images/gallery9.jpg",
-    features: ["Photorealistic rendering", "Multiple angle views", "Material visualization", "5 revisions included", "Day/Night renders", "Landscaping integration"],
-    timeline: "4-5 days"
+    description: "See your home before you build it.",
+    detailedDescription:
+      "Get realistic 3D elevation designs with materials, textures, lighting, and exterior detailing for a clear visualization.",
+    price: "₹4,999",
+    image: "/images/gallery11.jpg",
+    features: [
+      "Photorealistic render",
+      "Modern elevation styles",
+      "Multiple angle views",
+      "5 revisions included"
+    ],
+    timeline: "4-5 days",
+    advance: 999,
+    paymentLink: "https://payments.cashfree.com/3d-elevation"
   },
+
+  
+
+  // 🔹 PREMIUM MAIN OFFER (MOST IMPORTANT)
   {
-    title: "Interior Design",
-    description: "Complete interior design with Vastu compliance and decor suggestions.",
-    detailedDescription: "Create harmonious and functional living spaces with our complete interior design service. We develop cohesive design concepts that reflect your personal style while ensuring optimal functionality. Our designs include color schemes, furniture plans, lighting design, material selections, and decorative elements—all while adhering to Vastu principles for positive energy flow.",
-    price: "₹3,499 onwards",
-    image: "/images/gallery23.jpg",
-    features: ["Vastu-compliant designs", "Color scheme suggestions", "Furniture recommendations", "Unlimited revisions", "Lighting plan", "Material selection"],
-    timeline: "5-7 days",
-    popular: true
-  },/* Services
-  {
-    title: "Plumbing & Electrical Plan",
-    description: "Professional plumbing and electrical layout for smooth construction.",
-    detailedDescription: "Ensure your home&apos;s functional systems are perfectly planned with our detailed plumbing and electrical plans. We create comprehensive layouts that specify the placement of all outlets, switches, light fixtures, plumbing fixtures, and connections. Our plans adhere to safety standards and local building codes, helping contractors execute installations efficiently.",
-    price: "₹1,499 onwards",
-    image: "/images/services/plumbing-electrical.jpg",
-    features: ["Code-compliant designs", "Fixture placement", "Circuit planning", "3 revisions included", "Safety compliance", "Energy efficiency optimization"],
-    timeline: "3-4 days"
-  }, 
-  {
-    title: "Footing Plan",
-    description: "Accurate footing plan for safe and strong foundation.",
-    detailedDescription: "Lay a solid foundation for your home with our structurally sound footing plans. Our engineers create detailed foundation plans that specify dimensions, materials, reinforcement details, and construction techniques appropriate for your soil conditions and building design. We ensure your foundation meets all structural requirements for safety and durability.",
-    price: "₹999 onwards",
-    image: "/images/services/footing.jpg",
-    features: ["Structural accuracy", "Material specifications", "Load calculations", "2 revisions included", "Soil consideration", "Reinforcement details"],
-    timeline: "2-3 days"
+    title: "Complete House Design Package",
+    description: "Everything required to build your dream home.",
+    detailedDescription:
+      "Our premium package includes complete architectural drawings: Vastu floor plan with unlimited revisions, 3D elevation, 2D elevation, structural guidance, electrical & plumbing layouts, and working drawings.",
+    price: "₹16,999",
+    image: "/images/dhb-16999.webp",
+    features: [
+      "Vastu Floor Plan (Unlimited revisions)",
+      "3D Elevation Design",
+      "2D Elevation",
+      "Structural Drawings",
+      "Electrical Layout",
+      "Plumbing Plan",
+      "Working Drawings",
+      "Priority Support"
+    ],
+    timeline: "7-10 days",
+    popular: true,
+    advance: 1999,
+    paymentLink: "https://payments.cashfree.com/complete-package"
   },
+
+  // 🔹 ADD-ON SERVICES (BOOST AOV)
   {
-    title: "Vastu Compliance Check",
-    description: "Ensure your home follows Vastu principles for positivity.",
-    detailedDescription: "Create a harmonious living environment with our Vastu compliance service. Our experts analyze your plans according to ancient Vastu Shastra principles and provide detailed recommendations for optimizing energy flow, health, prosperity, and wellbeing. We offer practical solutions that balance traditional principles with modern architectural requirements.",
-    price: "₹799 onwards",
-    image: "/images/services/vastu.jpg",
-    features: ["Direction analysis", "Remedial suggestions", "Room placement guidance", "Detailed report", "Modern-traditional balance", "Energy flow optimization"],
-    timeline: "1-2 days"
-  },   Grid */
+    title: "Vastu Consultation",
+    description: "Expert guidance for positive energy flow.",
+    detailedDescription:
+      "Detailed Vastu analysis with practical remedies for better health, wealth, and harmony.",
+    price: "₹799",
+    image: "/images/product2.jpg",
+    features: [
+      "Direction analysis",
+      "Room placement advice",
+      "Remedy suggestions"
+    ],
+    timeline: "1-2 days",
+    advance: 299,
+    paymentLink: "https://payments.cashfree.com/vastu"
+  },
+
+  {
+    title: "Interior Layout Plan",
+    description: "Smart interior planning for better living.",
+    detailedDescription:
+      "Furniture layout, space optimization, and basic interior planning to enhance usability and aesthetics.",
+    price: "₹1,499",
+    image: "/images/gallery13.jpg",
+    features: [
+      "Furniture layout",
+      "Space optimization",
+      "Modern design ideas"
+    ],
+    timeline: "2-3 days",
+    advance: 499,
+    paymentLink: "https://payments.cashfree.com/interior"
+  }
 ];
 
 const faqs = [
@@ -250,199 +293,153 @@ export default function Services() {
     if (activeTab === "popular") return service.popular;
     return true;
   });
+  const handlePayment = (service: Service) => {
+  if (!service.paymentLink) {
+    alert("Payment link not available. Please contact support.");
+    return;
+  }
+
+  // Redirect to Cashfree Payment Page
+  window.open(service.paymentLink, "_blank");
+};
 
   return (
     <main className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 text-center px-6 max-w-7xl mx-auto">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-10 dark:opacity-5 rounded-3xl -z-10"></div>
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold mb-6"
-        >
-          Professional Home Design Services
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-4 text-lg opacity-80 max-w-3xl mx-auto mb-8"
-        >
-          From concept to completion, we provide comprehensive architectural and interior design solutions 
-          tailored to your vision, budget, and requirements. Serving clients across India with precision and creativity.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="flex flex-wrap justify-center gap-4"
-        >
-          <a
-            href="/contact"
-            className="bg-indigo-600 text-white px-8 py-3 rounded-xl shadow hover:bg-indigo-700 transition flex items-center gap-2"
-          >
-            <Phone size={18} /> Book Free Consultation
-          </a>
-          <a
-            href="#services"
-            className="border border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 px-8 py-3 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition"
-          >
-            Explore Our Services
-          </a>
-        </motion.div>
-      </section>
+     
+{/* Services Grid */}
+<section id="services" className="py-24 px-6 max-w-7xl mx-auto">
+  <div className="text-center mb-16">
+    <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+      Our Professional Services
+    </h2>
 
-      {/* Stats Section */}
-      <section className="py-12 bg-white dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="text-3xl font-bold text-indigo-600 mb-2">500+</div>
-              <div className="text-gray-600 dark:text-gray-300">Projects Completed</div>
-            </motion.div>
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <div className="text-3xl font-bold text-indigo-600 mb-2">12+</div>
-              <div className="text-gray-600 dark:text-gray-300">Years Experience</div>
-            </motion.div>
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="text-3xl font-bold text-indigo-600 mb-2">95%</div>
-              <div className="text-gray-600 dark:text-gray-300">Client Satisfaction</div>
-            </motion.div>
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <div className="text-3xl font-bold text-indigo-600 mb-2">25+</div>
-              <div className="text-gray-600 dark:text-gray-300">Cities Across India</div>
-            </motion.div>
+    <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
+      Thoughtfully crafted architectural solutions combining design excellence and practical execution.
+    </p>
+
+    <p className="text-sm text-gray-500 mt-4">
+      Trusted by homeowners across India • Fast delivery • Expert guidance
+    </p>
+
+    {/* Tabs */}
+    <div className="flex flex-wrap justify-center mt-8 gap-3">
+      <button 
+        className={`px-5 py-2.5 rounded-full text-sm font-medium transition ${
+          activeTab === "all"
+            ? "bg-indigo-600 text-white shadow-md"
+            : "bg-gray-100 dark:bg-gray-700"
+        }`}
+        onClick={() => setActiveTab("all")}
+      >
+        All Services
+      </button>
+
+      <button 
+        className={`px-5 py-2.5 rounded-full text-sm font-medium transition ${
+          activeTab === "popular"
+            ? "bg-indigo-600 text-white shadow-md"
+            : "bg-gray-100 dark:bg-gray-700"
+        }`}
+        onClick={() => setActiveTab("popular")}
+      >
+        Most Popular
+      </button>
+    </div>
+  </div>
+
+  <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    {filteredServices.map((service, idx) => (
+      <motion.div
+        key={idx}
+        whileHover={{ y: -6 }}
+        className={`group relative rounded-2xl border bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition-all overflow-hidden ${
+          service.popular ? "ring-1 ring-indigo-500" : ""
+        }`}
+      >
+
+        {/* Badge */}
+        {service.popular && (
+          <div className="absolute top-4 left-4 z-10 bg-indigo-600 text-white text-xs px-3 py-1 rounded-full">
+            Most Popular
           </div>
-        </div>
-      </section>
+        )}
 
-      {/* Services Grid */}
-      <section id="services" className="py-16 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Professional Services</h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            We offer end-to-end home design solutions from conceptualization to execution support. 
-            Each service is delivered with precision, creativity, and attention to detail.
+        {/* Image */}
+        <div className="relative w-full h-52 overflow-hidden">
+          <Image
+            src={service.image}
+            alt={service.title}
+            fill
+            className="object-cover group-hover:scale-105 transition duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6">
+
+          {/* Title */}
+          <h3 className="text-xl font-semibold mb-1">
+            {service.title}
+          </h3>
+
+          {/* Price */}
+          <p className="text-indigo-600 font-semibold text-lg mb-2">
+            {service.price}
           </p>
-          <div className="flex flex-wrap justify-center mt-6 gap-2">
-            <button 
-              className={`px-4 py-2 rounded-full ${activeTab === "all" ? "bg-indigo-600 text-white" : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200"}`}
-              onClick={() => setActiveTab("all")}
-            >
-              All Services
-            </button>
-            <button 
-              className={`px-4 py-2 rounded-full ${activeTab === "popular" ? "bg-indigo-600 text-white" : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200"}`}
-              onClick={() => setActiveTab("popular")}
-            >
-              Most Popular
-            </button>
-          </div>
-        </div>
-        
-        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {filteredServices.map((service, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -5 }}
-              className={`rounded-xl border shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-all cursor-pointer relative ${service.popular ? 'ring-2 ring-indigo-500' : ''}`}
-              onClick={() => setExpandedService(expandedService === idx ? null : idx)}
-            >
-              {service.popular && (
-                <div className="absolute top-4 right-4 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
-                  MOST POPULAR
-                </div>
-              )}
-              <div className="relative w-full h-56">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-black opacity-0 hover:opacity-10 transition-opacity"></div>
-              </div>
-              <div className="p-5 text-left">
-                <div className="flex justify-between items-start">
-                  <h3 className="text-xl font-semibold">{service.title}</h3>
-                  <p className="font-bold text-indigo-600 whitespace-nowrap ml-2">{service.price}</p>
-                </div>
-                
-                <div className="flex items-center mt-2 text-sm text-gray-500 dark:text-gray-400">
-                  <Clock className="w-4 h-4 mr-1" />
-                  <span>{service.timeline}</span>
-                </div>
-                
-                <AnimatePresence>
-                  {expandedService === idx ? (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <p className="mt-3 text-gray-700 dark:text-gray-300">{service.detailedDescription}</p>
-                      <ul className="mt-4 space-y-2">
-                        {service.features.map((feature, featureIdx) => (
-                          <li key={featureIdx} className="flex items-start">
-                            <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
-                            <span className="text-gray-600 dark:text-gray-400">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <button className="mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
-                        Select This Service
-                      </button>
-                    </motion.div>
-                  ) : (
-                    <motion.p 
-                      className="mt-2 text-gray-600 dark:text-gray-400 line-clamp-2"
-                      initial={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                    >
-                      {service.description}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-                
-                <div className="mt-4 flex justify-between items-center">
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    {expandedService === idx ? 'Click to collapse' : 'Click for details'}
-                  </span>
-                  {expandedService === idx ? (
-                    <ChevronUp className="w-5 h-5 text-indigo-600" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-indigo-600" />
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
 
+          {/* Timeline */}
+          <div className="flex items-center text-sm text-gray-500 mb-3">
+            <Clock className="w-4 h-4 mr-1" />
+            {service.timeline}
+          </div>
+
+          {/* Description */}
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+            {service.description}
+          </p>
+
+          {/* Features */}
+          <ul className="space-y-2 mb-6">
+            {service.features.slice(0, 3).map((feature, i) => (
+              <li key={i} className="flex items-center text-sm text-gray-600">
+                <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          {/* CTA (SIMPLE & CLEAR) */}
+          <div className="flex flex-col gap-3">
+
+            {/* PAYMENT BUTTON */}
+            <button
+              onClick={() => handlePayment(service)}
+              className="w-full bg-indigo-600 text-white py-3 rounded-xl font-medium hover:bg-indigo-700 transition"
+            >
+              Book Now
+            </button>
+
+            {/* CONTACT BUTTON */}
+            <a
+              href={`https://wa.me/916205820278?text=Hi, I want to know more about ${service.title}`}
+              target="_blank"
+              className="w-full text-center border border-gray-300 dark:border-gray-600 py-2.5 rounded-xl text-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+            >
+              Contact Us
+            </a>
+
+          </div>
+
+          {/* Trust */}
+          <p className="text-xs text-gray-400 text-center mt-4">
+            Secure Payment • Transparent Pricing • Expert Support
+          </p>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</section>
       {/* Process Section */}
       <section className="py-20 px-6 bg-gray-100 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto">
