@@ -19,14 +19,15 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { href: "/", label: "Home", icon: <Home size={16} /> },
+    { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/products", label: "Products" },
     { href: "/gallery", label: "Our Work" },
    { href: "/projects", label: "Floor Plans" },
-   { href: "/batches", label: "Batches" },
+   
     { href: "/internships", label: "Internships / Careers" },
     { href: "/verification", label: "Verification" },
+    { href: "/payment", label: "Payment" },
     { href: "/contact", label: "Contact" },
   ];
 
