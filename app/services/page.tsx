@@ -62,7 +62,7 @@ const services: Service[] = [
     ],
     timeline: "2-3 days",
     advance: 499,
-    paymentLink: "https://payments.cashfree.com/2d-floor-plan"
+    paymentLink: "https://payments.cashfree.com/forms/dream-homes-booking"
   },
 
   // 🔹 MID SERVICE
@@ -80,8 +80,8 @@ const services: Service[] = [
       "5 revisions included"
     ],
     timeline: "4-5 days",
-    advance: 999,
-    paymentLink: "https://payments.cashfree.com/3d-elevation"
+    advance: 499,
+    paymentLink: "https://payments.cashfree.com/forms/dream-homes-booking"
   },
 
   
@@ -107,7 +107,7 @@ const services: Service[] = [
     timeline: "7-10 days",
     popular: true,
     advance: 1999,
-    paymentLink: "https://payments.cashfree.com/complete-package"
+    paymentLink: "https://payments.cashfree.com/forms/dream-homes-booking"
   },
 
   // 🔹 ADD-ON SERVICES (BOOST AOV)
@@ -124,8 +124,8 @@ const services: Service[] = [
       "Remedy suggestions"
     ],
     timeline: "1-2 days",
-    advance: 299,
-    paymentLink: "https://payments.cashfree.com/vastu"
+    advance: 499,
+    paymentLink: "https://payments.cashfree.com/forms/dream-homes-booking"
   },
 
   {
@@ -142,7 +142,7 @@ const services: Service[] = [
     ],
     timeline: "2-3 days",
     advance: 499,
-    paymentLink: "https://payments.cashfree.com/interior"
+    paymentLink: "https://payments.cashfree.com/forms/dream-homes-booking"
   }
 ];
 
