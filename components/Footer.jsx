@@ -44,7 +44,7 @@ export default function Footer() {
           <ul className="space-y-3 text-sm mb-6">
             <li>📍 Patna, Bihar</li>
             <li>📞 <a href="tel:+916205820278" className="hover:text-yellow-400">+91 62058 20278</a></li>
-            <li>📧 <a href="mailto:dreamhomesbihar@gmail.com" className="hover:text-yellow-400">dreamhomesbihar@gmail.com</a></li>
+            <li>📧 <a href="mailto:contactdreamhomesbihar@gmail.com" className="hover:text-yellow-400">contactdreamhomesbihar@gmail.com</a></li>
           </ul>
 
           <div className="flex gap-4 text-xl">

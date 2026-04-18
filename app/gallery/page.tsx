@@ -58,10 +58,13 @@ export default function GalleryPage() {
   return (
     <main className="max-w-7xl mx-auto px-6 py-20">
       {/* Heading */}
-      <h1 className="text-4xl font-bold text-center">Our Projects</h1>
-      <p className="mt-4 text-lg text-gray-600 text-center max-w-2xl mx-auto">
-        Explore our portfolio of vastu-compliant residential, commercial, and interior projects.
-      </p>
+      <h1 className="text-4xl md:text-5xl font-bold text-center">
+  Our Design Portfolio
+</h1>
+
+<p className="mt-4 text-lg text-gray-600 text-center max-w-2xl mx-auto">
+  Explore modern house designs, 2D floor plans, 3D elevations, and interior projects crafted for real clients.
+</p>
 
       {/* Category Filters */}
       <div className="flex justify-center gap-4 mt-8 flex-wrap">
@@ -85,7 +88,7 @@ export default function GalleryPage() {
         {filteredProjects.map((project, idx) => (
           <div
             key={idx}
-            onClick={() => setLightboxIndex(idx)}
+            onClick={() => setLightboxIndex(filteredProjects.indexOf(project))}
             className="rounded-xl overflow-hidden border shadow hover:shadow-xl transition cursor-pointer group"
           >
             <img
@@ -109,7 +112,7 @@ export default function GalleryPage() {
           {filteredProjects.map((project, idx) => (
             <SwiperSlide key={idx}>
               <div
-                onClick={() => setLightboxIndex(idx)}
+                onClick={() => setLightboxIndex(filteredProjects.indexOf(project))}
                 className="rounded-xl overflow-hidden border shadow hover:shadow-lg transition cursor-pointer"
               >
                 <img
@@ -127,11 +130,11 @@ export default function GalleryPage() {
       {/* Lightbox */}
       {lightboxIndex >= 0 && (
         <Lightbox
-          open={lightboxIndex >= 0}
-          close={() => setLightboxIndex(-1)}
-          slides={filteredProjects.map((p) => ({ src: p.src }))}
-          index={lightboxIndex}
-        />
+  open={lightboxIndex >= 0}
+  close={() => setLightboxIndex(-1)}
+  slides={filteredProjects.map((p) => ({ src: p.src }))}
+  index={lightboxIndex}
+/>
       )}
     </main>
   );
