@@ -26,7 +26,7 @@ export default function Header() {
    { href: "/projects", label: "Floor Plans" },
    
     { href: "/internships", label: "Internships / Careers" },
-    { href: "/verification", label: "Verification" },
+   
     { href: "/payment", label: "Payment" },
     { href: "/contact", label: "Contact" },
   ];

@@ -1,97 +1,112 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroOptimized() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
 
       {/* LEFT CONTENT */}
-      <div className="text-center md:text-left">
+      <div>
 
         {/* Tag */}
         <span className="inline-block bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-sm font-semibold mb-4">
           🏡 Modern House Design Experts
         </span>
 
-        {/* H1 */}
+        {/* Heading */}
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-          Get Your Dream Home Design <br />
-          <span className="text-blue-600">Starting @ ₹16,999</span>
+          Plan Your Dream Home <br />
+          <span className="text-blue-600">Smartly & Affordably</span>
         </h1>
 
         {/* Description */}
-        <p className="mt-5 text-lg text-gray-700 max-w-lg mx-auto md:mx-0">
-          Professional 2D floor plans, 3D elevation designs, and modern layouts 
-          tailored to your needs. Fast delivery, expert support, and affordable pricing.
+        <p className="mt-5 text-lg text-gray-700 max-w-lg">
+          Use our smart tools to estimate construction cost, check vastu, 
+          and explore complete house design services.
         </p>
 
         {/* CTA */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-
-          <a
+        <div className="mt-6 flex gap-4 flex-wrap">
+          <Link
             href="/payment"
-            className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-blue-700 transition-all duration-300"
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition"
           >
-            Book Now @ ₹499
-          </a>
+            Book Design @ ₹499
+          </Link>
 
           <a
-            href="https://wa.me/916205820278?text=Hi%20I%20want%20house%20design"
+            href="https://wa.me/916205820278"
             target="_blank"
-            className="bg-green-500 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:scale-105 transition-all duration-300"
+            className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-green-600 transition"
           >
-            Chat on WhatsApp
+            WhatsApp
           </a>
         </div>
 
-        {/* Features */}
-        <div className="mt-10 flex flex-wrap gap-3 justify-center md:justify-start">
-          {[
-            "Modern Designs",
-            "Fast Delivery",
-            "Affordable Pricing",
-            "Expert Support",
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="bg-white px-4 py-2 rounded-lg shadow text-sm font-medium"
-            >
-              ✔ {item}
-            </div>
-          ))}
-        </div>
+        {/* 🔥 TOOLS & SERVICES (Clickable) */}
+        <div className="mt-10">
 
-        {/* Trust */}
-        <div className="mt-8 text-sm text-gray-600">
-          <p className="font-semibold">5000+ Happy Clients Worldwide</p>
-          <p className="text-xs">Trusted Design Service</p>
+          <p className="text-sm font-semibold text-gray-500 mb-3">
+            TOOLS & SERVICES
+          </p>
+
+          <div className="flex flex-wrap gap-3">
+
+            <Link
+              href="/calculator"
+              className="bg-white border px-4 py-2 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition text-sm font-medium"
+            >
+              🧮 Construction Calculator
+            </Link>
+
+            <Link
+              href="/vastu"
+              className="bg-white border px-4 py-2 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition text-sm font-medium"
+            >
+              🧭 Vastu Analysis
+            </Link>
+
+            <Link
+              href="/services"
+              className="bg-white border px-4 py-2 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition text-sm font-medium"
+            >
+              🏗️ Complete Design Services
+            </Link>
+
+          </div>
+
+          <p className="mt-4 text-xs text-gray-500">
+            Trusted by 5000+ homeowners across India
+          </p>
+
         </div>
       </div>
 
       {/* RIGHT IMAGE */}
       <div className="relative">
-        <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+        <div className="rounded-2xl overflow-hidden shadow-xl border">
 
           <Image
             src="/images/gallery25.jpg"
-            alt="Modern house design with 2D floor plan and 3D elevation"
+            alt="House design"
             width={700}
             height={500}
-            priority
-            quality={85}
             className="w-full h-auto"
+            priority
           />
 
-          <div className="absolute bottom-4 left-4 bg-green-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg">
+          <div className="absolute bottom-4 left-4 bg-green-500 text-white px-4 py-2 rounded-lg font-bold">
             Starting @ ₹16,999
           </div>
         </div>
 
-        <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg px-4 py-2 text-sm font-semibold">
+        <div className="absolute -top-4 -right-4 bg-white shadow px-4 py-2 rounded-lg text-sm font-semibold">
           ⭐ 5000+ Clients
         </div>
       </div>
+
     </section>
   );
 }
