@@ -1,4 +1,9 @@
+type Blog = {
+  title: string;
+  content: string;
+};
 
+type BlogData = Record<string, Blog>;
 import { notFound } from "next/navigation";
 export function generateStaticParams() {
   return [
@@ -17,9 +22,9 @@ export function generateStaticParams() {
 
 
 
-const blogData: any = {
+const blogData: BlogData = {
   "construction-cost-bihar": {
-  title: "Construction Cost in Bihar Per Sq Ft (2026 Guide)",
+    title: "Construction Cost in Bihar Per Sq Ft (2026 Guide)",
   content: `
 Construction Cost in Bihar Per Sq Ft (2026 Guide)
 
@@ -258,16 +263,24 @@ Proper planning avoids delays and cost overruns.
   },
 };
 
-export async function generateMetadata({ params }: any) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const blog = blogData[params.slug];
 
   return {
-    title: blog?.title,
-    description: blog?.title,
+    title: blog?.title || "Blog",
+    description: blog?.title || "Blog page",
   };
 }
 
-export default function Page({ params }: any) {
+export default function Page({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const blog = blogData[params.slug];
 
   if (!blog) return notFound();
