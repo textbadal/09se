@@ -258,8 +258,15 @@ Proper planning avoids delays and cost overruns.
   },
 };
 
+export async function generateMetadata({ params }: any) {
+  const blog = blogData[params.slug];
 
-/* ✅ COMPONENT */
+  return {
+    title: blog?.title,
+    description: blog?.title,
+  };
+}
+
 export default function Page({ params }: any) {
   const blog = blogData[params.slug];
 
@@ -268,11 +275,86 @@ export default function Page({ params }: any) {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
 
+      {/* Title */}
       <h1 className="text-3xl font-bold mb-6">{blog.title}</h1>
 
-      <p className="whitespace-pre-line text-gray-700">
+      {/* Content */}
+      <div className="whitespace-pre-line text-gray-700 leading-relaxed">
         {blog.content}
-      </p>
+      </div>
+
+      {/* Internal Links */}
+      <div className="mt-10 bg-blue-50 p-6 rounded-lg">
+        <p className="font-semibold mb-2">
+          Calculate your construction cost instantly:
+        </p>
+        <a href="/calculator" className="text-blue-600 font-semibold">
+          Open Construction Calculator →
+        </a>
+      </div>
+
+      {/* FAQ UI */}
+      <div className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">FAQs</h2>
+
+        <div className="space-y-4 text-sm text-gray-700">
+          <div>
+            <p className="font-semibold">
+              What is construction cost per sq ft in Bihar?
+            </p>
+            <p>
+              It ranges between ₹1400 to ₹2200 depending on materials and design.
+            </p>
+          </div>
+
+          <div>
+            <p className="font-semibold">
+              How much does it cost to build a 1000 sq ft house?
+            </p>
+            <p>
+              Around ₹14 lakh to ₹22 lakh in Bihar.
+            </p>
+          </div>
+
+          <div>
+            <p className="font-semibold">
+              How can I reduce construction cost?
+            </p>
+            <p>
+              Use simple design, local materials, and proper planning.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What is construction cost per sq ft in Bihar?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Construction cost ranges between ₹1400 to ₹2200 per sq ft.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How much does a 1000 sq ft house cost?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "It costs around ₹14 lakh to ₹22 lakh in Bihar.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
 
     </div>
   );
