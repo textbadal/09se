@@ -14,6 +14,9 @@ type Materials = {
 
 type Result = {
   totalArea: number;
+  plotArea: number;
+  length: number;
+  width: number;
   cost: number;
   costPerSqft: number;
   breakdown: {
@@ -29,7 +32,8 @@ type Result = {
 } | null;
 
 export default function CalculatorPage() {
-  const [area, setArea] = useState<string>("");
+  const [length, setLength] = useState<string>("");
+  const [width, setWidth] = useState<string>("");
   const [floors, setFloors] = useState<number>(1);
   const [type, setType] = useState<string>("standard");
   const [location, setLocation] = useState<string>("tier2");
@@ -52,17 +56,22 @@ export default function CalculatorPage() {
     rural: 0.75,
   };
 
-  const calculate = () => {
-    if (!area) return;
+  const calculatePlotArea = () => {
+    const l = Number(length);
+    const w = Number(width);
+    if (isNaN(l) || isNaN(w) || l <= 0 || w <= 0) return 0;
+    return l * w;
+  };
 
-    const plot = Number(area);
-    if (isNaN(plot) || plot <= 0) return;
+  const calculate = () => {
+    const plotArea = calculatePlotArea();
+    if (plotArea <= 0) return;
 
     setIsCalculating(true);
 
     // Simulate calculation delay for better UX
     setTimeout(() => {
-      const totalArea = plot * floors;
+      const totalArea = plotArea * floors;
       const baseRate = rates[type];
       const multiplier = locationMultiplier[location];
       const adjustedRate = baseRate * multiplier;
@@ -96,6 +105,9 @@ export default function CalculatorPage() {
 
       setResult({
         totalArea,
+        plotArea,
+        length: Number(length),
+        width: Number(width),
         cost,
         costPerSqft: adjustedRate,
         materials,
@@ -110,10 +122,14 @@ export default function CalculatorPage() {
 
   // Auto-calculate when inputs change
   useEffect(() => {
-    if (area && Number(area) > 0) {
+    const plotArea = calculatePlotArea();
+    if (plotArea > 0) {
       calculate();
     }
-  }, [area, floors, type, location]);
+  }, [length, width, floors, type, location]);
+
+  const plotArea = calculatePlotArea();
+  const isValidPlot = plotArea > 0;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
@@ -131,7 +147,7 @@ export default function CalculatorPage() {
             Smart Construction Cost Calculator
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Get accurate material estimates, cost breakdown, and construction timeline for your dream home.
+            Enter your plot dimensions to get accurate material estimates, cost breakdown, and construction timeline.
           </p>
         </div>
 
@@ -142,20 +158,37 @@ export default function CalculatorPage() {
           <div className="p-6 md:p-8 bg-gradient-to-r from-gray-50 to-white border-b">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               
-              {/* Area Input */}
+              {/* Length Input */}
               <div className="space-y-2">
                 <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                  Plot Area (sq ft)
+                  Plot Length (ft)
                 </label>
                 <div className="relative">
                   <input
                     type="number"
-                    placeholder="e.g., 1200"
-                    value={area}
-                    onChange={(e) => setArea(e.target.value)}
+                    placeholder="e.g., 40"
+                    value={length}
+                    onChange={(e) => setLength(e.target.value)}
                     className="w-full pl-4 pr-12 py-3.5 bg-white border border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all text-lg font-medium"
                   />
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">ft²</span>
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">ft</span>
+                </div>
+              </div>
+
+              {/* Width Input */}
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  Plot Width (ft)
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    placeholder="e.g., 30"
+                    value={width}
+                    onChange={(e) => setWidth(e.target.value)}
+                    className="w-full pl-4 pr-12 py-3.5 bg-white border border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all text-lg font-medium"
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">ft</span>
                 </div>
               </div>
 
@@ -186,15 +219,15 @@ export default function CalculatorPage() {
                   onChange={(e) => setType(e.target.value)}
                   className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all text-gray-700 font-medium cursor-pointer"
                 >
-                  <option value="basic">💰 Basic (₹1,500/sqft)</option>
-                  <option value="standard">⭐ Standard (₹1,800/sqft)</option>
-                  <option value="premium">✨ Premium (₹2,200/sqft)</option>
-                  <option value="luxury">👑 Luxury (₹3,000/sqft)</option>
+                  <option value="basic">Basic</option>
+                  <option value="standard">Standard</option>
+                  <option value="premium">Premium</option>
+                  <option value="luxury">Luxury</option>
                 </select>
               </div>
 
               {/* Location */}
-              <div className="space-y-2">
+              <div className="space-y-2 md:col-span-2 lg:col-span-1">
                 <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Location Tier
                 </label>
@@ -212,14 +245,18 @@ export default function CalculatorPage() {
             </div>
 
             {/* Quick Stats Bar */}
-            {area && Number(area) > 0 && (
-              <div className="mt-4 flex items-center gap-2 text-sm text-gray-500">
+            {isValidPlot && (
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500">
                 <span className="inline-flex items-center gap-1">
                   <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                  Total Built-up: <strong>{Number(area) * floors} sq ft</strong>
+                  Plot Area: <strong>{plotArea.toLocaleString()} sq ft</strong> ({Number(length)}&apos; × {Number(width)}&apos;)
                 </span>
-                <span className="text-gray-300">•</span>
-                <span>Rate: <strong>₹{Math.round(rates[type] * locationMultiplier[location])}/sqft</strong></span>
+                <span className="text-gray-300 hidden sm:inline">•</span>
+                <span className="inline-flex items-center gap-1">
+                  Total Built-up: <strong>{(plotArea * floors).toLocaleString()} sq ft</strong>
+                </span>
+                <span className="text-gray-300 hidden sm:inline">•</span>
+                <span>Rate: <strong>₹{Math.round(rates[type] * locationMultiplier[location]).toLocaleString()}/sqft</strong></span>
               </div>
             )}
           </div>
@@ -238,13 +275,13 @@ export default function CalculatorPage() {
                       <span className="text-blue-200 text-sm">approx.</span>
                     </div>
                     <p className="text-blue-100 text-sm mt-2">
-                      For {result.totalArea.toLocaleString()} sq ft built-up area
+                      Plot: {result.length}&apos; × {result.width}&apos; ({result.plotArea.toLocaleString()} sq ft) • Built-up: {result.totalArea.toLocaleString()} sq ft
                     </p>
                   </div>
                   <div className="flex gap-3">
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 text-center">
                       <p className="text-blue-100 text-xs">Per Sq Ft</p>
-                      <p className="text-xl font-bold">₹{result.costPerSqft}</p>
+                      <p className="text-xl font-bold">₹{result.costPerSqft.toLocaleString()}</p>
                     </div>
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 text-center">
                       <p className="text-blue-100 text-xs">Timeline</p>
@@ -387,7 +424,7 @@ export default function CalculatorPage() {
               {/* CTA Section */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href={`https://wa.me/916205820278?text=I%20want%20house%20design%20for%20${result.totalArea}%20sq%20ft%20with%20estimated%20cost%20₹${result.cost.toLocaleString()}`}
+                  href={`https://wa.me/916205820278?text=I%20want%20house%20design%20for%20${result.length}%20x%20${result.width}%20plot%20(${result.plotArea}%20sq%20ft)%20with%20estimated%20cost%20₹${result.cost.toLocaleString()}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-4 rounded-xl font-semibold transition-all transform hover:scale-[1.02] shadow-lg shadow-green-200 flex items-center justify-center gap-2"
@@ -420,8 +457,9 @@ export default function CalculatorPage() {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <span className="text-6xl">🏠</span>
-                  <p className="text-gray-500">Enter your plot area above to get started</p>
+                  <span className="text-6xl">📐</span>
+                  <p className="text-gray-500">Enter plot length and width above to get started</p>
+                  <p className="text-xs text-gray-400">Example: 40 ft × 30 ft = 1200 sq ft</p>
                 </div>
               )}
             </div>

@@ -12,12 +12,18 @@ type RoomType = "entrance" | "kitchen" | "bedroom" | "bathroom" | "living" | "po
 
 type VastuForm = Record<RoomType, Direction> & { plot: Direction };
 
+type RemedyItem = {
+  room: RoomType;
+  remedy: string;
+  priority: "high" | "medium" | "low";
+};
+
 type AnalysisResult = {
   overallScore: number;
   rating: "excellent" | "good" | "fair" | "needs-work";
   roomScores: Record<RoomType, number>;
   insights: string[];
-  remedies: Array<{ room: RoomType; remedy: string; priority: "high" | "medium" | "low" }>;
+  remedies: RemedyItem[];
   energyFlow: number;
   dosha: "vata" | "pitta" | "kapha" | "balanced";
   luckyColors: string[];
@@ -43,7 +49,7 @@ const directionScores: Record<RoomType, Record<Direction, number>> = {
   pooja: { northeast: 100, east: 95, north: 90, west: 70, south: 45, southeast: 40, northwest: 65, southwest: 35 },
 };
 
-const remediesDatabase: Record<RoomType, Record<Direction, string>> = {
+const remediesDatabase: Partial<Record<RoomType, Partial<Record<Direction, string>>>> = {
   entrance: {
     south: "Place a Vastu pyramid above the door",
     southwest: "Install bright yellow light at entrance",
@@ -93,10 +99,10 @@ export default function VastuPage() {
   };
 
   const analyzeVastu = () => {
-    const roomScores: Record<RoomType, number> = {} as any;
+    const roomScores = {} as Record<RoomType, number>;
     let totalScore = 0;
     const insights: string[] = [];
-    const remedies: AnalysisResult["remedies"] = [];
+    const remedies: RemedyItem[] = [];
 
     // Calculate scores
     (Object.keys(idealDirections) as RoomType[]).forEach(room => {
@@ -218,7 +224,7 @@ export default function VastuPage() {
                 Harmonize Your Space
               </h1>
               <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                Select the direction for each room to discover your home's Vastu energy
+                Select the direction for each room to discover your home&apos;s Vastu energy
               </p>
             </div>
 
