@@ -2,29 +2,46 @@
 
 import { useState } from "react";
 
+/* ✅ TYPES */
+type Materials = {
+  cement: number;
+  steel: string;
+  sand: number;
+  aggregate: number;
+};
+
+type Result = {
+  totalArea: number;
+  cost: number;
+  materials: Materials;
+} | null;
+
+/* ✅ COMPONENT */
 export default function CalculatorPage() {
-  const [area, setArea] = useState("");
-  const [floors, setFloors] = useState(1);
-  const [result, setResult] = useState<any>(null);
+  const [area, setArea] = useState<string>("");
+  const [floors, setFloors] = useState<number>(1);
+  const [result, setResult] = useState<Result>(null);
 
   const calculate = () => {
     if (!area) return;
 
     const plot = Number(area);
+    if (isNaN(plot) || plot <= 0) return;
+
     const totalArea = plot * floors;
 
     // cost estimate
     const rate = 1800;
     const cost = totalArea * rate;
 
-    // material calculation (per 1000 sqft basis)
+    // material calculation
     const factor = totalArea / 1000;
 
-    const materials = {
-      cement: Math.round(400 * factor), // bags
-      steel: (4 * factor).toFixed(2), // tons
-      sand: Math.round(2000 * factor), // cft
-      aggregate: Math.round(1500 * factor), // cft
+    const materials: Materials = {
+      cement: Math.round(400 * factor),
+      steel: (4 * factor).toFixed(2),
+      sand: Math.round(2000 * factor),
+      aggregate: Math.round(1500 * factor),
     };
 
     setResult({
@@ -77,7 +94,7 @@ export default function CalculatorPage() {
         {/* Button */}
         <button
           onClick={calculate}
-          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold"
+          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
         >
           Calculate Estimate
         </button>
@@ -112,7 +129,7 @@ export default function CalculatorPage() {
             <a
               href="https://wa.me/916205820278?text=I%20got%20construction%20estimate%20and%20want%20design"
               target="_blank"
-              className="block bg-green-500 text-white text-center py-3 rounded-lg font-semibold"
+              className="block bg-green-500 text-white text-center py-3 rounded-lg font-semibold hover:bg-green-600 transition"
             >
               Get House Design on WhatsApp
             </a>

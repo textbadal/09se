@@ -2,8 +2,31 @@
 
 import { useState } from "react";
 
+/* ✅ TYPES */
+type VastuForm = {
+  plot: string;
+  entrance: string;
+  kitchen: string;
+  bedroom: string;
+  bathroom: string;
+  living: string;
+};
+
+type VastuResult = {
+  score: number;
+  tips: string[];
+} | null;
+
+type SelectProps = {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: string[];
+};
+
+/* ✅ MAIN COMPONENT */
 export default function VastuPage() {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<VastuForm>({
     plot: "north",
     entrance: "east",
     kitchen: "southeast",
@@ -12,15 +35,15 @@ export default function VastuPage() {
     living: "north",
   });
 
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<VastuResult>(null);
 
-  const handleChange = (key: string, value: string) => {
-    setForm({ ...form, [key]: value });
+  const handleChange = (key: keyof VastuForm, value: string) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
   };
 
   const calculateVastu = () => {
     let score = 100;
-    let tips: string[] = [];
+    const tips: string[] = [];
 
     // Rules
     if (!["north", "east"].includes(form.entrance)) {
@@ -69,20 +92,50 @@ export default function VastuPage() {
 
       <div className="bg-white shadow-xl rounded-2xl p-8 space-y-6">
 
-        {/* Form Grid */}
+        {/* Form */}
         <div className="grid md:grid-cols-2 gap-6">
 
-          <Select label="Plot Facing" value={form.plot} onChange={(v:any)=>handleChange("plot",v)} options={["north","east","west","south"]} />
+          <Select
+            label="Plot Facing"
+            value={form.plot}
+            onChange={(v) => handleChange("plot", v)}
+            options={["north", "east", "west", "south"]}
+          />
 
-          <Select label="Main Entrance" value={form.entrance} onChange={(v:any)=>handleChange("entrance",v)} options={["north","east","west","south"]} />
+          <Select
+            label="Main Entrance"
+            value={form.entrance}
+            onChange={(v) => handleChange("entrance", v)}
+            options={["north", "east", "west", "south"]}
+          />
 
-          <Select label="Kitchen Direction" value={form.kitchen} onChange={(v:any)=>handleChange("kitchen",v)} options={["southeast","northwest","southwest","northeast"]} />
+          <Select
+            label="Kitchen Direction"
+            value={form.kitchen}
+            onChange={(v) => handleChange("kitchen", v)}
+            options={["southeast", "northwest", "southwest", "northeast"]}
+          />
 
-          <Select label="Master Bedroom" value={form.bedroom} onChange={(v:any)=>handleChange("bedroom",v)} options={["southwest","northwest","northeast","southeast"]} />
+          <Select
+            label="Master Bedroom"
+            value={form.bedroom}
+            onChange={(v) => handleChange("bedroom", v)}
+            options={["southwest", "northwest", "northeast", "southeast"]}
+          />
 
-          <Select label="Bathroom" value={form.bathroom} onChange={(v:any)=>handleChange("bathroom",v)} options={["northwest","southeast","southwest","northeast"]} />
+          <Select
+            label="Bathroom"
+            value={form.bathroom}
+            onChange={(v) => handleChange("bathroom", v)}
+            options={["northwest", "southeast", "southwest", "northeast"]}
+          />
 
-          <Select label="Living Room" value={form.living} onChange={(v:any)=>handleChange("living",v)} options={["north","east","west","south"]} />
+          <Select
+            label="Living Room"
+            value={form.living}
+            onChange={(v) => handleChange("living", v)}
+            options={["north", "east", "west", "south"]}
+          />
 
         </div>
 
@@ -94,11 +147,11 @@ export default function VastuPage() {
           Check Vastu Score
         </button>
 
-        {/* RESULT */}
+        {/* Result */}
         {result && (
           <div className="space-y-6">
 
-            {/* Score with visual bar */}
+            {/* Score */}
             <div>
               <p className="text-center font-bold text-xl">
                 Vastu Score: {result.score}/100
@@ -106,13 +159,19 @@ export default function VastuPage() {
 
               <div className="w-full bg-gray-200 h-3 rounded-full mt-2">
                 <div
-                  className="bg-green-500 h-3 rounded-full"
+                  className={`h-3 rounded-full ${
+                    result.score > 80
+                      ? "bg-green-500"
+                      : result.score > 50
+                      ? "bg-yellow-500"
+                      : "bg-red-500"
+                  }`}
                   style={{ width: `${result.score}%` }}
-                ></div>
+                />
               </div>
             </div>
 
-            {/* Suggestions */}
+            {/* Tips */}
             <div className="bg-white border rounded-lg p-4">
               <p className="font-semibold mb-2">Suggestions:</p>
 
@@ -122,7 +181,7 @@ export default function VastuPage() {
                 </p>
               ) : (
                 <ul className="text-sm space-y-1">
-                  {result.tips.map((tip: string, i: number) => (
+                  {result.tips.map((tip, i) => (
                     <li key={i}>• {tip}</li>
                   ))}
                 </ul>
@@ -143,7 +202,7 @@ export default function VastuPage() {
 
       </div>
 
-      {/* Trust Section */}
+      {/* Trust */}
       <div className="mt-10 text-center text-sm text-gray-500">
         Trusted by 5000+ homeowners across India
       </div>
@@ -157,17 +216,20 @@ export default function VastuPage() {
   );
 }
 
-/* Reusable Select */
-function Select({ label, value, onChange, options }: any) {
+/* ✅ SELECT COMPONENT */
+function Select({ label, value, onChange, options }: SelectProps) {
   return (
     <div>
-      <label className="block text-sm font-semibold mb-1">{label}</label>
+      <label className="block text-sm font-semibold mb-1">
+        {label}
+      </label>
+
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="w-full border px-4 py-3 rounded-lg"
       >
-        {options.map((opt: string) => (
+        {options.map((opt) => (
           <option key={opt} value={opt}>
             {opt.charAt(0).toUpperCase() + opt.slice(1)}
           </option>

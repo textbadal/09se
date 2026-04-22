@@ -1,10 +1,11 @@
+import { notFound } from "next/navigation";
+
 type Blog = {
   title: string;
   content: string;
 };
 
 type BlogData = Record<string, Blog>;
-import { notFound } from "next/navigation";
 export function generateStaticParams() {
   return [
     { slug: "construction-cost-bihar" },
@@ -261,14 +262,17 @@ Steps:
 Proper planning avoids delays and cost overruns.
     `,
   },
-};
+}
 
+/* ✅ FIXED: params is Promise */
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const blog = blogData[params.slug];
+  const { slug } = await params;
+
+  const blog = blogData[slug];
 
   return {
     title: blog?.title || "Blog",
@@ -276,12 +280,15 @@ export async function generateMetadata({
   };
 }
 
-export default function Page({
+/* ✅ FIXED: async + await params */
+export default async function Page({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const blog = blogData[params.slug];
+  const { slug } = await params;
+
+  const blog = blogData[slug];
 
   if (!blog) return notFound();
 
