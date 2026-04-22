@@ -1,112 +1,239 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 export default function HeroOptimized() {
+  const services = [
+    { 
+      icon: "🧮", 
+      title: "Construction Calculator", 
+      desc: "Instant BOQ & Cost Estimation",
+      gradient: "from-blue-500/10 via-cyan-500/5 to-transparent",
+      border: "border-blue-200/50",
+      hoverBorder: "hover:border-blue-300",
+      glow: "group-hover:shadow-blue-500/20",
+      href: "/calculator"
+    },
+    { 
+      icon: "🧭", 
+      title: "Vastu Analysis", 
+      desc: "AI-Powered Compliance Check",
+      gradient: "from-purple-500/10 via-pink-500/5 to-transparent",
+      border: "border-purple-200/50",
+      hoverBorder: "hover:border-purple-300",
+      glow: "group-hover:shadow-purple-500/20",
+      href: "/vastu"
+    },
+    { 
+      icon: "🏗️", 
+      title: "Design Services", 
+      desc: "2D Plans to 3D Walkthroughs",
+      gradient: "from-emerald-500/10 via-teal-500/5 to-transparent",
+      border: "border-emerald-200/50",
+      hoverBorder: "hover:border-emerald-300",
+      glow: "group-hover:shadow-emerald-500/20",
+      href: "/services/design"
+    },
+    { 
+      icon: "📐", 
+      title: "Floor Plans", 
+      desc: "Custom Layout & Space Planning",
+      gradient: "from-orange-500/10 via-amber-500/5 to-transparent",
+      border: "border-orange-200/50",
+      hoverBorder: "hover:border-orange-300",
+      glow: "group-hover:shadow-orange-500/20",
+      href: "/services/floor-plans"
+    },
+    { 
+      icon: "🔨", 
+      title: "Material Estimator", 
+      desc: "Quantity Takeoff & Pricing",
+      gradient: "from-rose-500/10 via-red-500/5 to-transparent",
+      border: "border-rose-200/50",
+      hoverBorder: "hover:border-rose-300",
+      glow: "group-hover:shadow-rose-500/20",
+      href: "/tools/material-estimator"
+    },
+    { 
+      icon: "✨", 
+      title: "Explore All Tools", 
+      desc: "Interior, Landscape & 12+ More",
+      gradient: "from-indigo-500/10 via-violet-500/5 to-transparent",
+      border: "border-indigo-200/50",
+      hoverBorder: "hover:border-indigo-300",
+      glow: "group-hover:shadow-indigo-500/20",
+      href: "/services",
+      isMore: true 
+    },
+  ];
+
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
+    <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 relative overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-amber-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-100/10 rounded-full blur-3xl"></div>
+      </div>
 
-      {/* LEFT CONTENT */}
-      <div>
+      <div className="text-center relative">
+        {/* Animated Premium Badge */}
+        <div className="inline-flex items-center gap-3 mb-14 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-100 to-orange-100 rounded-full blur-md opacity-50"></div>
+          <div className="relative inline-flex items-center gap-3 bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 px-7 py-2.5 rounded-full border border-amber-300/60 shadow-sm">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gradient-to-r from-amber-500 to-orange-500"></span>
+            </span>
+            <span className="text-xs font-bold tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-orange-700 uppercase">
+              Professional Services
+            </span>
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gradient-to-r from-amber-500 to-orange-500"></span>
+            </span>
+          </div>
+        </div>
 
-        {/* Tag */}
-        <span className="inline-block bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-sm font-semibold mb-4">
-          🏡 Modern House Design Experts
-        </span>
+        {/* Glass Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
+          {services.map((service, index) => (
+            <Link
+              href={service.href}
+              key={index}
+              className="group relative block"
+            >
+              <div
+                className={`relative backdrop-blur-xl bg-gradient-to-br ${service.gradient} rounded-3xl p-7 shadow-md hover:shadow-2xl ${service.glow} transition-all duration-500 cursor-pointer border ${service.border} ${service.hoverBorder} hover:scale-[1.02] hover:-translate-y-1`}
+              >
+                {/* Animated corner gradient */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-white/50 to-transparent rounded-tr-3xl pointer-events-none"></div>
+                
+                {/* Subtle inner glow */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                {/* Icon with floating animation */}
+                <div className="text-5xl mb-5 transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-500 drop-shadow-sm">
+                  {service.icon}
+                </div>
+                
+                <h3 className="font-bold text-gray-800 mb-2 text-lg tracking-tight">
+                  {service.title}
+                </h3>
+                
+                <p className="text-sm text-gray-600 font-medium leading-relaxed">
+                  {service.desc}
+                </p>
+                
+                {/* Call to action text that appears on hover */}
+                <div className="mt-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <span className="text-xs font-semibold text-gray-700">
+                    {service.isMore ? "Browse All" : "Explore Tool"}
+                  </span>
+                  <svg className="w-4 h-4 text-gray-700 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
 
-        {/* Heading */}
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-          Plan Your Dream Home <br />
-          <span className="text-blue-600">Smartly & Affordably</span>
-        </h1>
+                {/* Decorative bottom line */}
+                <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent ${service.border.replace('border', 'via')} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-3xl`}></div>
+              </div>
+            </Link>
+          ))}
+        </div>
 
-        {/* Description */}
-        <p className="mt-5 text-lg text-gray-700 max-w-lg">
-          Use our smart tools to estimate construction cost, check vastu, 
-          and explore complete house design services.
-        </p>
+        {/* View All Link */}
+        <Link 
+          href="/services"
+          className="inline-flex items-center gap-2 mt-8 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-all duration-300 group"
+        >
+          <span>View All 12+ Professional Services</span>
+          <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </Link>
 
-        {/* CTA */}
-        <div className="mt-6 flex gap-4 flex-wrap">
-          <Link
-            href="/payment"
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition"
-          >
-            Book Design @ ₹499
+        {/* Enhanced Stats Bar with Links */}
+        <div className="mt-14 inline-flex items-stretch bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/60 overflow-hidden">
+          {/* Happy Homeowners Section - Clickable */}
+          <Link href="/testimonials" className="group flex items-center gap-4 px-8 py-5 hover:bg-gray-50/80 transition-all duration-300">
+            <div className="flex -space-x-3">
+              {[...Array(4)].map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`w-11 h-11 rounded-full bg-gradient-to-br ${
+                    i === 0 ? 'from-amber-400 to-orange-400' :
+                    i === 1 ? 'from-blue-400 to-cyan-400' :
+                    i === 2 ? 'from-purple-400 to-pink-400' :
+                    'from-emerald-400 to-teal-400'
+                  } border-3 border-white shadow-lg flex items-center justify-center text-white text-xs font-bold`}
+                >
+                  {["JD", "PS", "AR", "MK"][i]}
+                </div>
+              ))}
+            </div>
+            <div className="text-left">
+              <p className="text-2xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">5,000+</p>
+              <p className="text-xs text-gray-500 font-medium">Happy Homeowners</p>
+            </div>
           </Link>
-
-          <a
-            href="https://wa.me/916205820278"
-            target="_blank"
-            className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-green-600 transition"
-          >
-            WhatsApp
-          </a>
+          
+          {/* Divider */}
+          <div className="w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
+          
+          {/* Professional Tools Section - Clickable */}
+          <Link href="/services" className="group flex items-center gap-4 px-8 py-5 hover:bg-gray-50/80 transition-all duration-300">
+            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center shadow-inner">
+              <span className="text-2xl">🛠️</span>
+            </div>
+            <div className="text-left">
+              <p className="text-2xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">12+</p>
+              <p className="text-xs text-gray-500 font-medium">Professional Tools</p>
+            </div>
+          </Link>
+          
+          {/* Divider */}
+          <div className="w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
+          
+          {/* Rating Section - Clickable */}
+          <Link href="/reviews" className="group flex items-center gap-4 px-8 py-5 hover:bg-gray-50/80 transition-all duration-300">
+            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-yellow-100 to-amber-100 flex items-center justify-center">
+              <span className="text-2xl">⭐</span>
+            </div>
+            <div className="text-left">
+              <div className="flex items-center gap-1">
+                <span className="text-2xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">4.9</span>
+                <span className="text-xs text-gray-500">/5.0</span>
+              </div>
+              <p className="text-xs text-gray-500 font-medium">1,200+ Reviews</p>
+            </div>
+          </Link>
         </div>
-
-        {/* 🔥 TOOLS & SERVICES (Clickable) */}
-        <div className="mt-10">
-
-          <p className="text-sm font-semibold text-gray-500 mb-3">
-            TOOLS & SERVICES
-          </p>
-
-          <div className="flex flex-wrap gap-3">
-
-            <Link
-              href="/calculator"
-              className="bg-white border px-4 py-2 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition text-sm font-medium"
-            >
-              🧮 Construction Calculator
-            </Link>
-
-            <Link
-              href="/vastu"
-              className="bg-white border px-4 py-2 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition text-sm font-medium"
-            >
-              🧭 Vastu Analysis
-            </Link>
-
-            <Link
-              href="/services"
-              className="bg-white border px-4 py-2 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition text-sm font-medium"
-            >
-              🏗️ Complete Design Services
-            </Link>
-
+        
+        {/* Trust Badges */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
+          <div className="flex items-center gap-2 text-xs text-gray-400">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span>ISO Certified</span>
           </div>
-
-          <p className="mt-4 text-xs text-gray-500">
-            Trusted by 5000+ homeowners across India
-          </p>
-
-        </div>
-      </div>
-
-      {/* RIGHT IMAGE */}
-      <div className="relative">
-        <div className="rounded-2xl overflow-hidden shadow-xl border">
-
-          <Image
-            src="/images/gallery25.jpg"
-            alt="House design"
-            width={700}
-            height={500}
-            className="w-full h-auto"
-            priority
-          />
-
-          <div className="absolute bottom-4 left-4 bg-green-500 text-white px-4 py-2 rounded-lg font-bold">
-            Starting @ ₹16,999
+          <div className="w-px h-4 bg-gray-300"></div>
+          <div className="flex items-center gap-2 text-xs text-gray-400">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <span>RERA Approved</span>
+          </div>
+          <div className="w-px h-4 bg-gray-300"></div>
+          <div className="flex items-center gap-2 text-xs text-gray-400">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+            </svg>
+            <span>100% Secure</span>
           </div>
         </div>
-
-        <div className="absolute -top-4 -right-4 bg-white shadow px-4 py-2 rounded-lg text-sm font-semibold">
-          ⭐ 5000+ Clients
-        </div>
       </div>
-
     </section>
   );
 }
