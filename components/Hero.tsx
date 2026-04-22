@@ -4,6 +4,28 @@ import Link from "next/link";
 
 export default function HeroOptimized() {
   const services = [
+{ 
+      icon: "🏗️", 
+      title: "Design Services", 
+      desc: "2D Plans to 3D Walkthroughs",
+      gradient: "from-emerald-500/10 via-teal-500/5 to-transparent",
+      border: "border-emerald-200/50",
+      hoverBorder: "hover:border-emerald-300",
+      glow: "group-hover:shadow-emerald-500/20",
+      href: "/services"
+    },
+    { 
+      icon: "📐", 
+      title: "Floor Plans", 
+      desc: "Custom Layout & Space Planning",
+      gradient: "from-orange-500/10 via-amber-500/5 to-transparent",
+      border: "border-orange-200/50",
+      hoverBorder: "hover:border-orange-300",
+      glow: "group-hover:shadow-orange-500/20",
+      href: "/services"
+    },
+    
+
     { 
       icon: "🧮", 
       title: "Construction Calculator", 
@@ -24,36 +46,7 @@ export default function HeroOptimized() {
       glow: "group-hover:shadow-purple-500/20",
       href: "/vastu"
     },
-    { 
-      icon: "🏗️", 
-      title: "Design Services", 
-      desc: "2D Plans to 3D Walkthroughs",
-      gradient: "from-emerald-500/10 via-teal-500/5 to-transparent",
-      border: "border-emerald-200/50",
-      hoverBorder: "hover:border-emerald-300",
-      glow: "group-hover:shadow-emerald-500/20",
-      href: "/services/design"
-    },
-    { 
-      icon: "📐", 
-      title: "Floor Plans", 
-      desc: "Custom Layout & Space Planning",
-      gradient: "from-orange-500/10 via-amber-500/5 to-transparent",
-      border: "border-orange-200/50",
-      hoverBorder: "hover:border-orange-300",
-      glow: "group-hover:shadow-orange-500/20",
-      href: "/services/floor-plans"
-    },
-    { 
-      icon: "🔨", 
-      title: "Material Estimator", 
-      desc: "Quantity Takeoff & Pricing",
-      gradient: "from-rose-500/10 via-red-500/5 to-transparent",
-      border: "border-rose-200/50",
-      hoverBorder: "hover:border-rose-300",
-      glow: "group-hover:shadow-rose-500/20",
-      href: "/tools/material-estimator"
-    },
+    
     { 
       icon: "✨", 
       title: "Explore All Tools", 
@@ -210,29 +203,9 @@ export default function HeroOptimized() {
           </Link>
         </div>
         
-        {/* Trust Badges */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
-          <div className="flex items-center gap-2 text-xs text-gray-400">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>ISO Certified</span>
-          </div>
-          <div className="w-px h-4 bg-gray-300"></div>
-          <div className="flex items-center gap-2 text-xs text-gray-400">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            <span>RERA Approved</span>
-          </div>
-          <div className="w-px h-4 bg-gray-300"></div>
-          <div className="flex items-center gap-2 text-xs text-gray-400">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-            </svg>
-            <span>100% Secure</span>
-          </div>
-        </div>
+      
+          
+   
       </div>
     </section>
   );
