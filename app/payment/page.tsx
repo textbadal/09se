@@ -8,20 +8,20 @@ export default function PaymentPage() {
 
   const faqs = [
     {
-      q: "What is this ₹499 booking fee?",
-      a: "This is a small booking amount to confirm your project. The remaining amount will be discussed after consultation.",
-    },
-    {
-      q: "Is the ₹499 refundable?",
-      a: "The booking fee is adjustable in your final project cost but is non-refundable once work has started.",
-    },
-    {
-      q: "What happens after payment?",
-      a: "Our team will contact you within 24 hours to start your house planning process.",
+      q: "How do I make the payment?",
+      a: "After discussion, our team will share a payment link. Click the 'Pay Now' button to complete your payment securely.",
     },
     {
       q: "Is payment secure?",
       a: "Yes, payments are processed securely via Cashfree with bank-level security.",
+    },
+    {
+      q: "What happens after payment?",
+      a: "Our team will confirm your payment and start working on your project immediately.",
+    },
+    {
+      q: "Can I get a receipt?",
+      a: "Yes, you'll receive an email receipt instantly after successful payment.",
     },
   ];
 
@@ -32,7 +32,7 @@ export default function PaymentPage() {
         {/* Header */}
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold">
-            Book Your House Design Consultation
+            Complete Your Payment
           </h1>
           <p className="text-gray-600 mt-2">
             Trusted house planning services across Bihar
@@ -62,39 +62,40 @@ export default function PaymentPage() {
             </div>
           </div>
 
-          {/* Right Side - Payment */}
+          {/* Right Side - Payment Gateway */}
           <div className="bg-white p-6 rounded-2xl shadow-lg border text-center">
 
-            <p className="text-sm text-gray-500 mb-2">
-              One-Time Booking Fee
-            </p>
-
-            <h2 className="text-4xl font-bold text-blue-600 mb-4">
-              ₹499
-            </h2>
-
-            <p className="text-sm text-gray-600 mb-6">
-              This amount will be adjusted in your final project cost
-            </p>
-
-            <a
-              href="https://payments.cashfree.com/forms/dream-homes-booking"
-              target="_blank"
-              className="block w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition mb-3"
-            >
-              Pay ₹499 Now
-            </a>
+            <div className="mb-6">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                Secure Payment Gateway
+              </h3>
+              <p className="text-sm text-gray-500">
+                Click below to pay the agreed amount after discussion with our team
+              </p>
+            </div>
 
             <a
               href="https://payments.cashfree.com/forms/dream-homes"
               target="_blank"
-              className="block w-full bg-gray-200 text-gray-800 py-3 rounded-xl font-medium hover:bg-gray-300 transition"
+              className="block w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition"
             >
-              Pay Remaining Amount
+              Pay Now
             </a>
 
+            <div className="mt-4 flex items-center justify-center gap-3 text-xs text-gray-400">
+              <span>💳 Card</span>
+              <span>📱 UPI</span>
+              <span>🏦 NetBanking</span>
+              <span>💼 Wallet</span>
+            </div>
+
             <p className="text-xs text-gray-500 mt-4">
-          🔒 Secure payments powered by Cashfree
+              🔒 Secure payments powered by Cashfree
             </p>
           </div>
         </div>
@@ -133,7 +134,6 @@ export default function PaymentPage() {
           </div>
         </div>
 
-       
       </div>
     </div>
   );

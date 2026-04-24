@@ -71,9 +71,7 @@ export default function HeroOptimized() {
       <div className="relative">
         {/* Compact Header */}
         <div className="text-center mb-8">
-          <span className="inline-block px-3 py-1 bg-gray-100 rounded-full text-xs font-semibold tracking-wider text-gray-600 uppercase mb-3">
-            Our Services
-          </span>
+          
           <h2 className="text-2xl md:text-3xl font-light text-gray-800 mb-2">
             Everything you need to{" "}
             <span className="font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
