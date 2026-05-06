@@ -61,7 +61,7 @@ export default function PaymentPage() {
 
             {/* Pay Button - Mobile friendly touch target */}
             <a
-              href="https://payments.cashfree.com/forms/dream-homes"
+              href="https://payments.cashfree.com/forms/dream-homes-bihar"
               target="_blank"
               className="block w-full bg-blue-600 text-white py-3.5 sm:py-3 rounded-xl font-medium hover:bg-blue-700 transition active:bg-blue-800 text-center text-base sm:text-sm"
             >
