@@ -52,7 +52,7 @@ const services: Service[] = [
     description: "Start your home design with expert planning.",
     detailedDescription:
       "Get a professional floor plan designed as per Vastu with unlimited revisions until satisfaction. Perfect starting point for your dream home.",
-    price: "₹2,999",
+    price: "₹3,499",
     image: "/images/floor3.webp",
     features: [
       "Vastu-based planning",

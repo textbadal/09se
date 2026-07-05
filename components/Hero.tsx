@@ -23,7 +23,7 @@ export default function HeroOptimized() {
       title: "Construction Calculator", 
       desc: "Instant BOQ & Cost Estimation",
       color: "blue",
-      href: "/calculator"
+      href: "/boq-generator"
     },
     { 
       icon: "🧭", 
@@ -38,6 +38,13 @@ export default function HeroOptimized() {
       desc: "#1 EMI Calculator India",
       color: "green",
       href: "/emi-calculator"
+    },
+    { 
+      icon: "🏦", 
+      title: "Cost Estimator", 
+      desc: "#Construction Calculator",
+      color: "green",
+      href: "/cost-estimator"
     },
     { 
       icon: "✨", 

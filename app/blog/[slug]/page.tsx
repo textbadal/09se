@@ -90,7 +90,7 @@ Let’s calculate cost for a 1000 sq ft house:
 - Premium: 1000 × 2200 = ₹22,00,000  
 
 👉 You can use our construction calculator for accurate estimation:
-Visit: /calculator
+Visit: /boq-generator
 
 ---
 
@@ -308,7 +308,7 @@ export default async function Page({
         <p className="font-semibold mb-2">
           Calculate your construction cost instantly:
         </p>
-        <a href="/calculator" className="text-blue-600 font-semibold">
+        <a href="/boq-generator" className="text-blue-600 font-semibold">
           Open Construction Calculator →
         </a>
       </div>
