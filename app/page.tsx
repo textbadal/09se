@@ -6,13 +6,14 @@ import Contact from "@/components/Contact";
 
 
 import ServicesPage from './services/page';
+import Services from '@/components/Services';
 
 
 export default function Page() {
   return (
     <>
       <Hero />
-      <ServicesPage />
+      <Services />
       <Gallery />
       <Testimonials />
     </>

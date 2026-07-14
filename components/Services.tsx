@@ -1,106 +1,107 @@
-"use client";
-
-import React from "react";
-import {
-  Ruler,
-  Building,
-  Compass,
-  Home,
-  Paintbrush,
-  Users,
+import Link from "next/link";
+import { 
+  Grid, Box, Spline, Droplet, Compass, Layers, ArrowRight 
 } from "lucide-react";
 
-export default function Services() {
+const HOMEPAGE_SERVICES = [
+  {
+    id: "floor-plans",
+    title: "2D Floor Plans",
+    icon: Grid,
+    desc: "Ergonomic interior layouts maximizing circulation and carpet area usage.",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "elevation-renders",
+    title: "3D Facade Elevation",
+    icon: Box,
+    desc: "Visualize lighting, depth, and material textures in photorealistic 4K renders.",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "structural-drawings",
+    title: "Structural Engineering",
+    icon: Spline,
+    desc: "Critical load-bearing frameworks guaranteeing structural longevity and site safety.",
+    image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=600&q=80"
+  },
+ {
+    id: "electrical-plumbing",
+    title: "Electrical & Plumbing",
+    icon: Droplet,
+    desc: "Precision MEP layout mapping preventing internal pipeline conflicts.",
+    // Modern infrastructure engineering layout (clean wiring and pipeline coordination style)
+    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: "vastu-plans",
+    title: "Vastu Shastra Compliance",
+    icon: Compass,
+    desc: "Harmonizing natural elements, directional alignments, and cosmic energy flow.",
+    image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "custom-projects",
+    title: "Bespoke & Custom Architecture",
+    icon: Layers,
+    desc: "Tailor-made structural planning built around unique project parameters.",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80"
+  }
+];
+
+export default function ServicesPreview() {
   return (
-    <section className="min-h-screen bg-gray-50 text-gray-900 py-16 px-6">
-      <div className="max-w-6xl mx-auto text-center">
-        {/* Heading */}
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Our <span className="text-blue-600">Architectural Services</span>
-        </h1>
-        <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-          At <span className="font-semibold">Dream Homes Bihar</span>, we create
-          homes that blend modern design, vastu compliance, and smart space
-          planning. From concept to completion, we deliver architecture that is
-          elegant, functional, and future-ready.
-        </p>
-      </div>
-
-      {/* Services Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {/* Service 1 */}
-        <div className="bg-white shadow-lg rounded-2xl p-8 hover:shadow-2xl transition">
-          <Ruler className="w-10 h-10 text-blue-600 mb-4" />
-          <h2 className="text-2xl font-semibold mb-4 text-blue-700">
-            Custom Floor Plans
+    <section className="bg-white text-slate-900 py-24 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto space-y-12">
+        
+        <div className="text-center space-y-3">
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900">
+            Architectural <span className="text-emerald-600">Capabilities</span>
           </h2>
-          <p className="text-gray-600 leading-relaxed">
-            Personalized 2D house plans that optimize space, ventilation, and
-            natural light — designed as per your family’s lifestyle, budget, and
-            vastu guidelines.
+          <p className="text-slate-500 max-w-xl mx-auto text-sm md:text-base">
+            Select a core pillar to review complete specifications, technical requirements, and drawing inclusions.
           </p>
         </div>
 
-        {/* Service 2 */}
-        <div className="bg-white shadow-lg rounded-2xl p-8 hover:shadow-2xl transition">
-          <Building className="w-10 h-10 text-blue-600 mb-4" />
-          <h2 className="text-2xl font-semibold mb-4 text-blue-700">
-            3D Elevation Designs
-          </h2>
-          <p className="text-gray-600 leading-relaxed">
-            Modern and premium 3D front elevation concepts that give your dream
-            home a stunning, contemporary appearance while reflecting your style.
-          </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {HOMEPAGE_SERVICES.map((service) => {
+            const Icon = service.icon;
+            return (
+              <Link 
+                href={`/services/${service.id}`} 
+                key={service.id}
+                className="group relative bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden hover:border-slate-300 hover:shadow-md transition flex flex-col justify-between"
+              >
+                <div>
+                  <div className="h-48 overflow-hidden relative border-b border-slate-200">
+                    <img 
+                      src={service.image} 
+                      alt={service.title} 
+                      className="w-full h-full object-cover brightness-95 group-hover:scale-105 transition duration-500"
+                    />
+                    <div className="absolute top-4 left-4 p-2.5 bg-white/90 backdrop-blur-md text-emerald-600 rounded-xl border border-slate-200/80 shadow-sm">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                  </div>
+                  
+                  <div className="p-6 space-y-2">
+                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition">
+                      {service.title}
+                    </h3>
+                    <p className="text-slate-500 text-xs leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-6 pt-0 flex items-center gap-1.5 text-xs font-bold text-emerald-600">
+                  View Full Details & Blueprints <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Service 3 */}
-        <div className="bg-white shadow-lg rounded-2xl p-8 hover:shadow-2xl transition">
-          <Compass className="w-10 h-10 text-blue-600 mb-4" />
-          <h2 className="text-2xl font-semibold mb-4 text-blue-700">
-            Vastu Consultation
-          </h2>
-          <p className="text-gray-600 leading-relaxed">
-            Expert vastu guidance to ensure balance, harmony, and prosperity in
-            your home. We design layouts that respect tradition while embracing
-            modernity.
-          </p>
-        </div>
-
-        {/* Service 4 */}
-        <div className="bg-white shadow-lg rounded-2xl p-8 hover:shadow-2xl transition">
-          <Home className="w-10 h-10 text-blue-600 mb-4" />
-          <h2 className="text-2xl font-semibold mb-4 text-blue-700">
-            Interior Design Planning
-          </h2>
-          <p className="text-gray-600 leading-relaxed">
-            Smart and stylish interior layouts that combine functionality with
-            aesthetics — from furniture placement to space optimization.
-          </p>
-        </div>
-
-        {/* Service 5 */}
-        <div className="bg-white shadow-lg rounded-2xl p-8 hover:shadow-2xl transition">
-          <Paintbrush className="w-10 h-10 text-blue-600 mb-4" />
-          <h2 className="text-2xl font-semibold mb-4 text-blue-700">
-            Renovation & Remodeling
-          </h2>
-          <p className="text-gray-600 leading-relaxed">
-            Transform your old spaces into modern, efficient, and visually
-            appealing environments with our renovation and remodeling services.
-          </p>
-        </div>
-
-        {/* Service 6 */}
-        <div className="bg-white shadow-lg rounded-2xl p-8 hover:shadow-2xl transition">
-          <Users className="w-10 h-10 text-blue-600 mb-4" />
-          <h2 className="text-2xl font-semibold mb-4 text-blue-700">
-            Project Support
-          </h2>
-          <p className="text-gray-600 leading-relaxed">
-            End-to-end assistance — including design revisions, plan approvals,
-            and contractor coordination — ensuring a smooth building process.
-          </p>
-        </div>
       </div>
     </section>
   );
