@@ -8,21 +8,20 @@ import {
 } from "lucide-react";
 
 // ==========================================
-// PREMIUM FRONT ELEVATION IMAGERY (3D RENDERS)
+// LOCAL FRONT ELEVATION IMAGERY & BLUEPRINTS
 // ==========================================
-const SAMPLE_SLIDER_IMAGES = [
-  // 1. Modern dual-level structural facade (timber, glass, concrete)
-  "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
-  // 2. Ultra-minimalist cantilever luxury villa facade
-  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
-  // 3. High-end modern home featuring warm evening architectural lighting
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+// Place these files in your Next.js project's "public" folder:
+// e.g., public/renders/facade-1.jpg  and  public/blueprints/layout.pdf
+const SAMPLE_SLIDER_FILES = [
+  "/FRONT ELEVATION ( 2D DETAILS).pdf", 
+  "/G+1 FINAL RENDERS.pdf",
+  "/SOUTH SIDE ELEVATION.pdf" // PDF dynamic integration supported below
 ];
 
 const PRICING_TIERS = [
   {
     name: "Standard 3D Facade",
-    price: "₹9,999",
+    price: "₹3,499",
     period: "Single View",
     desc: "A single, high-definition photorealistic front angle rendering focusing on core material selection and massing.",
     features: [
@@ -36,7 +35,7 @@ const PRICING_TIERS = [
   },
   {
     name: "Premium Multi-Angle Vista",
-    price: "₹17,999",
+    price: "₹5,499",
     period: "Package",
     desc: "A complete visual package showcasing your property across multiple angles, lighting profiles, and ambient environments.",
     features: [
@@ -68,10 +67,10 @@ const TESTIMONIALS = [
 
 const TEAM_MEMBERS = [
   {
-    name: "Aravind Sharma",
-    role: "Principal Architectural Designer",
-    exp: "12+ Years Practice",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80"
+    name: "Samridhi Arya",
+    role: "Dream Homes Group",
+    exp: "for any query +91 99059 31544",
+    avatar: "/Samridhi Arya.jpeg"
   },
   {
     name: "Rohan Das",
@@ -102,6 +101,8 @@ const OTHER_SERVICES = [
   { id: "electrical-plumbing", title: "Electrical & Plumbing", desc: "Concealed pipeline and utility conduit layout charts." }
 ];
 
+
+
 function Accordion({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
@@ -124,8 +125,11 @@ export default function ElevationRendersDetailPage() {
 
   const getWhatsAppLink = (msg: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
-  const nextImage = () => setCurrentImgIdx((prev) => (prev + 1) % SAMPLE_SLIDER_IMAGES.length);
-  const prevImage = () => setCurrentImgIdx((prev) => (prev - 1 + SAMPLE_SLIDER_IMAGES.length) % SAMPLE_SLIDER_IMAGES.length);
+  const nextImage = () => setCurrentImgIdx((prev) => (prev + 1) % SAMPLE_SLIDER_FILES.length);
+  const prevImage = () => setCurrentImgIdx((prev) => (prev - 1 + SAMPLE_SLIDER_FILES.length) % SAMPLE_SLIDER_FILES.length);
+
+  const currentFile = SAMPLE_SLIDER_FILES[currentImgIdx];
+  const isPDF = currentFile.toLowerCase().endsWith(".pdf");
 
   return (
     <main className="bg-slate-50/40 text-slate-900 min-h-screen py-16 px-4 md:px-8 font-sans selection:bg-emerald-100 antialiased">
@@ -136,35 +140,51 @@ export default function ElevationRendersDetailPage() {
           <ArrowLeft className="w-4 h-4" /> Back to Capabilities
         </Link>
 
-        {/* High-End Interactive Front Elevation Showcase */}
+        {/* High-End Interactive Showcase */}
         <div className="relative h-[320px] md:h-[520px] rounded-3xl overflow-hidden group bg-slate-900 border border-slate-200 shadow-sm">
-          <img 
-            src={SAMPLE_SLIDER_IMAGES[currentImgIdx]} 
-            alt={`Front Elevation Render ${currentImgIdx + 1}`} 
-            className="w-full h-full object-cover transition-all duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent" />
           
+          {/* Conditional Layout: Renders Image if image, Renders PDF object if PDF file */}
+          {isPDF ? (
+            <iframe 
+              src={`${currentFile}#toolbar=0&navpanes=0`} 
+              className="w-full h-full border-none bg-white"
+              title="Blueprint Elevation Plan"
+            />
+          ) : (
+            <img 
+              src={currentFile} 
+              alt={`Front Elevation Content ${currentImgIdx + 1}`} 
+              className="w-full h-full object-cover transition-all duration-700"
+            />
+          )}
+
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent pointer-events-none" />
+          
+          {/* Slider Controls */}
           <button 
             onClick={prevImage} 
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/95 shadow-md hover:bg-slate-50 hover:scale-105 text-slate-800 transition backdrop-blur-sm"
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/95 shadow-md hover:bg-slate-50 hover:scale-105 text-slate-800 transition backdrop-blur-sm z-10"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button 
             onClick={nextImage} 
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/95 shadow-md hover:bg-slate-50 hover:scale-105 text-slate-800 transition backdrop-blur-sm"
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/95 shadow-md hover:bg-slate-50 hover:scale-105 text-slate-800 transition backdrop-blur-sm z-10"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
           
-          <div className="absolute bottom-6 left-6 bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 text-white flex flex-col gap-0.5">
-            <span className="text-[10px] font-bold text-emerald-400 tracking-widest uppercase">Visual Fidelity</span>
-            <span className="text-xs font-semibold">Photorealistic Modern Facade Modeling</span>
+          <div className="absolute bottom-6 left-6 bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 text-white flex flex-col gap-0.5 pointer-events-none z-10">
+            <span className="text-[10px] font-bold text-emerald-400 tracking-widest uppercase">
+              {isPDF ? "Technical Blueprint" : "Visual Fidelity"}
+            </span>
+            <span className="text-xs font-semibold">
+              {isPDF ? "2D Structural Plan Blueprint" : "Photorealistic Modern Facade Modeling"}
+            </span>
           </div>
 
-          <div className="absolute bottom-6 right-6 flex gap-1.5">
-            {SAMPLE_SLIDER_IMAGES.map((_, i) => (
+          <div className="absolute bottom-6 right-6 flex gap-1.5 z-10">
+            {SAMPLE_SLIDER_FILES.map((_, i) => (
               <span key={i} className={`w-2 h-2 rounded-full transition-all ${currentImgIdx === i ? "bg-emerald-400 w-5" : "bg-white/40"}`} />
             ))}
           </div>
