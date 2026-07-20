@@ -4,18 +4,16 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { 
   Paintbrush, Check, ArrowLeft, MessageCircle, Sun, Maximize2, Sparkles, Layers, 
-  ChevronDown, Star, ChevronLeft, ChevronRight, Eye, Hammer, HardHat
+  ChevronDown, Star, ChevronLeft, ChevronRight, Eye, Hammer, HardHat, FileText
 } from "lucide-react";
 
 // ==========================================
 // LOCAL FRONT ELEVATION IMAGERY & BLUEPRINTS
 // ==========================================
-// Place these files in your Next.js project's "public" folder:
-// e.g., public/renders/facade-1.jpg  and  public/blueprints/layout.pdf
 const SAMPLE_SLIDER_FILES = [
   "/FRONT ELEVATION ( 2D DETAILS).pdf", 
   "/G+1 FINAL RENDERS.pdf",
-  "/SOUTH SIDE ELEVATION.pdf" // PDF dynamic integration supported below
+  "/SOUTH SIDE ELEVATION.pdf" 
 ];
 
 const PRICING_TIERS = [
@@ -101,8 +99,6 @@ const OTHER_SERVICES = [
   { id: "electrical-plumbing", title: "Electrical & Plumbing", desc: "Concealed pipeline and utility conduit layout charts." }
 ];
 
-
-
 function Accordion({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
@@ -120,8 +116,11 @@ function Accordion({ q, a }: { q: string; a: string }) {
 }
 
 export default function ElevationRendersDetailPage() {
-  const WHATSAPP_NUMBER = "919999999999";
+  const WHATSAPP_NUMBER = "919905931544"; // Updated to match team member contact dynamically
   const [currentImgIdx, setCurrentImgIdx] = useState(0);
+
+  // Set the specific layout PDF you want to display at the bottom here
+  const BOTTOM_PDF_FILE = "/FRONT ELEVATION ( 2D DETAILS).pdf"; 
 
   const getWhatsAppLink = (msg: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
@@ -142,8 +141,6 @@ export default function ElevationRendersDetailPage() {
 
         {/* High-End Interactive Showcase */}
         <div className="relative h-[320px] md:h-[520px] rounded-3xl overflow-hidden group bg-slate-900 border border-slate-200 shadow-sm">
-          
-          {/* Conditional Layout: Renders Image if image, Renders PDF object if PDF file */}
           {isPDF ? (
             <iframe 
               src={`${currentFile}#toolbar=0&navpanes=0`} 
@@ -397,6 +394,28 @@ export default function ElevationRendersDetailPage() {
             </div>
           </div>
 
+        </div>
+
+        {/* ========================================== */}
+        {/* NEW: DEDICATED BOTTOM BLUEPRINT PDF VIEWER */}
+        {/* ========================================== */}
+        <div className="w-full space-y-4 pt-4">
+          <div className="flex items-center gap-2 text-slate-950">
+            <div className="p-2 bg-slate-900 text-white rounded-lg">
+              <FileText className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-sm font-black uppercase tracking-wider">Reference Structural Layout Document</h3>
+              <p className="text-[11px] text-slate-500">Scroll or zoom directly inside the viewport below to inspect detailed specifications.</p>
+            </div>
+          </div>
+          <div className="w-full h-[500px] md:h-[650px] rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-sm">
+            <iframe 
+              src="/3D Front Elevation.pdf"
+              className="w-full h-full border-none"
+              title="Bottom Detailed Architectural Blueprint"
+            />
+          </div>
         </div>
 
       </div>
