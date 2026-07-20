@@ -163,18 +163,26 @@ export default function QuotationGenerator() {
     setTerms(updated);
   };
 
-  // PDF Export with OKLCH Stripping Safeguard
+  // Mobile-Friendly & Auto-Fit PDF Generator
   const downloadPDF = async () => {
     if (!quoteRef.current || isGenerating) return;
     try {
       setIsGenerating(true);
 
       const canvas = await html2canvas(quoteRef.current, {
-        scale: 3,
+        scale: 2.5,
         useCORS: true,
         logging: false,
         backgroundColor: "#ffffff",
+        windowWidth: 1024, // Forces desktop view during capture regardless of screen size
         onclone: (clonedDoc) => {
+          const clonedElement = clonedDoc.querySelector<HTMLElement>("#invoice-container");
+          if (clonedElement) {
+            clonedElement.style.width = "800px"; // Normalizes width for PDF generation
+            clonedElement.style.padding = "24px";
+          }
+
+          // Clean up oklch colors for html2canvas compatibility
           const elements = clonedDoc.getElementsByTagName("*");
           for (let i = 0; i < elements.length; i++) {
             const el = elements[i] as HTMLElement;
@@ -206,28 +214,25 @@ export default function QuotationGenerator() {
         },
       });
 
-      const imgData = canvas.toDataURL("image/jpeg", 1.0);
+      const imgData = canvas.toDataURL("image/jpeg", 0.98);
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "mm",
         format: "a4",
       });
 
-      const imgWidth = 210;
-      const pageHeight = 297;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const pdfWidth = pdf.internal.pageSize.getWidth(); // 210mm
+      const pdfHeight = pdf.internal.pageSize.getHeight(); // 297mm
 
-      let heightLeft = imgHeight;
-      let position = 0;
+      const imgWidth = pdfWidth;
+      const imgHeight = (canvas.height * pdfWidth) / canvas.width;
 
-      pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+      if (imgHeight > pdfHeight) {
+        const scaledWidth = (pdfHeight * canvas.width) / canvas.height;
+        const xOffset = (pdfWidth - scaledWidth) / 2;
+        pdf.addImage(imgData, "JPEG", xOffset, 0, scaledWidth, pdfHeight);
+      } else {
+        pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
       }
 
       pdf.save(`Quotation-${quoteNumber || "Draft"}.pdf`);
@@ -252,11 +257,11 @@ export default function QuotationGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 print:bg-white print:p-0">
+    <div className="min-h-screen bg-gray-100 p-3 sm:p-6 print:bg-white print:p-0">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-6 print:block">
         
         {/* FORM CONFIGURATION SIDE */}
-        <div className="bg-white p-6 rounded-2xl shadow print:hidden space-y-5">
+        <div className="bg-white p-4 sm:p-6 rounded-2xl shadow print:hidden space-y-5">
           <div>
             <h1 className="text-xl font-bold text-gray-800">Quotation Engine</h1>
             <p className="text-xs text-gray-500">
@@ -272,7 +277,7 @@ export default function QuotationGenerator() {
               onChange={handleChange}
               className="w-full border p-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <input
                 name="phone"
                 placeholder="Phone"
@@ -303,7 +308,7 @@ export default function QuotationGenerator() {
               className="w-full border p-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
             />
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <input
                 name="plotArea"
                 placeholder="Plot Area (e.g. 1200 sq.ft)"
@@ -325,7 +330,7 @@ export default function QuotationGenerator() {
                 name="numberOfFloors"
                 value={form.numberOfFloors}
                 onChange={handleChange}
-                className="border p-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                className="border p-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500 bg-white"
               >
                 <option value="Ground">Ground</option>
                 <option value="G+1">G+1</option>
@@ -336,7 +341,7 @@ export default function QuotationGenerator() {
                 name="plotFacing"
                 value={form.plotFacing}
                 onChange={handleChange}
-                className="border p-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                className="border p-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500 bg-white"
               >
                 <option>East</option>
                 <option>West</option>
@@ -345,7 +350,6 @@ export default function QuotationGenerator() {
               </select>
             </div>
 
-            {/* PAYMENT & REVISION PARAMETERS */}
             <div className="grid grid-cols-2 gap-3 pt-1">
               <div>
                 <label className="text-[11px] font-semibold text-gray-500 block mb-1">
@@ -375,8 +379,7 @@ export default function QuotationGenerator() {
               </div>
             </div>
 
-            {/* SERVICES CHECKLIST */}
-            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-2.5">
+            <div className="bg-gray-50 p-3 sm:p-4 rounded-xl border border-gray-200 space-y-2.5">
               <h3 className="text-xs font-bold text-gray-500 tracking-wider uppercase">
                 Select Included Modules
               </h3>
@@ -400,15 +403,14 @@ export default function QuotationGenerator() {
               ))}
             </div>
 
-            {/* MANUAL ADJUSTMENTS CONFIGURATOR */}
-            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-3">
+            <div className="bg-gray-50 p-3 sm:p-4 rounded-xl border border-gray-200 space-y-3">
               <h3 className="text-xs font-bold text-gray-500 tracking-wider uppercase">
                 Add Custom Line Items
               </h3>
               <div className="flex gap-2">
                 <input
                   type="text"
-                  placeholder="e.g., Extra Site Inspection Visit"
+                  placeholder="e.g., Extra Site Inspection"
                   value={manualLabel}
                   onChange={(e) => setManualLabel(e.target.value)}
                   className="flex-1 border p-2 rounded-lg text-xs outline-none focus:ring-1 focus:ring-blue-500 bg-white"
@@ -418,7 +420,7 @@ export default function QuotationGenerator() {
                   placeholder="Price (₹)"
                   value={manualPrice}
                   onChange={(e) => setManualPrice(e.target.value)}
-                  className="w-24 border p-2 rounded-lg text-xs outline-none focus:ring-1 focus:ring-blue-500 bg-white"
+                  className="w-20 sm:w-24 border p-2 rounded-lg text-xs outline-none focus:ring-1 focus:ring-blue-500 bg-white"
                 />
                 <button
                   onClick={handleAddCustomItem}
@@ -435,7 +437,7 @@ export default function QuotationGenerator() {
                       key={item.id}
                       className="flex justify-between items-center bg-white p-2 rounded-lg border border-gray-100 text-xs shadow-sm"
                     >
-                      <span className="text-gray-700 font-medium truncate max-w-[200px]">
+                      <span className="text-gray-700 font-medium truncate max-w-[150px] sm:max-w-[200px]">
                         {item.label}
                       </span>
                       <div className="flex items-center gap-2">
@@ -455,8 +457,7 @@ export default function QuotationGenerator() {
               )}
             </div>
 
-            {/* TERMS & CONDITIONS EDITOR */}
-            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-3">
+            <div className="bg-gray-50 p-3 sm:p-4 rounded-xl border border-gray-200 space-y-3">
               <div className="flex items-center gap-1.5">
                 <Edit3 size={14} className="text-gray-500" />
                 <h3 className="text-xs font-bold text-gray-500 tracking-wider uppercase">
@@ -487,7 +488,7 @@ export default function QuotationGenerator() {
               <div className="flex gap-2 pt-1">
                 <input
                   type="text"
-                  placeholder="Add custom clause or rule..."
+                  placeholder="Add custom clause..."
                   value={newTermText}
                   onChange={(e) => setNewTermText(e.target.value)}
                   className="flex-1 border p-2 rounded-lg text-xs outline-none focus:ring-1 focus:ring-blue-500 bg-white"
@@ -502,152 +503,189 @@ export default function QuotationGenerator() {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 mt-4">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 mt-4">
             <button
               onClick={downloadPDF}
               disabled={isGenerating}
-              className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white p-2.5 rounded-lg text-sm flex justify-center items-center gap-2 font-medium transition"
+              className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white p-2.5 rounded-lg text-xs sm:text-sm flex justify-center items-center gap-1 sm:gap-2 font-medium transition"
             >
               <Download size={16} /> {isGenerating ? "..." : "PDF"}
             </button>
             <button
               onClick={() => window.print()}
-              className="bg-gray-800 hover:bg-gray-900 text-white p-2.5 rounded-lg text-sm flex justify-center items-center gap-2 font-medium transition"
+              className="bg-gray-800 hover:bg-gray-900 text-white p-2.5 rounded-lg text-xs sm:text-sm flex justify-center items-center gap-1 sm:gap-2 font-medium transition"
             >
               <Printer size={16} /> Print
             </button>
             <button
               onClick={shareWhatsApp}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white p-2.5 rounded-lg text-sm flex justify-center items-center gap-2 font-medium transition"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white p-2.5 rounded-lg text-xs sm:text-sm flex justify-center items-center gap-1 sm:gap-2 font-medium transition"
             >
               <Share2 size={16} /> Share
             </button>
           </div>
         </div>
 
-        {/* INVOICE PREVIEW SIDE WITH INLINE HEX SAFEGUARDS */}
-        <div
-          ref={quoteRef}
-          style={{
-            backgroundColor: "#ffffff",
-            color: "#1f2937",
-            borderColor: "#e5e7eb",
-          }}
-          className="p-8 rounded-2xl shadow border print:shadow-none print:border-none print:p-0"
-        >
-          {/* Header */}
+        {/* INVOICE PREVIEW SIDE */}
+        <div className="overflow-x-auto">
           <div
-            className="flex justify-between border-b-2 pb-5"
-            style={{ borderColor: "#f3f4f6" }}
+            id="invoice-container"
+            ref={quoteRef}
+            style={{
+              backgroundColor: "#ffffff",
+              color: "#1f2937",
+              borderColor: "#e5e7eb",
+            }}
+            className="p-5 sm:p-6 rounded-2xl shadow border print:shadow-none print:border-none print:p-0 min-w-[320px]"
           >
-            <div>
-              <h1
-                className="text-xl font-black tracking-wide"
-                style={{ color: "#1e3a8a" }}
-              >
-                DREAM HOMES BIHAR
-              </h1>
-              <p
-                className="text-[10px] font-bold tracking-widest uppercase mt-0.5"
-                style={{ color: "#9ca3af" }}
-              >
-                Architectural Drawings & Engineering Services
-              </p>
-            </div>
-            <div className="text-right text-xs" style={{ color: "#4b5563" }}>
-              <p className="font-bold text-sm" style={{ color: "#111827" }}>
-                {quoteNumber || "Generating..."}
-              </p>
-              <p className="mt-0.5" style={{ color: "#6b7280" }}>
-                {new Date().toLocaleDateString("en-IN")}
-              </p>
-            </div>
-          </div>
-
-          {/* Project Details */}
-          <div className="grid grid-cols-2 gap-6 mt-5 text-xs">
+            {/* Header */}
             <div
-              className="p-3 rounded-xl border"
-              style={{ backgroundColor: "#f9fafb", borderColor: "#f3f4f6" }}
+              className="flex justify-between border-b-2 pb-4"
+              style={{ borderColor: "#f3f4f6" }}
             >
-              <h4
-                className="font-bold text-[10px] uppercase tracking-wider mb-1.5"
-                style={{ color: "#9ca3af" }}
-              >
-                Client Details
-              </h4>
-              <p className="font-bold" style={{ color: "#1f2937" }}>
-                {form.clientName || "—"}
-              </p>
-              <p className="mt-0.5" style={{ color: "#4b5563" }}>
-                {form.phone || "—"}
-              </p>
-              <p style={{ color: "#4b5563" }}>{form.email || "—"}</p>
-            </div>
-            <div
-              className="p-3 rounded-xl border"
-              style={{ backgroundColor: "#f9fafb", borderColor: "#f3f4f6" }}
-            >
-              <h4
-                className="font-bold text-[10px] uppercase tracking-wider mb-1.5"
-                style={{ color: "#9ca3af" }}
-              >
-                Project Scope
-              </h4>
-              <p className="font-bold" style={{ color: "#1f2937" }}>
-                {form.projectName || "—"}
-              </p>
-              <p className="mt-0.5" style={{ color: "#4b5563" }}>
-                {form.location || "—"}
-              </p>
-              <p
-                className="mt-1 font-semibold text-[11px]"
-                style={{ color: "#6b7280" }}
-              >
-                {form.numberOfFloors} Design | {form.plotFacing} Facing
-                {form.plotArea && ` | Plot: ${form.plotArea}`}
-                {form.builtUpArea && ` | Built-up: ${form.builtUpArea}`}
-              </p>
-            </div>
-          </div>
-
-          {/* Itemized Table */}
-          <div className="mt-6">
-            <table className="w-full text-xs text-left">
-              <thead>
-                <tr
-                  className="border-b font-bold text-[10px] uppercase"
-                  style={{ borderColor: "#e5e7eb", color: "#9ca3af" }}
+              <div>
+                <h1
+                  className="text-lg sm:text-xl font-black tracking-wide"
+                  style={{ color: "#1e3a8a" }}
                 >
-                  <th className="pb-2 pl-1">Module Description</th>
-                  <th className="pb-2 pr-1 text-right">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {SERVICES_CATALOG.filter((s) => selectedServices[s.id]).map(
-                  (service) => (
+                  DREAM HOMES BIHAR
+                </h1>
+                <p
+                  className="text-[9px] sm:text-[10px] font-bold tracking-widest uppercase mt-0.5"
+                  style={{ color: "#9ca3af" }}
+                >
+                  Architectural Drawings & Engineering Services
+                </p>
+              </div>
+              <div className="text-right text-xs" style={{ color: "#4b5563" }}>
+                <p className="font-bold text-xs sm:text-sm" style={{ color: "#111827" }}>
+                  {quoteNumber || "Generating..."}
+                </p>
+                <p className="mt-0.5 text-[11px]" style={{ color: "#6b7280" }}>
+                  {new Date().toLocaleDateString("en-IN")}
+                </p>
+              </div>
+            </div>
+
+            {/* Project Details */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-4 text-xs">
+              <div
+                className="p-3 rounded-xl border"
+                style={{ backgroundColor: "#f9fafb", borderColor: "#f3f4f6" }}
+              >
+                <h4
+                  className="font-bold text-[10px] uppercase tracking-wider mb-1"
+                  style={{ color: "#9ca3af" }}
+                >
+                  Client Details
+                </h4>
+                <p className="font-bold" style={{ color: "#1f2937" }}>
+                  {form.clientName || "—"}
+                </p>
+                <p className="mt-0.5" style={{ color: "#4b5563" }}>
+                  {form.phone || "—"}
+                </p>
+                <p style={{ color: "#4b5563" }}>{form.email || "—"}</p>
+              </div>
+              <div
+                className="p-3 rounded-xl border"
+                style={{ backgroundColor: "#f9fafb", borderColor: "#f3f4f6" }}
+              >
+                <h4
+                  className="font-bold text-[10px] uppercase tracking-wider mb-1"
+                  style={{ color: "#9ca3af" }}
+                >
+                  Project Scope
+                </h4>
+                <p className="font-bold" style={{ color: "#1f2937" }}>
+                  {form.projectName || "—"}
+                </p>
+                <p className="mt-0.5" style={{ color: "#4b5563" }}>
+                  {form.location || "—"}
+                </p>
+                <p
+                  className="mt-1 font-semibold text-[10px] sm:text-[11px]"
+                  style={{ color: "#6b7280" }}
+                >
+                  {form.numberOfFloors} Design | {form.plotFacing} Facing
+                  {form.plotArea && ` | Plot: ${form.plotArea}`}
+                  {form.builtUpArea && ` | Built-up: ${form.builtUpArea}`}
+                </p>
+              </div>
+            </div>
+
+            {/* Itemized Table */}
+            <div className="mt-4">
+              <table className="w-full text-xs text-left">
+                <thead>
+                  <tr
+                    className="border-b font-bold text-[10px] uppercase"
+                    style={{ borderColor: "#e5e7eb", color: "#9ca3af" }}
+                  >
+                    <th className="pb-2 pl-1">Module Description</th>
+                    <th className="pb-2 pr-1 text-right">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {SERVICES_CATALOG.filter((s) => selectedServices[s.id]).map(
+                    (service) => (
+                      <tr
+                        key={service.id}
+                        className="border-b"
+                        style={{ borderColor: "#f3f4f6" }}
+                      >
+                        <td className="py-2.5 pl-1 align-top">
+                          <span
+                            className="font-bold block"
+                            style={{ color: "#111827" }}
+                          >
+                            {service.label}
+                          </span>
+                          <ul
+                            className="list-disc pl-4 mt-1 space-y-0.5 text-[10px] sm:text-[11px]"
+                            style={{ color: "#6b7280" }}
+                          >
+                            {service.deliverables.map((item, idx) => (
+                              <li key={idx}>{item}</li>
+                            ))}
+                          </ul>
+                        </td>
+                        <td className="py-2.5 pr-1 text-right font-bold align-top">
+                          <span
+                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold"
+                            style={{
+                              color: "#059669",
+                              backgroundColor: "#ecfdf5",
+                            }}
+                          >
+                            <Check size={12} /> Included
+                          </span>
+                        </td>
+                      </tr>
+                    )
+                  )}
+
+                  {customItems.map((item) => (
                     <tr
-                      key={service.id}
+                      key={item.id}
                       className="border-b"
                       style={{ borderColor: "#f3f4f6" }}
                     >
-                      <td className="py-3.5 pl-1 align-top">
+                      <td className="py-2.5 pl-1 align-top">
                         <span
                           className="font-bold block"
                           style={{ color: "#111827" }}
                         >
-                          {service.label}
+                          {item.label}
                         </span>
-                        <ul
-                          className="list-disc pl-4 mt-1 space-y-0.5 text-[11px]"
-                          style={{ color: "#6b7280" }}
+                        <span
+                          className="text-[10px] font-semibold uppercase tracking-wider"
+                          style={{ color: "#3b82f6" }}
                         >
-                          {service.deliverables.map((item, idx) => (
-                            <li key={idx}>{item}</li>
-                          ))}
-                        </ul>
+                          Custom Addition
+                        </span>
                       </td>
-                      <td className="py-3.5 pr-1 text-right font-bold align-top">
+                      <td className="py-2.5 pr-1 text-right font-bold align-top">
                         <span
                           className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold"
                           style={{
@@ -659,151 +697,116 @@ export default function QuotationGenerator() {
                         </span>
                       </td>
                     </tr>
-                  )
-                )}
+                  ))}
 
-                {customItems.map((item) => (
+                  {totalAmount === 0 && (
+                    <tr>
+                      <td
+                        className="py-6 text-center font-medium italic"
+                        style={{ color: "#9ca3af" }}
+                        colSpan={2}
+                      >
+                        No modules selected. Configure package inclusion inside sidebar.
+                      </td>
+                    </tr>
+                  )}
+
                   <tr
-                    key={item.id}
-                    className="border-b"
-                    style={{ borderColor: "#f3f4f6" }}
+                    className="font-bold text-xs sm:text-sm"
+                    style={{ backgroundColor: "#eff6ff", color: "#1e3a8a" }}
                   >
-                    <td className="py-3.5 pl-1 align-top">
-                      <span
-                        className="font-bold block"
-                        style={{ color: "#111827" }}
-                      >
-                        {item.label}
-                      </span>
-                      <span
-                        className="text-[10px] font-semibold uppercase tracking-wider"
-                        style={{ color: "#3b82f6" }}
-                      >
-                        Custom Addition
-                      </span>
+                    <td className="py-2.5 pl-3 rounded-l-xl">
+                      Total Net Estimated Investment
                     </td>
-                    <td className="py-3.5 pr-1 text-right font-bold align-top">
-                      <span
-                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold"
-                        style={{
-                          color: "#059669",
-                          backgroundColor: "#ecfdf5",
-                        }}
-                      >
-                        <Check size={12} /> Included
-                      </span>
+                    <td className="py-2.5 pr-3 text-right rounded-r-xl whitespace-nowrap">
+                      ₹{totalAmount.toLocaleString("en-IN")}.00
                     </td>
                   </tr>
-                ))}
-
-                {totalAmount === 0 && (
-                  <tr>
-                    <td
-                      className="py-8 text-center font-medium italic"
-                      style={{ color: "#9ca3af" }}
-                      colSpan={2}
-                    >
-                      No modules selected. Configure package inclusion inside
-                      sidebar configuration interface.
-                    </td>
-                  </tr>
-                )}
-
-                <tr
-                  className="font-bold text-sm"
-                  style={{ backgroundColor: "#eff6ff", color: "#1e3a8a" }}
-                >
-                  <td className="py-3 pl-3 rounded-l-xl">
-                    Total Net Estimated Investment
-                  </td>
-                  <td className="py-3 pr-3 text-right rounded-r-xl">
-                    ₹{totalAmount.toLocaleString("en-IN")}.00
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Dynamic Terms & Milestones */}
-          <div className="mt-6">
-            <h4
-              className="font-bold text-[10px] uppercase tracking-wider mb-1.5"
-              style={{ color: "#9ca3af" }}
-            >
-              Terms & Project Governance
-            </h4>
-            <div
-              className="border rounded-xl p-3.5 text-[11px] leading-relaxed font-sans space-y-2.5"
-              style={{
-                backgroundColor: "#f9fafb",
-                borderColor: "#f3f4f6",
-                color: "#4b5563",
-              }}
-            >
-              <p>
-                <strong>1. Dynamic Milestones Architecture:</strong>
-                <br />• <strong>Booking Advance ({advancePercent}%):</strong> An
-                upfront setup payment of{" "}
-                <strong>
-                  ₹{calculatedAdvance.toLocaleString("en-IN")}
-                </strong>{" "}
-                is required to launch project draft cycles.
-                <br />•{" "}
-                <strong>
-                  Project Execution Balance ({100 - advancePercent}%):
-                </strong>{" "}
-                The outstanding balance of{" "}
-                <strong>
-                  ₹{calculatedBalance.toLocaleString("en-IN")}
-                </strong>{" "}
-                must be settled immediately following schematic layout approval,
-                strictly prior to high-resolution CAD compilation delivery.
-              </p>
-
-              <p>
-                <strong>2. Modification Scope:</strong> This quote allows for up
-                to {form.revisions} complimentary configuration corrections.
-                Final approvals lock drawing state; subsequent structural
-                modifications generate independent change-order costs.
-              </p>
-
-              {terms.map((term, index) => (
-                <p key={index}>
-                  <strong>{index + 3}. Policy Clause:</strong> {term}
-                </p>
-              ))}
+                </tbody>
+              </table>
             </div>
-          </div>
 
-          {/* Signatures */}
-          <div
-            className="flex justify-between mt-8 pt-6 border-t"
-            style={{ borderColor: "#f3f4f6" }}
-          >
-            <div>
-              <div className="h-12 flex items-end mb-1">
-                <img
-                  src="/Ankit_Pandey_sign.png"
-                  alt="Authorized Signature"
-                  className="h-11 w-auto object-contain mix-blend-multiply"
-                  crossOrigin="anonymous"
-                />
-              </div>
-              <p className="font-bold text-xs" style={{ color: "#1f2937" }}>
-                Dream Homes Bihar
-              </p>
-              <p className="text-[10px]" style={{ color: "#9ca3af" }}>
-                Authorized Signatory
-              </p>
-            </div>
-            <div className="text-right flex flex-col justify-end">
+            {/* Dynamic Terms & Milestones */}
+            <div className="mt-4">
+              <h4
+                className="font-bold text-[10px] uppercase tracking-wider mb-1"
+                style={{ color: "#9ca3af" }}
+              >
+                Terms & Project Governance
+              </h4>
               <div
-                className="w-36 border-b mb-1 ml-auto"
-                style={{ borderColor: "#d1d5db" }}
-              ></div>
-              <p className="text-[10px]" style={{ color: "#9ca3af" }}>
-                Accepted By Client
-              </p>
+                className="border rounded-xl p-3 text-[10px] sm:text-[11px] leading-relaxed font-sans space-y-2"
+                style={{
+                  backgroundColor: "#f9fafb",
+                  borderColor: "#f3f4f6",
+                  color: "#4b5563",
+                }}
+              >
+                <p>
+                  <strong>1. Dynamic Milestones Architecture:</strong>
+                  <br />• <strong>Booking Advance ({advancePercent}%):</strong> An
+                  upfront setup payment of{" "}
+                  <strong>
+                    ₹{calculatedAdvance.toLocaleString("en-IN")}
+                  </strong>{" "}
+                  is required to launch project draft cycles.
+                  <br />•{" "}
+                  <strong>
+                    Project Execution Balance ({100 - advancePercent}%):
+                  </strong>{" "}
+                  The outstanding balance of{" "}
+                  <strong>
+                    ₹{calculatedBalance.toLocaleString("en-IN")}
+                  </strong>{" "}
+                  must be settled immediately following schematic layout approval,
+                  strictly prior to high-resolution CAD compilation delivery.
+                </p>
+
+                <p>
+                  <strong>2. Modification Scope:</strong> This quote allows for up
+                  to {form.revisions} complimentary configuration corrections.
+                  Final approvals lock drawing state; subsequent structural
+                  modifications generate independent change-order costs.
+                </p>
+
+                {terms.map((term, index) => (
+                  <p key={index}>
+                    <strong>{index + 3}. Policy Clause:</strong> {term}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            {/* Signatures */}
+            <div
+              className="flex justify-between mt-6 pt-4 border-t"
+              style={{ borderColor: "#f3f4f6" }}
+            >
+              <div>
+                <div className="h-10 flex items-end mb-1">
+                  <img
+                    src="/Ankit_Pandey_sign.png"
+                    alt="Authorized Signature"
+                    className="h-9 w-auto object-contain mix-blend-multiply"
+                    crossOrigin="anonymous"
+                  />
+                </div>
+                <p className="font-bold text-xs" style={{ color: "#1f2937" }}>
+                  Dream Homes Bihar
+                </p>
+                <p className="text-[10px]" style={{ color: "#9ca3af" }}>
+                  Authorized Signatory
+                </p>
+              </div>
+              <div className="text-right flex flex-col justify-end">
+                <div
+                  className="w-28 sm:w-36 border-b mb-1 ml-auto"
+                  style={{ borderColor: "#d1d5db" }}
+                ></div>
+                <p className="text-[10px]" style={{ color: "#9ca3af" }}>
+                  Accepted By Client
+                </p>
+              </div>
             </div>
           </div>
         </div>
