@@ -7,6 +7,7 @@ import Contact from "@/components/Contact";
 
 import ServicesPage from './services/page';
 import Services from '@/components/Services';
+import PaymentPage from './payment/page';
 
 
 export default function Page() {
@@ -16,6 +17,9 @@ export default function Page() {
       <Services />
       <Gallery />
       <Testimonials />
+      <ServicesPage />
+      <PaymentPage />
+      <Contact />
     </>
   )
 }
