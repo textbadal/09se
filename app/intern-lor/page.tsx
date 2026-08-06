@@ -47,7 +47,7 @@ const DEFAULT_HR_NAME = "Sumit Singh";
 const DEFAULT_HR_TITLE = "HR Manager";
 const DEFAULT_HR_SIGNATURE_URL = "/sumit_singh.png";
 
-export interface LORTemplate {
+ interface LORTemplate {
   id: string;
   label: string;
   defaultRole: string;
@@ -58,12 +58,12 @@ export interface LORTemplate {
   suggestedRatings: SkillRating[];
 }
 
-export interface SkillRating {
+ interface SkillRating {
   category: string;
   score: number;
 }
 
-export interface LORDetails {
+ interface LORDetails {
   // Personal Information
   candidateName: string;
   candidateEmail: string;
@@ -115,7 +115,7 @@ export interface LORDetails {
 // TEMPLATES
 // ============================================================
 
-export const LOR_TEMPLATES: Record<string, LORTemplate> = {
+ const LOR_TEMPLATES: Record<string, LORTemplate> = {
   software_engineering: {
     id: "software_engineering",
     label: "💻 Software Engineering",
