@@ -75,7 +75,8 @@ const DEFAULT_AUTHORIZED_NAME = "Sumit Singh";
 const DEFAULT_AUTHORIZED_TITLE = "HR Manager";
 const DEFAULT_AUTHORIZED_SIGNATURE_URL = "/sumit_singh.png";
 
-export interface AttendanceTemplate {
+// Interfaces (removed 'export' keyword)
+interface AttendanceTemplate {
   id: string;
   label: string;
   defaultProgramName: string;
@@ -85,7 +86,7 @@ export interface AttendanceTemplate {
   defaultLearningOutcomes: string[];
 }
 
-export interface CertificateHistory {
+interface CertificateHistory {
   id: string;
   participantName: string;
   programName: string;
@@ -95,7 +96,7 @@ export interface CertificateHistory {
   pdfUrl?: string;
 }
 
-export interface AttendanceDetails {
+interface AttendanceDetails {
   // Participant Information
   participantName: string;
   participantEmail: string;
@@ -167,10 +168,10 @@ export interface AttendanceDetails {
 }
 
 // ============================================================
-// TEMPLATES
+// TEMPLATES (removed 'export' keyword)
 // ============================================================
 
- const ATTENDANCE_TEMPLATES: Record<string, AttendanceTemplate> = {
+const ATTENDANCE_TEMPLATES: Record<string, AttendanceTemplate> = {
   professional_training: {
     id: "professional_training",
     label: "📚 Professional Training",
@@ -1812,6 +1813,7 @@ ${details.authorizedTitle}, ${details.companyName}
               {/* Watermark */}
               {details.includeWatermark && details.watermarkUrl && (
                 <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={details.watermarkUrl} alt="Watermark" className="w-48 h-48 object-contain" />
                 </div>
               )}
@@ -1819,6 +1821,7 @@ ${details.authorizedTitle}, ${details.companyName}
               <div className="relative z-10">
                 {/* Header */}
                 <div className="flex justify-between items-center border-b-3 pb-4 mb-6" style={{ borderBottomColor: "#1E3A8A" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={details.logoUrl} alt="Logo" className="h-16 w-16 object-contain" onError={(e) => (e.target as HTMLImageElement).style.display = "none"} />
                   <div className="text-right">
                     <h1 className="text-xl font-bold uppercase tracking-wide text-slate-800">
@@ -1926,6 +1929,7 @@ ${details.authorizedTitle}, ${details.companyName}
               {/* Footer */}
               <div className="pt-6 border-t flex justify-between items-end mt-4" style={{ borderTopColor: "#1E3A8A" }}>
                 <div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={details.signatureUrl} alt="Signature" className="h-14 object-contain mb-1" onError={(e) => (e.target as HTMLImageElement).style.display = "none"} />
                   <div className="w-48 border-b border-slate-400 mb-1" />
                   <p className="font-bold text-sm text-slate-800">{details.authorizedName}</p>
@@ -1936,6 +1940,7 @@ ${details.authorizedTitle}, ${details.companyName}
                 <div className="flex items-center gap-4">
                   {details.includeSeal && details.companySealUrl && (
                     <div className="text-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={details.companySealUrl} alt="Seal" className="w-14 h-14 object-contain mx-auto" />
                       <p className="text-[8px] text-slate-400 mt-1">Company Seal</p>
                     </div>
@@ -1943,6 +1948,7 @@ ${details.authorizedTitle}, ${details.companyName}
                   
                   {details.includeQRCode && qrDataUrl && (
                     <div className="text-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={qrDataUrl} alt="QR Code" className="w-14 h-14 mx-auto" />
                       <p className="text-[8px] text-slate-400 mt-1">Verify Certificate</p>
                       {details.includeVerificationLink && (

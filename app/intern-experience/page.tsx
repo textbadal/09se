@@ -49,7 +49,7 @@ const DEFAULT_AUTHORIZED_NAME = "Sumit Singh";
 const DEFAULT_AUTHORIZED_TITLE = "HR Manager";
 const DEFAULT_AUTHORIZED_SIGNATURE_URL = "/sumit_singh.png";
 
-export interface ExperienceTemplate {
+interface ExperienceTemplate {
   id: string;
   label: string;
   defaultRole: string;
@@ -59,7 +59,7 @@ export interface ExperienceTemplate {
   skills: string[];
 }
 
-export interface ExperienceDetails {
+ interface ExperienceDetails {
   employeeName: string;
   employeeEmail: string;
   employeePhone: string;
@@ -104,7 +104,7 @@ export interface ExperienceDetails {
 // TEMPLATES
 // ============================================================
 
-export const EXPERIENCE_TEMPLATES: Record<string, ExperienceTemplate> = {
+ const EXPERIENCE_TEMPLATES: Record<string, ExperienceTemplate> = {
   software_engineering: {
     id: "software_engineering",
     label: "💻 Software Engineering",
