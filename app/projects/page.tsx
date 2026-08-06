@@ -257,6 +257,41 @@ const projects = [
     dimensions: { width: 42, length: 40 },
     pdf: "/projects/1RK & 1BHK FLATS APARTMEN PLANNING-6.pdf",
   },
+  {
+    id: 37,
+    title: "GROUND  FLOOR PLAN.pdf",
+    description: "Luxury duplex with parking space.",
+    dimensions: { width: 36, length: 76 },
+    pdf: "/projects/GROUND  FLOOR PLAN.pdf",
+  },
+  {
+    id: 38,
+    title: "FIRST   FLOOR PLAN.pdf",
+    description: "Luxury duplex with parking space.",
+    dimensions: { width: 36, length: 76 },
+    pdf: "/projects/FIRST   FLOOR PLAN.pdf",
+  },
+  {
+    id: 39,
+    title: "GROUND & FIRST FLOOR PLAN.pdf",
+    description: "Luxury duplex with parking space.",
+    dimensions: { width: 36, length: 76 },
+    pdf: "/projects/GROUND & FIRST FLOOR PLAN.pdf",
+  },
+  {
+    id: 40,
+    title: "19' x 56'.pdf",
+    description: "Luxury duplex with parking space.",
+    dimensions: { width: 19, length: 56 },
+    pdf: "/projects/19' x 56'.pdf",
+  },
+  {
+    id: 41,
+    title: "Mr. Mohit ji (g+1) Complete File",
+    description: "Luxury duplex with parking space.",
+    dimensions: { width: 19, length: 56 },
+    pdf: "/projects/Mr. Mohit ji (g+1) complete file.merged.pdf",
+  },
 ];
 
 export default function ProjectsPage() {
