@@ -31,9 +31,9 @@ const FIXED_HR_NAME = "Sumit Singh";
 const FIXED_HR_TITLE = "HR Manager";
 const FIXED_HR_SIGNATURE_URL = "/sumit_singh.png";
 
-export type ThemeVariant = "modern" | "classic" | "luxury";
+ type ThemeVariant = "modern" | "classic" | "luxury";
 
-export interface DomainTemplate {
+ interface DomainTemplate {
   id: string;
   label: string;
   defaultRole: string;
@@ -42,7 +42,7 @@ export interface DomainTemplate {
 }
 
 // Popular Industry Domains with Tailored Content Templates
-export const DOMAIN_TEMPLATES: Record<string, DomainTemplate> = {
+ const DOMAIN_TEMPLATES: Record<string, DomainTemplate> = {
   software_engineering: {
     id: "software_engineering",
     label: "Software Engineering & Web Dev",
