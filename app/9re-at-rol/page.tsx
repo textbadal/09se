@@ -33,12 +33,12 @@ const COMPANY_INFO = {
   phone: "+91 80 1234 5678",
 };
 
-export interface SkillRating {
+ interface SkillRating {
   category: string;
   score: number;
 }
 
-export interface LORTemplate {
+ interface LORTemplate {
   id: string;
   label: string;
   defaultRole: string;
@@ -49,7 +49,7 @@ export interface LORTemplate {
   suggestedRatings: SkillRating[];
 }
 
-export interface LORDetails {
+ interface LORDetails {
   candidateName: string;
   templateKey: string;
   role: string;
@@ -88,7 +88,7 @@ export interface LORDetails {
 // TEMPLATES
 // ============================================================
 
-export const LOR_TEMPLATES: Record<string, LORTemplate> = {
+const LOR_TEMPLATES: Record<string, LORTemplate> = {
   software_engineering: {
     id: "software_engineering",
     label: "Software Engineering",
