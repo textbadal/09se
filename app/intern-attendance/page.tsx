@@ -170,7 +170,7 @@ export interface AttendanceDetails {
 // TEMPLATES
 // ============================================================
 
-export const ATTENDANCE_TEMPLATES: Record<string, AttendanceTemplate> = {
+ const ATTENDANCE_TEMPLATES: Record<string, AttendanceTemplate> = {
   professional_training: {
     id: "professional_training",
     label: "📚 Professional Training",
