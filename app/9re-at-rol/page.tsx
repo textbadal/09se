@@ -20,17 +20,17 @@ const FIXED_COMPANY_NAME = "Averiqo Technologies";
 const DEFAULT_LOGO_URL = "/Averiqo Technologies logo.jpeg";
 const DEFAULT_HR_NAME = "Shivam Singh";
 const DEFAULT_HR_TITLE = "HR Manager";
-const DEFAULT_HR_EMAIL = "hr@averiqotech.com";
+const DEFAULT_HR_EMAIL = "info@averiqotech.com";
 const DEFAULT_HR_SIGNATURE_URL = "/Shivam singh signature.png";
 const DEFAULT_SEAL_URL = "/Averiqo Technologies seal stamp.png";
 
 // Company Contact Information
 const COMPANY_INFO = {
   name: "Averiqo Technologies",
-  address: "123 Tech Park, Electronic City, Bangalore - 560100, India",
+  address: "Saguna More, Danapur, Patna - 801503, India",
   website: "www.averiqotech.com",
   email: "info@averiqotech.com",
-  phone: "+91 80 1234 5678",
+  phone: "+91 93349 91688",
 };
 
  interface SkillRating {
@@ -108,63 +108,108 @@ const LOR_TEMPLATES: Record<string, LORTemplate> = {
       { category: "Innovation", score: 4 },
     ],
   },
-  data_science: {
-    id: "data_science",
-    label: "Data Science & AI",
-    defaultRole: "Senior Data Scientist",
-    relationship: "supervised their work on machine learning and data analytics initiatives",
+  
+  web_developer: {
+    id: "web_developer",
+    label: "Web Developer",
+    defaultRole: "Web Developer",
+    relationship: "supervised their web development work and project deliverables",
     bodyText:
-      "demonstrated exceptional analytical skills and expertise in machine learning, statistical modeling, and data visualization. They developed sophisticated predictive models that drove key business decisions and optimized data pipelines.",
+      "demonstrated excellent web development skills, building responsive, user-friendly websites and web applications. They showed strong attention to detail, wrote clean code, and consistently delivered projects on time with high quality.",
     keyStrengths:
-      "Machine Learning, Python/R, SQL, TensorFlow/PyTorch, Data Visualization, Statistical Analysis, and Big Data.",
+      "HTML5, CSS3, JavaScript, React, Next.js, Node.js, REST APIs, Git, Responsive Design, and Cross-Browser Testing.",
     industry: "Technology",
     suggestedRatings: [
-      { category: "Technical Proficiency", score: 5 },
-      { category: "Analytical Thinking", score: 5 },
+      { category: "Technical Skills", score: 5 },
+      { category: "Code Quality", score: 5 },
       { category: "Problem Solving", score: 5 },
       { category: "Communication", score: 4 },
-      { category: "Project Delivery", score: 4 },
-      { category: "Innovation", score: 5 },
-    ],
-  },
-  cybersecurity: {
-    id: "cybersecurity",
-    label: "Cybersecurity",
-    defaultRole: "Senior Security Engineer",
-    relationship: "worked closely with on security infrastructure and incident response",
-    bodyText:
-      "exhibited exceptional expertise in cybersecurity, including threat detection, vulnerability assessment, and security architecture. They successfully implemented robust security protocols and strengthened our organization's security posture.",
-    keyStrengths:
-      "Security Architecture, Penetration Testing, SIEM, Incident Response, Cloud Security, and Compliance.",
-    industry: "Technology",
-    suggestedRatings: [
-      { category: "Technical Proficiency", score: 5 },
-      { category: "Security Awareness", score: 5 },
-      { category: "Problem Solving", score: 5 },
       { category: "Team Collaboration", score: 4 },
-      { category: "Incident Response", score: 5 },
-      { category: "Compliance Knowledge", score: 4 },
+      { category: "Project Delivery", score: 5 },
     ],
   },
-  devops: {
-    id: "devops",
-    label: "DevOps & Cloud",
-    defaultRole: "Senior DevOps Engineer",
-    relationship: "managed their work on cloud infrastructure and CI/CD pipelines",
+  sales_marketing: {
+    id: "sales_marketing",
+    label: "Sales & Marketing",
+    defaultRole: "Sales & Marketing Specialist",
+    relationship: "worked closely with on sales strategies and marketing campaigns",
     bodyText:
-      "demonstrated outstanding expertise in DevOps practices, cloud infrastructure, and automation. They designed and maintained robust CI/CD pipelines and optimized system performance for high availability and scalability.",
+      "demonstrated exceptional skills in driving revenue growth and brand visibility through strategic sales and innovative marketing initiatives. They successfully developed and executed marketing campaigns, managed client relationships, and consistently exceeded sales targets.",
     keyStrengths:
-      "AWS/GCP/Azure, Kubernetes, Docker, CI/CD, Infrastructure as Code, Monitoring, and System Architecture.",
-    industry: "Technology",
+      "Sales Strategy, Lead Generation, Client Relationship Management, Digital Marketing (SEO/SEM, Social Media), Content Creation, Brand Strategy, Market Research, and CRM Tools (Salesforce, HubSpot).",
+    industry: "Business",
     suggestedRatings: [
-      { category: "Technical Proficiency", score: 5 },
-      { category: "Infrastructure Management", score: 5 },
-      { category: "Automation", score: 5 },
+      { category: "Sales Strategy", score: 5 },
+      { category: "Marketing Expertise", score: 5 },
+      { category: "Client Relationship Management", score: 5 },
+      { category: "Communication", score: 5 },
       { category: "Problem Solving", score: 4 },
       { category: "Team Collaboration", score: 4 },
-      { category: "Scalability Design", score: 5 },
+      { category: "Analytical Skills", score: 4 },
+      { category: "Innovation", score: 4 },
     ],
   },
+  sales_manager: {
+    id: "sales_manager",
+    label: "Sales Manager",
+    defaultRole: "Sales Manager",
+    relationship: "managed their sales performance and team leadership directly",
+    bodyText:
+      "demonstrated outstanding sales leadership and team management skills. They consistently drove revenue growth, built high-performing sales teams, developed effective sales strategies, and fostered strong client relationships.",
+    keyStrengths:
+      "Sales Strategy, Team Leadership, Pipeline Management, Negotiation, Client Acquisition, Revenue Growth, CRM Management, and Performance Analysis.",
+    industry: "Business",
+    suggestedRatings: [
+      { category: "Sales Strategy", score: 5 },
+      { category: "Team Leadership", score: 5 },
+      { category: "Client Relationship Management", score: 5 },
+      { category: "Negotiation Skills", score: 5 },
+      { category: "Communication", score: 5 },
+      { category: "Problem Solving", score: 4 },
+      { category: "Analytical Skills", score: 4 },
+    ],
+  },
+  marketing_manager: {
+    id: "marketing_manager",
+    label: "Marketing Manager",
+    defaultRole: "Marketing Manager",
+    relationship: "supervised their marketing strategy and campaign execution",
+    bodyText:
+      "demonstrated exceptional marketing expertise, including brand management, digital strategy, and campaign optimization. They successfully launched multi-channel campaigns, increased brand awareness, and delivered measurable business results.",
+    keyStrengths:
+      "Digital Marketing (SEO, SEM, Social Media), Content Strategy, Brand Management, Campaign Analytics, Market Research, Creative Direction, and Budget Management.",
+    industry: "Business",
+    suggestedRatings: [
+      { category: "Marketing Strategy", score: 5 },
+      { category: "Digital Marketing", score: 5 },
+      { category: "Brand Management", score: 5 },
+      { category: "Creative Vision", score: 5 },
+      { category: "Analytical Skills", score: 4 },
+      { category: "Communication", score: 5 },
+      { category: "Team Collaboration", score: 4 },
+    ],
+  },
+  
+
+hr1: {
+  id: "hr1",
+  label: "HR Management",
+  defaultRole: "HR Manager",
+  relationship: "worked closely with them on talent management, employee engagement, and HR management initiatives",
+  bodyText:
+    "demonstrated exceptional leadership in human resource management, talent acquisition, employee engagement, and organizational development. They successfully led recruitment initiatives, performance management processes, HR policy implementation, workforce planning, and employee relations while fostering a positive, compliant, and high-performing workplace culture.",
+  keyStrengths:
+    "HR Leadership, Talent Management, Employee Relations, Recruitment Strategy, Performance Management, HR Compliance, Organizational Development, Workforce Planning, and Team Leadership.",
+  industry: "Human Resources",
+  suggestedRatings: [
+    { category: "HR Leadership", score: 5 },
+    { category: "Talent Management", score: 5 },
+    { category: "Employee Relations", score: 5 },
+    { category: "Performance Management", score: 5 },
+    { category: "Strategic Thinking", score: 5 },
+    { category: "Organizational Development", score: 5 },
+  ],
+},
   product_management: {
     id: "product_management",
     label: "Product Management",
@@ -1054,7 +1099,7 @@ export default function LORGeneratorPage() {
   const defaultTemplate = LOR_TEMPLATES.software_engineering;
 
   const [details, setDetails] = useState<LORDetails>({
-    candidateName: "Name",
+    candidateName: "",
     templateKey: defaultTemplate.id,
     role: defaultTemplate.defaultRole,
     startDate: "2026-01-15",
