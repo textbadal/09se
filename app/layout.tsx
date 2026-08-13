@@ -13,6 +13,17 @@ export const metadata: Metadata = {
   title: "Dream Homes Bihar | House Planning, Vastu & 3D Elevation",
   description:
     "Expert house planning, Vastu-compliant designs, 3D elevations, and structural drawings tailored for Dream Homes in Bihar.",
+  // Add icons configuration here
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", type: "image/png", sizes: "180x180" },
+    ],
+    shortcut: ["/favicon.ico"],
+  },
 };
 
 export default function RootLayout({
@@ -22,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`scroll-smooth ${fontSans.variable}`}>
-      <body className="font-sans bg-slate-50 text-slate-900 antialiased selection:bg-emerald-500 selection:text-white flex min-h-screen flex-col">
+      <body className="font-sans bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 text-slate-900 antialiased selection:bg-emerald-500 selection:text-white flex min-h-screen flex-col">
         <Header />
 
         <main className="flex-1">{children}</main>
@@ -31,19 +42,23 @@ export default function RootLayout({
 
         {/* Floating Social Media, Payment & Contact Dock */}
         <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-          {/* Payment / Quick Pay Button */}
+          {/* Payment / Quick Pay Button - Enhanced & Clear */}
           <a
-            href="/pay" // Replace with your payment gateway link (Razorpay, UPI, or internal /pay page)
+            href="/payment"
             aria-label="Make a Payment or Book Now"
-            className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 p-3 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-indigo-500/30 active:scale-95"
+            className="group relative flex items-center gap-3 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 px-5 py-3.5 text-white shadow-2xl shadow-emerald-500/30 transition-all duration-300 hover:scale-110 hover:shadow-emerald-500/50 active:scale-95"
           >
+            {/* Animated gradient shimmer */}
+            <span className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-70" />
+            
+            {/* Payment Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={1.8}
+              strokeWidth={2}
               stroke="currentColor"
-              className="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
+              className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-5deg]"
             >
               <path
                 strokeLinecap="round"
@@ -51,18 +66,22 @@ export default function RootLayout({
                 d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15A2.25 2.25 0 002.25 6.75v10.5A2.25 2.25 0 004.5 19.5z"
               />
             </svg>
-            <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-semibold transition-all duration-300 group-hover:max-w-xs group-hover:pr-2">
-              Pay Online
-            </span>
+
+            <div className="flex flex-col items-start leading-tight">
+              <span className="text-sm font-bold tracking-wide">Pay Online</span>
+              <span className="text-[10px] font-medium text-emerald-100/80">
+                Secure • Instant
+              </span>
+            </div>
           </a>
 
           {/* Facebook Button */}
           <a
-            href="https://facebook.com/your-page-handle" // Replace with your Facebook page link
+            href="https://www.facebook.com/dreamhomesbihar/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Follow us on Facebook"
-            className="group flex items-center gap-2 rounded-full bg-blue-600 p-3 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-700 hover:shadow-blue-500/30 active:scale-95"
+            className="group flex items-center gap-2 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 p-3 text-white shadow-lg shadow-blue-500/20 transition-all duration-300 hover:scale-110 hover:shadow-blue-500/40 active:scale-95"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -79,11 +98,11 @@ export default function RootLayout({
 
           {/* Instagram Button */}
           <a
-            href="https://instagram.com/your-handle" // Replace with your Instagram profile link
+            href="https://instagram.com/dreamhomesbihar"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Follow us on Instagram"
-            className="group flex items-center gap-2 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 p-3 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-rose-500/30 active:scale-95"
+            className="group flex items-center gap-2 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 p-3 text-white shadow-lg shadow-rose-500/20 transition-all duration-300 hover:scale-110 hover:shadow-rose-500/40 active:scale-95"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -98,29 +117,32 @@ export default function RootLayout({
             </span>
           </a>
 
-          {/* WhatsApp Main Button */}
+          {/* WhatsApp Main Button - Enhanced */}
           <a
             href="https://wa.me/916205820278"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
-            className="group relative flex items-center gap-2.5 rounded-full bg-emerald-500 px-4 py-3 text-white shadow-xl shadow-emerald-500/20 transition-all duration-300 hover:scale-105 hover:bg-emerald-600 hover:shadow-2xl hover:shadow-emerald-500/40 active:scale-95"
+            className="group relative flex items-center gap-3 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 px-5 py-3.5 text-white shadow-2xl shadow-emerald-500/30 transition-all duration-300 hover:scale-105 hover:shadow-emerald-500/50 active:scale-95"
           >
-            {/* Ambient glow ring */}
-            <span className="absolute -inset-0.5 -z-10 rounded-full bg-emerald-500/40 opacity-75 blur-sm transition duration-1000 group-hover:opacity-100 animate-pulse" />
-
+            {/* Animated pulse ring */}
+            <span className="absolute inset-0 -z-10 rounded-2xl bg-emerald-500/30 opacity-0 blur-md transition-opacity duration-500 group-hover:opacity-100 animate-pulse" />
+            
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               viewBox="0 0 24 24"
-              className="h-6 w-6 transition-transform duration-300 group-hover:rotate-12"
+              className="h-6 w-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-5deg]"
             >
               <path fillRule="evenodd" d="M1.5 12c0 2.27.71 4.38 1.93 6.13L2 22l3.96-1.4A10.45 10.45 0 0 0 12 22.5c5.8 0 10.5-4.7 10.5-10.5S17.8 1.5 12 1.5 1.5 6.2 1.5 12Zm15.34 2.82c-.22-.11-1.3-.64-1.5-.72-.2-.08-.35-.11-.5.11-.15.22-.58.72-.71.87-.13.15-.26.17-.48.06a6.08 6.08 0 0 1-1.78-1.1 6.7 6.7 0 0 1-1.23-1.53c-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-.1.21-1.42-.2-.51-.4-.44-.55-.45h-.47c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.19.87 2.34.99 2.5.12.16 1.7 2.6 4.12 3.65.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.21-.16-.43-.27Z" clipRule="evenodd" />
             </svg>
 
-            <span className="text-sm font-semibold tracking-wide">
-              Chat with us
-            </span>
+            <div className="flex flex-col items-start leading-tight">
+              <span className="text-sm font-bold tracking-wide">Chat with us</span>
+              <span className="text-[10px] font-medium text-emerald-100/80">
+                Quick Response
+              </span>
+            </div>
           </a>
         </div>
       </body>
