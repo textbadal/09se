@@ -49,14 +49,32 @@ const DOMAIN_TEMPLATES: Record<string, DomainTemplate> = {
     highlights:
       "Exhibited strong proficiency in modern JavaScript/TypeScript, RESTful API design, version control with Git, and collaborative Agile development methodologies.",
   },
-  artificial_intelligence: {
-  id: "artificial_intelligence",
+  artificial_intelligence_machine_learning: {
+  id: "artificial_intelligence_machine_learning",
   label: "Artificial Intelligence & Machine Learning",
   defaultRole: "Artificial Intelligence & Machine Learning Intern",
   description:
     "demonstrated strong technical proficiency by contributing to machine learning projects, preparing and analyzing datasets, developing predictive models, and implementing AI-driven solutions.",
   highlights:
     "Exhibited proficiency in Python, data preprocessing, machine learning algorithms, model evaluation, and AI development using modern tools and frameworks.",
+},
+artificial_intelligence: {
+  id: "artificial_intelligence",
+  label: "Artificial Intelligence",
+  defaultRole: "Artificial Intelligence Intern",
+  description:
+    "demonstrated strong technical proficiency by contributing to artificial intelligence projects, developing AI-driven solutions, working with intelligent systems, and applying modern AI techniques to solve real-world problems.",
+  highlights:
+    "Exhibited proficiency in Python, artificial intelligence concepts, AI development, intelligent systems, automation, and modern AI tools and frameworks.",
+},
+web_development: {
+  id: "web_development",
+  label: "Web Development",
+  defaultRole: "Web Development Intern",
+  description:
+    "demonstrated strong technical proficiency by contributing to web development projects, designing and developing responsive websites, implementing interactive features, and building user-friendly web solutions.",
+  highlights:
+    "Exhibited proficiency in HTML, CSS, JavaScript, responsive web design, frontend development, backend integration, and modern web development tools and frameworks.",
 },
 graphic_design: {
   id: "graphic_design",
@@ -85,6 +103,15 @@ python_programming: {
   highlights:
     "Exhibited proficiency in Python, object-oriented programming, data structures, algorithms, exception handling, and application development.",
 },
+java_programming: {
+  id: "java_programming",
+  label: "Java Programming",
+  defaultRole: "Java Programming Intern",
+  description:
+    "demonstrated strong programming skills by developing Java-based applications, implementing efficient solutions, and applying object-oriented programming concepts to practical projects.",
+  highlights:
+    "Exhibited proficiency in Java, object-oriented programming, data structures, algorithms, exception handling, collections, and application development.",
+},
 data_analytics: {
   id: "data_analytics",
   label: "Data Analytics",
@@ -102,6 +129,15 @@ data_analytics: {
     "supported sales and marketing initiatives by conducting market research, identifying potential customers, assisting with promotional campaigns, and developing strategies to improve customer engagement and business growth.",
   highlights:
     "Applied strong fundamentals in market research, lead generation, customer communication, sales support, digital marketing, and campaign analysis to contribute to business development initiatives.",
+},
+social_media_management: {
+  id: "social_media_management",
+  label: "Social Media Management",
+  defaultRole: "Social Media Management Intern",
+  description:
+    "demonstrated strong social media management skills by creating engaging content, managing social media platforms, developing content strategies, and supporting brand growth through effective digital engagement.",
+  highlights:
+    "Exhibited proficiency in content planning, social media marketing, content creation, audience engagement, platform management, analytics, and social media campaign execution.",
 },
  cybersecurity: {
   id: "cybersecurity",

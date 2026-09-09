@@ -40,41 +40,8 @@ export default function RootLayout({
 
         <Footer />
 
-        {/* Floating Social Media, Payment & Contact Dock */}
+        {/* Floating Social Media & Contact Dock */}
         <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-          {/* Payment / Quick Pay Button - Enhanced & Clear */}
-          <a
-            href="/payment"
-            aria-label="Make a Payment or Book Now"
-            className="group relative flex items-center gap-3 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 px-5 py-3.5 text-white shadow-2xl shadow-emerald-500/30 transition-all duration-300 hover:scale-110 hover:shadow-emerald-500/50 active:scale-95"
-          >
-            {/* Animated gradient shimmer */}
-            <span className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-70" />
-            
-            {/* Payment Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-5deg]"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15A2.25 2.25 0 002.25 6.75v10.5A2.25 2.25 0 004.5 19.5z"
-              />
-            </svg>
-
-            <div className="flex flex-col items-start leading-tight">
-              <span className="text-sm font-bold tracking-wide">Pay Online</span>
-              <span className="text-[10px] font-medium text-emerald-100/80">
-                Secure • Instant
-              </span>
-            </div>
-          </a>
-
           {/* Facebook Button */}
           <a
             href="https://www.facebook.com/dreamhomesbihar/"
@@ -117,6 +84,48 @@ export default function RootLayout({
             </span>
           </a>
 
+          {/* YouTube Button */}
+          <a
+            href="https://youtube.com/@dreamhomesbihar"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Subscribe to our YouTube channel"
+            className="group flex items-center gap-2 rounded-full bg-gradient-to-br from-red-600 to-red-700 p-3 text-white shadow-lg shadow-red-500/20 transition-all duration-300 hover:scale-110 hover:shadow-red-500/40 active:scale-95"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              className="h-5 w-5"
+            >
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-semibold transition-all duration-300 group-hover:max-w-xs group-hover:pr-2">
+              YouTube
+            </span>
+          </a>
+
+          {/* LinkedIn Button 
+          <a
+            href="https://linkedin.com/company/dreamhomesbihar"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Connect on LinkedIn"
+            className="group flex items-center gap-2 rounded-full bg-gradient-to-br from-blue-700 to-blue-800 p-3 text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:scale-110 hover:shadow-blue-700/40 active:scale-95"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              className="h-5 w-5"
+            >
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-semibold transition-all duration-300 group-hover:max-w-xs group-hover:pr-2">
+              LinkedIn
+            </span>
+          </a>
+*/}
           {/* WhatsApp Main Button - Enhanced */}
           <a
             href="https://wa.me/916205820278"
