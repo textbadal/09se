@@ -6,7 +6,7 @@ import jsPDF from "jspdf";
 import { 
   Download, Plus, Trash2, Check, Edit3, 
   Eye, EyeOff, Settings, Building2, Users, FileText,
-  Home, Layers, Lightbulb, TrendingUp, X
+  Home as HomeIcon, Layers, Lightbulb, TrendingUp, X
 } from "lucide-react";
 
 interface ServiceConfig {

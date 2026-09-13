@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Check, 
@@ -15,7 +15,7 @@ import {
   CheckCircle2, 
   HelpCircle,
   PhoneCall,
-  Home,
+
   Palette
 } from "lucide-react";
 
@@ -81,8 +81,8 @@ const AnimatedCounter = ({ value, duration = 2 }: { value: number; duration?: nu
     const end = value;
     if (start === end) return;
 
-    let totalMilliseconds = duration * 1000;
-    let incrementTime = Math.abs(Math.floor(totalMilliseconds / end));
+   const totalMilliseconds = duration * 1000;
+const incrementTime = Math.abs(Math.floor(totalMilliseconds / end));
 
     let timer = setInterval(() => {
       start += 1;
@@ -357,7 +357,7 @@ export default function InteriorLandingPage() {
               </div>
               <div className="mt-8">
                 <a 
-                  href={getWhatsAppLink("919999999999", "Hi! I am interested in booking a 2D Layout Plan (₹3,000/Room). Please guide me on steps.")}
+                  href={getWhatsAppLink("916205820278", "Hi! I am interested in booking a 2D Layout Plan (₹3,000/Room). Please guide me on steps.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full block py-3 bg-slate-900 hover:bg-slate-800 text-slate-100 font-semibold rounded-xl text-center transition"

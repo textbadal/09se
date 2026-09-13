@@ -1,43 +1,28 @@
-// app/page.tsx
 "use client";
 
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { 
-  Building2, 
-  Home, 
-  Users, 
-  Award, 
+import Image from "next/image";
+import { useState } from "react";
+import {
+  Building2,
+  Users,
+  Award,
   ArrowRight,
-  CheckCircle,
   Phone,
-  Mail,
-  MapPin,
-  Instagram,
-  Facebook,
-  Youtube,
-  Sparkles,
   Compass,
   Layers,
   PenTool,
-  TreePine,
   ArrowUpRight,
   Quote,
-  Play,
-  ChevronRight,
   Clock,
   Star,
   Globe,
-  Heart,
-  Eye,
   MoveRight,
   Plus,
-  Minus
-} from 'lucide-react';
+} from "lucide-react";
 
 export default function Home() {
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [hoveredProject, setHoveredProject] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   // Projects portfolio
   const projects = [

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Phone, Home, Sparkles } from "lucide-react";
+import { Menu, X, Phone, Home as HomeIcon, Sparkles } from "lucide-react";
 import Head from "next/head"; // Add this
 
 export default function Header() {
