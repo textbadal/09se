@@ -3,10 +3,21 @@
 import { useEffect, useRef, useState } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { 
-  Download, Plus, Trash2, Check, Edit3, 
-  Eye, EyeOff, Settings, Building2, Users, FileText,
-  Home as HomeIcon, Layers, Lightbulb, TrendingUp, X
+import {
+  Download,
+  Plus,
+  Trash2,
+  Eye,
+  EyeOff,
+  Settings,
+  Building2,
+  Users,
+  FileText,
+  Home as HomeIcon,
+  Layers,
+  Lightbulb,
+  TrendingUp,
+  X
 } from "lucide-react";
 
 interface ServiceConfig {
@@ -28,7 +39,7 @@ const SERVICES_CATALOG: ServiceConfig[] = [
   {
     id: "architectural",
     label: "Floor Plan Design",
-    icon: <Home size={18} />,
+ icon: <HomeIcon size={18} />,
     prices: { Ground: 2999, "G+1": 3999, "G+2": 4499, "G+3": 4999 },
     description: "Complete architectural layout and planning",
     deliverables: [
