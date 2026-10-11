@@ -66,6 +66,21 @@ const timelineOptions = [
   "Just exploring",
 ] as const;
 
+/**
+ * Zod schema
+ * ─────────────────────────────────────────────────────────────
+ * NOTE: This file is compatible with BOTH Zod v3 and Zod v4.
+ *
+ * Previously the schema used:
+ *   z.literal(true, { errorMap: () => ({ message: "..." }) })
+ * which is a Zod v3-only API. Zod v4 removed `errorMap` from the
+ * second argument, causing the TypeScript build to fail with:
+ *   "Argument of type 'boolean' is not assignable to parameter of
+ *    type 'readonly Literal[]'"
+ *
+ * The cross-version safe form is to pass a plain `message` string.
+ * ─────────────────────────────────────────────────────────────
+ */
 const quotationSchema = z.object({
   // Step 1 — Project
   projectTypes: z.array(z.string()).min(1, "Select at least one service"),
@@ -86,7 +101,7 @@ const quotationSchema = z.object({
   // Step 3 — Details
   notes: z.string().max(1000).optional(),
   agreeToTerms: z.literal(true, {
-    errorMap: () => ({ message: "You must agree to continue" }),
+    message: "You must agree to continue",
   }),
 });
 
@@ -124,10 +139,12 @@ export default function QuotationPage() {
       phone: "",
       whatsapp: "",
       notes: "",
+      agreeToTerms: false as unknown as true,
     },
   });
 
   const selectedTypes = watch("projectTypes");
+  void selectedTypes; // reserved for future use
 
   /* ---- Step navigation ---- */
   const nextStep = async () => {
@@ -185,8 +202,10 @@ export default function QuotationPage() {
             backgroundImage:
               "linear-gradient(to right, rgba(15,23,42,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.06) 1px, transparent 1px)",
             backgroundSize: "44px 44px",
-            maskImage: "radial-gradient(ellipse 70% 50% at 50% 0%, black 40%, transparent 100%)",
-            WebkitMaskImage: "radial-gradient(ellipse 70% 50% at 50% 0%, black 40%, transparent 100%)",
+            maskImage:
+              "radial-gradient(ellipse 70% 50% at 50% 0%, black 40%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 70% 50% at 50% 0%, black 40%, transparent 100%)",
           }}
         />
         <div className="relative mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center px-6 py-16 text-center">
@@ -198,7 +217,8 @@ export default function QuotationPage() {
           </h1>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-gray-600">
             Thank you. Our team will review your requirements and send a detailed
-            quotation within <span className="font-semibold text-gray-800">24 hours</span>.
+            quotation within{" "}
+            <span className="font-semibold text-gray-800">24 hours</span>.
           </p>
 
           <div className="mt-10 grid w-full max-w-md grid-cols-1 gap-3 text-left">
@@ -252,8 +272,10 @@ export default function QuotationPage() {
             backgroundImage:
               "linear-gradient(to right, rgba(15,23,42,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.08) 1px, transparent 1px)",
             backgroundSize: "44px 44px",
-            maskImage: "radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%)",
-            WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%)",
+            maskImage:
+              "radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%)",
           }}
         />
         <div className="absolute -top-32 -left-24 h-[28rem] w-[28rem] rounded-full bg-gradient-to-br from-blue-200/40 via-indigo-100/30 to-transparent blur-3xl" />
@@ -303,7 +325,11 @@ export default function QuotationPage() {
                         : "border-gray-300 bg-white text-gray-400"
                     }`}
                   >
-                    {step > s.n ? <Check className="h-4 w-4" strokeWidth={3} /> : s.n}
+                    {step > s.n ? (
+                      <Check className="h-4 w-4" strokeWidth={3} />
+                    ) : (
+                      s.n
+                    )}
                   </div>
                   <span
                     className={`mt-2 text-[11px] font-semibold ${
@@ -354,7 +380,9 @@ export default function QuotationPage() {
                               onClick={() =>
                                 field.onChange(
                                   active
-                                    ? field.value.filter((v: string) => v !== value)
+                                    ? field.value.filter(
+                                        (v: string) => v !== value
+                                      )
                                     : [...field.value, value]
                                 )
                               }
@@ -445,7 +473,12 @@ export default function QuotationPage() {
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </div>
                     {errors.budget && (
@@ -478,7 +511,12 @@ export default function QuotationPage() {
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </div>
                     {errors.timeline && (
@@ -565,7 +603,10 @@ export default function QuotationPage() {
                     className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-gray-50/50 px-6 py-8 text-center transition-colors hover:border-blue-400 hover:bg-blue-50/40"
                   >
                     <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
-                      <Upload className="h-5 w-5 text-blue-600" strokeWidth={2} />
+                      <Upload
+                        className="h-5 w-5 text-blue-600"
+                        strokeWidth={2}
+                      />
                     </div>
                     <p className="text-sm font-semibold text-gray-800">
                       Click to upload or drag &amp; drop
@@ -591,7 +632,10 @@ export default function QuotationPage() {
                           className="flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2"
                         >
                           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50">
-                            <FileText className="h-4 w-4 text-blue-600" strokeWidth={2} />
+                            <FileText
+                              className="h-4 w-4 text-blue-600"
+                              strokeWidth={2}
+                            />
                           </div>
                           <div className="min-w-0 flex-1">
                             <p className="truncate text-xs font-semibold text-gray-800">
@@ -625,11 +669,17 @@ export default function QuotationPage() {
                   <span className="text-xs leading-relaxed text-gray-600">
                     I agree to be contacted by the design team regarding this
                     quotation request and accept the{" "}
-                    <Link href="/terms" className="font-semibold text-blue-600 hover:underline">
+                    <Link
+                      href="/terms"
+                      className="font-semibold text-blue-600 hover:underline"
+                    >
                       Terms of Service
                     </Link>{" "}
                     and{" "}
-                    <Link href="/privacy" className="font-semibold text-blue-600 hover:underline">
+                    <Link
+                      href="/privacy"
+                      className="font-semibold text-blue-600 hover:underline"
+                    >
                       Privacy Policy
                     </Link>
                     .
@@ -648,8 +698,14 @@ export default function QuotationPage() {
                     { Icon: ShieldCheck, text: "Data protected" },
                     { Icon: BadgeCheck, text: "Licensed team" },
                   ].map(({ Icon, text }, i) => (
-                    <div key={i} className="flex items-center gap-1.5 text-[11px] font-medium text-blue-900">
-                      <Icon className="h-3.5 w-3.5 text-blue-600" strokeWidth={2} />
+                    <div
+                      key={i}
+                      className="flex items-center gap-1.5 text-[11px] font-medium text-blue-900"
+                    >
+                      <Icon
+                        className="h-3.5 w-3.5 text-blue-600"
+                        strokeWidth={2}
+                      />
                       {text}
                     </div>
                   ))}
@@ -670,9 +726,7 @@ export default function QuotationPage() {
                 Back
               </button>
             ) : (
-              <span className="text-xs text-gray-400">
-                Step {step} of 3
-              </span>
+              <span className="text-xs text-gray-400">Step {step} of 3</span>
             )}
 
             {step < 3 ? (
@@ -713,7 +767,10 @@ export default function QuotationPage() {
             { Icon: BadgeCheck, text: "Licensed architects" },
             { Icon: ShieldCheck, text: "100% confidential" },
           ].map(({ Icon, text }, i) => (
-            <div key={i} className="flex items-center gap-1.5 text-xs font-medium text-gray-600">
+            <div
+              key={i}
+              className="flex items-center gap-1.5 text-xs font-medium text-gray-600"
+            >
               <Icon className="h-3.5 w-3.5 text-gray-400" strokeWidth={2} />
               {text}
             </div>
@@ -755,7 +812,9 @@ const Field = forwardRef<HTMLInputElement, FieldProps>(
           }`}
         />
       </div>
-      {error && <p className="mt-1.5 text-xs font-medium text-red-600">{error}</p>}
+      {error && (
+        <p className="mt-1.5 text-xs font-medium text-red-600">{error}</p>
+      )}
     </div>
   )
 );
