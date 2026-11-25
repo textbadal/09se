@@ -125,7 +125,7 @@ const posters = [
   },
   {
     id: 2,
-    image: "/posters/30x40-floor-plan.webp",
+    image: "/3D/Front Elevation/front-elevation (5).jpeg",
     alt: "3D Elevation + Floor Plan Combo",
     href: "/services",
     gradient: "from-orange-900 via-rose-800 to-pink-900",
@@ -180,7 +180,7 @@ const portfolioShowcase = [
     title: "3D Elevations",
     desc: "Photorealistic front elevations with material palettes & modern concepts.",
     gradient: "from-purple-500 to-fuchsia-600",
-    href: "/elevation",
+    href: "/front-elevation",
     preview: "HD Render · Multi-Angle",
     badge: "Trending",
     image: "/3d/Front Elevation/front-elevation (4).jpeg",
