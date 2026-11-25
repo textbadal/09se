@@ -125,7 +125,7 @@ const posters = [
   },
   {
     id: 2,
-    image: "/3D/Front Elevation/front-elevation (5).jpeg",
+    image: "/posters/30x40-floor-plan.webp",
     alt: "3D Elevation + Floor Plan Combo",
     href: "/services",
     gradient: "from-orange-900 via-rose-800 to-pink-900",
